@@ -12,7 +12,7 @@
     <body>
         <div class="container main-container">
             <div class="header resized">
-                <div class="btn show-list" onclick="goTo('.preferences-wrapper');toggleHeaderBtn()"></div>
+                <div class="btn show-list" onclick="goTo('.preferences-wrapper');toggleHeaderBtn();fillPreferencesList('like')"></div>
                 <div class="btn btn-back hidden" onclick="goTo('.content-wrapper');toggleHeaderBtn()"></div>
                 <img src="img/scribe-logo.svg" alt="">
             </div>
@@ -72,8 +72,8 @@
             </div>
             <div class="preferences-wrapper section hidden">
                 <div class="preferences-control">
-                    <div class="btn like-control active" onclick="togglePreferencesList(this)">LIKES</div>
-                    <div class="btn dislike-control" onclick="togglePreferencesList(this)">DISLIKES</div>
+                    <div class="btn like-control active" onclick="fillPreferencesList('like')">LIKES</div>
+                    <div class="btn dislike-control" onclick="fillPreferencesList('dislike')">DISLIKES</div>
                 </div>
                 <div class="row list-wrapper">
                     <div class="col-xs-12 col-sm-4 list-card">
