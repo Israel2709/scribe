@@ -55,8 +55,10 @@ function goTo(destiny){
 	$(destiny).toggleClass("hidden")
 }
 
-function toggleHeaderBtn(){
-	$(".header .btn").toggleClass("hidden")
+function toggleHeaderBtn(btn){
+	$(".header .btn").addClass("hidden");
+	$(btn).toggleClass("hidden");
+	
 }
 
 function togglePreferencesList(selection){
@@ -65,6 +67,7 @@ function togglePreferencesList(selection){
 }
 
 function changeContainer(){
+	$(".img-logo").toggleClass("hidden");
 	if($(".main-container").hasClass("container")){
 		$(".main-container").removeClass("container");
 		$(".main-container").addClass("container-fluid");
@@ -75,9 +78,11 @@ function changeContainer(){
 	
 }
 
-function noescogi(selected){
+function clickPanel(selected){
 	console.log(selected);
 	goTo('.detail-wrapper');
+	changeContainer();
+	toggleHeaderBtn('.btn-back-white');
 	changeContainer()
 }
 
@@ -152,4 +157,5 @@ function fillPreferencesList(listType){
 		$(".list-wrapper").append(selectedCard)
 	}
 }
+
 
