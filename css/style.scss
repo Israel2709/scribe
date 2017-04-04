@@ -283,13 +283,40 @@ h1 {
                 right: 0px;
             }
             &.active{
-                background: $redBackground;
+                background: $redText;
                 z-index: 1000;
                 color: white;
                 border-radius: 50px;
             }
         }
 
+    }
+    .list-wrapper{
+        margin-top: 40px;
+    }
+    .list-card{
+        padding: 10px;
+        img{
+            width: 100%;
+        }
+        .card-name{
+            float: left;   
+            width: 100%;
+            font-size: 20px;
+            font-family: 'latoregular'
+        }
+        .like-count{
+            .counter{
+                color:$redText;
+                font-size: 30px;
+                font-family: 'latoregular'
+            }
+            .like-btn{
+                width: 30px;
+                height: 30px;
+                background:url("../img/heart-ico.svg")
+            }
+        }
     }
 }
 /* Image text */

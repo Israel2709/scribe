@@ -256,10 +256,31 @@ h1 {
     .preferences-wrapper .preferences-control .btn.dislike-control {
       right: 0px; }
     .preferences-wrapper .preferences-control .btn.active {
-      background: #E11D24;
+      background: #FE5068;
       z-index: 1000;
       color: white;
       border-radius: 50px; }
+
+.preferences-wrapper .list-wrapper {
+  margin-top: 40px; }
+
+.preferences-wrapper .list-card {
+  padding: 10px; }
+  .preferences-wrapper .list-card img {
+    width: 100%; }
+  .preferences-wrapper .list-card .card-name {
+    float: left;
+    width: 100%;
+    font-size: 20px;
+    font-family: 'latoregular'; }
+  .preferences-wrapper .list-card .like-count .counter {
+    color: #FE5068;
+    font-size: 30px;
+    font-family: 'latoregular'; }
+  .preferences-wrapper .list-card .like-count .like-btn {
+    width: 30px;
+    height: 30px;
+    background: url("../img/heart-ico.svg"); }
 
 /* Image text */
 /* Image rotation */

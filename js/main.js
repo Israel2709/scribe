@@ -53,3 +53,8 @@ function togglePreferencesList(selection){
 	$(".preferences-control .btn").removeClass("active")
 	$(selection).addClass("active")
 }
+
+function noescogi(selected){
+	console.log("no escogi")
+	console.log(selected)
+}
