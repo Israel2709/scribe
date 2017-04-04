@@ -3,6 +3,41 @@ var ObjectLike = {
 	"dislike":[]
 };
 
+var blackCollection = [{
+	"name":"black1",
+	"imgSrc":"img/list-covers/black/black-1.png"
+},{
+	"name":"black2",
+	"imgSrc":"img/list-covers/black/black-2.png"
+},{
+	"name":"black3",
+	"imgSrc":"img/list-covers/black/black-3.png"
+},{
+	"name":"black4",
+	"imgSrc":"img/list-covers/black/black-4.png"
+},{
+	"name":"black5",
+	"imgSrc":"img/list-covers/black/black-5.png"
+},{
+	"name":"black6",
+	"imgSrc":"img/list-covers/black/black-6.png"
+},{
+	"name":"black7",
+	"imgSrc":"img/list-covers/black/black-7.png"
+},{
+	"name":"black8",
+	"imgSrc":"img/list-covers/black/black-8.png"
+},{
+	"name":"black9",
+	"imgSrc":"img/list-covers/black/black-9.png"
+},{
+	"name":"black10",
+	"imgSrc":"img/list-covers/black/black-10.png"
+},{
+	"name":"black11",
+	"imgSrc":"img/list-covers/black/black-1.png"
+}]
+
 /**
  * jTinder initialization
  */
@@ -57,4 +92,8 @@ function togglePreferencesList(selection){
 function noescogi(selected){
 	console.log("no escogi")
 	console.log(selected)
+}
+
+function fillColectionSwiper(collection){
+
 }
