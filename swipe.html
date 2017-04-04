@@ -12,9 +12,12 @@
     <body>
         <div class="container main-container">
             <div class="header resized">
-                <div class="btn show-list" onclick="goTo('.preferences-wrapper');toggleHeaderBtn()"></div>
-                <div class="btn btn-back hidden" onclick="goTo('.content-wrapper');toggleHeaderBtn()"></div>
-                <img src="img/scribe-logo.svg" alt="">
+                <div class="row">
+                    <div class="btn show-list" onclick="goTo('.preferences-wrapper');toggleHeaderBtn('.btn-back')"></div>
+                    <div class="btn btn-back hidden" onclick="goTo('.content-wrapper');toggleHeaderBtn('.show-list')"></div>
+                    <div class="btn btn-back-white hidden" onclick="goTo('.content-wrapper');toggleHeaderBtn('.show-list');changeContainer();"></div>
+                    <img src="img/scribe-logo.svg" class="img-logo" alt="">
+                </div>
             </div>
             <div class="content-wrapper section">
                 <div class="row">
@@ -126,7 +129,7 @@
                     </div>
                 </div>
             </div>
-            <div class="detail-wrapper hidden">
+            <div class="detail-wrapper section hidden">
                 <div class="row bgBlack">
                     <div class="col-xs-12">
                         <div class="wrap">

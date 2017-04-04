@@ -152,7 +152,7 @@
 							});
 						}
 					} else {
-						noescogi(panes.eq(current_pane).data("nombre"));
+						clickPanel(panes.eq(current_pane).data("nombre"));
 						lastPosX = 0;
 						lastPosY = 0;
 						panes.eq(current_pane).animate({"transform": "translate(0px,0px) rotate(0deg)"}, $that.settings.animationRevertSpeed);
