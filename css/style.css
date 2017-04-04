@@ -5,13 +5,11 @@
   src: url("../fonts/lato/lato-regular-webfont.woff2") format("woff2"), url("../fonts/lato/lato-regular-webfont.woff") format("woff"), url("../fonts/lato/lato-regular-webfont.ttf") format("truetype"), url("../fonts/lato/lato-regular-webfont.svg#latoregular") format("svg");
   font-weight: normal;
   font-style: normal; }
-
 @font-face {
   font-family: 'latobold';
   src: url("../fonts/lato/lato-bold-webfont.woff2") format("woff2"), url("../fonts/lato/lato-bold-webfont.woff") format("woff"), url("../fonts/lato/lato-bold-webfont.ttf") format("truetype"), url("../fonts/lato/lato-bold-webfont.svg#latobold") format("svg");
   font-weight: normal;
   font-style: normal; }
-
 /*Mixins*/
 body {
   background: src("../img/main-bckgnd.svg"); }
@@ -62,7 +60,6 @@ h1 {
     -webkit-transition: all 0.3s ease;
     -o-transition: all 0.3s ease;
     -moz-transition: all 0.3s ease; }
-
 .main-container .header.resized {
   margin-top: 30px; }
   .main-container .header.resized img {
@@ -75,12 +72,10 @@ h1 {
     max-width: 589px;
     display: block;
     margin: 0px auto; }
-
 .login h1 {
   width: 80%;
   margin: 50px auto 0 auto;
   text-align: center; }
-
 .login .red-btn {
   width: 450px;
   display: block;
@@ -226,14 +221,8 @@ h1 {
 .actions {
   text-align: center;
   width: 100%;
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-justify-content: center;
-  -ms-flex-pack: center;
   justify-content: center;
-  -webkit-align-items: center;
-  -ms-flex-align: center;
   align-items: center;
   margin: 0 auto; }
   .actions div {
@@ -272,7 +261,6 @@ h1 {
 /* Images */
 #swipe-wrapper .pane3 .img-wrapper, #swipe-wrapper .pane1 .img-wrapper {
   background: #424242; }
-
 #swipe-wrapper .pane2 .img-wrapper {
   background: lightblue; }
 
@@ -282,3 +270,11 @@ h1 {
   font-family: arial;
   margin-top: 30px;
   font-weight: bold; }
+
+/*ESTILOS DETAIL*/
+.main-container.detail {
+  background-color: #424242; }
+  .main-container.detail .header {
+    margin-top: 0px; }
+
+/*# sourceMappingURL=style.css.map */

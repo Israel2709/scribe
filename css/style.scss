@@ -98,7 +98,8 @@ h1 {
     }
     .red-btn {
         width: 450px;
-        @include auto-center() margin-top: 50px;
+        @include auto-center();
+        margin-top: 50px;
     }
 }
 /*swiper*/
@@ -315,4 +316,15 @@ h1 {
     font-family: arial;
     margin-top: 30px;
     font-weight: bold;
+}
+
+
+/*ESTILOS DETAIL*/
+
+.main-container.detail{
+    background-color:#424242;
+
+    .header{
+        margin-top:0px;
+    }
 }
