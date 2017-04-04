@@ -89,9 +89,21 @@ function togglePreferencesList(selection){
 	$(selection).addClass("active")
 }
 
+function changeContainer(){
+	if($(".main-container").hasClass("container")){
+		$(".main-container").removeClass("container");
+		$(".main-container").addClass("container-fluid");
+	}else{
+		$(".main-container").addClass("container");
+		$(".main-container").removeClass("container-fluid");
+	}
+	
+}
+
 function noescogi(selected){
-	console.log("no escogi")
-	console.log(selected)
+	console.log(selected);
+	goTo('.detail-wrapper');
+	changeContainer()
 }
 
 function fillColectionSwiper(collection){
