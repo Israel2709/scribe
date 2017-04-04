@@ -37,6 +37,19 @@ $('.actions .like, .actions .dislike').click(function(e){
 function fillObject(category,item){
 	eval("ObjectLike." + category + ".push({\"coleccion\":item.data(\"coleccion\"),\"nombre\":item.data(\"nombre\"),\"imagen\":item.data(\"imagen\")})");
 	//Objeto.push({"coleccion":item.data("coleccion"),"nombre":item.data("nombre"),"imagen":item.data("imagen")});
-	
 	console.log(ObjectLike)
+}
+
+function goTo(destiny){
+	$(".section").addClass("hidden")
+	$(destiny).toggleClass("hidden")
+}
+
+function toggleHeaderBtn(){
+	$(".header .btn").toggleClass("hidden")
+}
+
+function togglePreferencesList(selection){
+	$(".preferences-control .btn").removeClass("active")
+	$(selection).addClass("active")
 }

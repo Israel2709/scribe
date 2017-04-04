@@ -12,16 +12,17 @@
     <body>
         <div class="container main-container">
             <div class="header resized">
-                <div class="show-list"></div>
+                <div class="btn show-list" onclick="goTo('.preferences-wrapper');toggleHeaderBtn()"></div>
+                <div class="btn btn-back hidden" onclick="goTo('.content-wrapper');toggleHeaderBtn()"></div>
                 <img src="img/scribe-logo.svg" alt="">
             </div>
-            <div class="content-wrapper">
+            <div class="content-wrapper section">
                 <div class="row">
                     <div class="col-xs-12">
                         <!-- start padding container -->
                         <div class="wrap">
                             <!-- start jtinder container -->
-                            <div id="swipe-wrapper">
+                            <div id="swipe-wrapper" >
                                 <ul>
                                     <li class="pane pane1" data-coleccion="1" data-nombre="Libreta 1" data-imagen="libreta1.png">
                                         <div class="img-wrapper">
@@ -52,6 +53,7 @@
                                     </li>
                                 </ul>
                             </div>
+                            
                             <!-- end jtinder container -->
                         </div>
                         <!-- end padding container -->
@@ -68,10 +70,13 @@
                     
                 </div>
             </div>
-            
+            <div class="preferences-wrapper section hidden">
+                <div class="preferences-control">
+                    <div class="btn like-control active" onclick="togglePreferencesList(this)">LIKES</div>
+                    <div class="btn dislike-control" onclick="togglePreferencesList(this)">DISLIKES</div>
+                </div>
+            </div>
         </div>
-        
-        
         <!-- jQuery lib -->
         <script type="text/javascript" src="js/jquery.min.js"></script>
         <script type="text/javascript" src="js/bootstrap.min.js"></script>

@@ -74,6 +74,14 @@ h1 {
             top: 15px;
             @include ease-transition();
         }
+        .btn-back {
+            background: url("../img/previous.svg");
+            width: 40px;
+            height: 40px;
+            position: absolute;
+            top: 15px;
+            @include ease-transition();
+        }
     }
     .header.resized {
         margin-top: 30px;
@@ -243,6 +251,45 @@ h1 {
     	background-size: 100%;
     	right: 50px;
     	bottom: 25px;
+    }
+}
+
+.preferences-wrapper{
+    .preferences-control{
+        border: 1px solid $grayText;
+        border-radius: 50px;
+        height: 50px;
+        box-sizing: border-box;
+        font-size: 20px;
+        line-height: 1.2;
+        width: 50%;
+        overflow:hidden;
+        position: relative;
+        @include auto-center();
+        margin-top: 20px;
+        .btn{
+            width: 55%;
+            position: absolute;
+            top: 0;
+            color: $grayText;
+            font-family: 'latoregular';
+            text-align: center;
+            height: 50px;
+            padding-top: 13px;
+            &.like-control{
+                left: 0px;
+            }
+            &.dislike-control{
+                right: 0px;
+            }
+            &.active{
+                background: $redBackground;
+                z-index: 1000;
+                color: white;
+                border-radius: 50px;
+            }
+        }
+
     }
 }
 /* Image text */

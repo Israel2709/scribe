@@ -5,11 +5,13 @@
   src: url("../fonts/lato/lato-regular-webfont.woff2") format("woff2"), url("../fonts/lato/lato-regular-webfont.woff") format("woff"), url("../fonts/lato/lato-regular-webfont.ttf") format("truetype"), url("../fonts/lato/lato-regular-webfont.svg#latoregular") format("svg");
   font-weight: normal;
   font-style: normal; }
+
 @font-face {
   font-family: 'latobold';
   src: url("../fonts/lato/lato-bold-webfont.woff2") format("woff2"), url("../fonts/lato/lato-bold-webfont.woff") format("woff"), url("../fonts/lato/lato-bold-webfont.ttf") format("truetype"), url("../fonts/lato/lato-bold-webfont.svg#latobold") format("svg");
   font-weight: normal;
   font-style: normal; }
+
 /*Mixins*/
 body {
   background: src("../img/main-bckgnd.svg"); }
@@ -60,6 +62,18 @@ h1 {
     -webkit-transition: all 0.3s ease;
     -o-transition: all 0.3s ease;
     -moz-transition: all 0.3s ease; }
+  .main-container .header .btn-back {
+    background: url("../img/previous.svg");
+    width: 40px;
+    height: 40px;
+    position: absolute;
+    top: 15px;
+    transition: all 0.3s ease;
+    -ms-transition: all 0.3s ease;
+    -webkit-transition: all 0.3s ease;
+    -o-transition: all 0.3s ease;
+    -moz-transition: all 0.3s ease; }
+
 .main-container .header.resized {
   margin-top: 30px; }
   .main-container .header.resized img {
@@ -72,10 +86,12 @@ h1 {
     max-width: 589px;
     display: block;
     margin: 0px auto; }
+
 .login h1 {
   width: 80%;
   margin: 50px auto 0 auto;
   text-align: center; }
+
 .login .red-btn {
   width: 450px;
   display: block;
@@ -213,6 +229,38 @@ h1 {
     right: 50px;
     bottom: 25px; }
 
+.preferences-wrapper .preferences-control {
+  border: 1px solid #9B9B9B;
+  border-radius: 50px;
+  height: 50px;
+  box-sizing: border-box;
+  font-size: 20px;
+  line-height: 1.2;
+  width: 50%;
+  overflow: hidden;
+  position: relative;
+  display: block;
+  margin: 0px auto;
+  margin-top: 20px; }
+  .preferences-wrapper .preferences-control .btn {
+    width: 55%;
+    position: absolute;
+    top: 0;
+    color: #9B9B9B;
+    font-family: 'latoregular';
+    text-align: center;
+    height: 50px;
+    padding-top: 13px; }
+    .preferences-wrapper .preferences-control .btn.like-control {
+      left: 0px; }
+    .preferences-wrapper .preferences-control .btn.dislike-control {
+      right: 0px; }
+    .preferences-wrapper .preferences-control .btn.active {
+      background: #E11D24;
+      z-index: 1000;
+      color: white;
+      border-radius: 50px; }
+
 /* Image text */
 /* Image rotation */
 /* Like & dislike badge images */
@@ -221,8 +269,14 @@ h1 {
 .actions {
   text-align: center;
   width: 100%;
+  display: -webkit-flex;
+  display: -ms-flexbox;
   display: flex;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
   justify-content: center;
+  -webkit-align-items: center;
+  -ms-flex-align: center;
   align-items: center;
   margin: 0 auto; }
   .actions div {
@@ -261,6 +315,7 @@ h1 {
 /* Images */
 #swipe-wrapper .pane3 .img-wrapper, #swipe-wrapper .pane1 .img-wrapper {
   background: #424242; }
+
 #swipe-wrapper .pane2 .img-wrapper {
   background: lightblue; }
 
@@ -276,5 +331,3 @@ h1 {
   background-color: #424242; }
   .main-container.detail .header {
     margin-top: 0px; }
-
-/*# sourceMappingURL=style.css.map */
