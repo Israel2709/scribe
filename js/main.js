@@ -11,13 +11,13 @@ $("#swipe-wrapper").jTinder({
     onDislike: function (item) {
 	    // set the status text
         $('#status').html('Dislike image ' + (item.index()+1));
-		fillObject("like",item);
+		fillObject("dislike",item);
     },
 	// like callback
     onLike: function (item) {
 	    // set the status text
         $('#status').html('Like image ' + (item.index()+1));
-		fillObject("dislike",item);
+		fillObject("like",item);
     },
 	animationRevertSpeed: 200,
 	animationSpeed: 400,
