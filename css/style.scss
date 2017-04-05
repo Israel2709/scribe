@@ -267,6 +267,8 @@ h1 {
 
 .preferences-wrapper{
     padding:5%;
+    overflow: scroll;
+    max-height: 870px;
     .preferences-control{
         border: 1px solid $grayText;
         border-radius: 50px;
