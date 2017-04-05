@@ -13,7 +13,7 @@
         <div class="container main-container">
             <div class="header resized">
                 <div class="row">
-                    <div class="btn show-list" onclick="goTo('.preferences-wrapper');toggleHeaderBtn('.btn-back')"></div>
+                    <div class="btn show-list" onclick="goTo('.preferences-wrapper');toggleHeaderBtn('.btn-back');fillPreferencesList('like')"></div>
                     <div class="btn btn-back hidden" onclick="goTo('.content-wrapper');toggleHeaderBtn('.show-list')"></div>
                     <div class="btn btn-back-white hidden" onclick="goTo('.content-wrapper');toggleHeaderBtn('.show-list');changeContainer();"></div>
                     <img src="img/scribe-logo.svg" class="img-logo" alt="">
@@ -75,8 +75,8 @@
             </div>
             <div class="preferences-wrapper section hidden">
                 <div class="preferences-control">
-                    <div class="btn like-control active" onclick="togglePreferencesList(this)">LIKES</div>
-                    <div class="btn dislike-control" onclick="togglePreferencesList(this)">DISLIKES</div>
+                    <div class="btn like-control active" onclick="fillPreferencesList('like')">LIKES</div>
+                    <div class="btn dislike-control" onclick="fillPreferencesList('dislike')">DISLIKES</div>
                 </div>
                 <div class="row list-wrapper">
                     <div class="col-xs-12 col-sm-4 list-card">
@@ -138,7 +138,7 @@
                             </div>
                         </div>
                     </div>
-                </div>  
+                </div>
                 <div class="row">
                     <div class="col-xs-6 title-note">Black</div>
                     <div class="col-xs-6"><div class="like-btn"></div><p class="counterLikes">200</p></div>

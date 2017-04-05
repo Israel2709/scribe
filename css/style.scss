@@ -285,10 +285,10 @@ h1 {
             height: 50px;
             padding-top: 13px;
             &.like-control{
-                left: 0px;
+                right: 0px;
             }
             &.dislike-control{
-                right: 0px;
+                left: 0px;
             }
             &.active{
                 background: $redText;
@@ -383,11 +383,8 @@ h1 {
 /* Images */
 
 #swipe-wrapper {
-    .pane3 .img-wrapper, .pane1 .img-wrapper {
+    .pane .img-wrapper {
 		background:#424242
-    }
-    .pane2 .img-wrapper{
-    	background: lightblue;
     }
 }
 
@@ -410,7 +407,6 @@ h1 {
         margin-left: 25px;
         margin-top: 20px;
     }
-
     &.main-container{
         .header{
             margin-top: 0px;
@@ -463,8 +459,6 @@ h1 {
             .actions{
                 margin-top: 30px;
             }
-
         }
-
     }
 }

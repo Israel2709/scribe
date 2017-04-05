@@ -258,9 +258,9 @@ h1 {
     height: 50px;
     padding-top: 13px; }
     .preferences-wrapper .preferences-control .btn.like-control {
-      left: 0px; }
-    .preferences-wrapper .preferences-control .btn.dislike-control {
       right: 0px; }
+    .preferences-wrapper .preferences-control .btn.dislike-control {
+      left: 0px; }
     .preferences-wrapper .preferences-control .btn.active {
       background: #FE5068;
       z-index: 1000;
@@ -332,10 +332,8 @@ h1 {
       background: url("../img/super-like.svg") no-repeat scroll center center; }
 
 /* Images */
-#swipe-wrapper .pane3 .img-wrapper, #swipe-wrapper .pane1 .img-wrapper {
+#swipe-wrapper .pane .img-wrapper {
   background: #424242; }
-#swipe-wrapper .pane2 .img-wrapper {
-  background: lightblue; }
 
 #status {
   text-align: center;
