@@ -135,7 +135,6 @@
 					var opa = Math.abs((Math.abs(deltaX) / $that.settings.threshold) / 100 + 0.2);
 
 					if (opa >= 1) {
-						console.log("escogí una")
 						if (posX > 0) {
 							panes.eq(current_pane).animate({"transform": "translate(" + (pane_width) + "px," + (posY + pane_width) + "px) rotate(60deg)"}, $that.settings.animationSpeed, function () {
 								if($that.settings.onLike) {
@@ -151,14 +150,18 @@
 								$that.next();
 							});
 						}
+						panes.eq(current_pane).remove();
+
+						countRemaining();
 					} else {
-						clickPanel(panes.eq(current_pane).data("nombre"));
+						clickPanel(event,panes.eq(current_pane));
 						lastPosX = 0;
 						lastPosY = 0;
 						panes.eq(current_pane).animate({"transform": "translate(0px,0px) rotate(0deg)"}, $that.settings.animationRevertSpeed);
 						panes.eq(current_pane).find($that.settings.likeSelector).animate({"opacity": 0}, $that.settings.animationRevertSpeed);
 						panes.eq(current_pane).find($that.settings.dislikeSelector).animate({"opacity": 0}, $that.settings.animationRevertSpeed);
-					}
+					
+				}
 					break;
 			}
 		}

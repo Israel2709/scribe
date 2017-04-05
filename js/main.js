@@ -1,5 +1,9 @@
 $(document).ready(function(){
-	fillCollectionSwiper(blackCollection)
+	fillCollectionSwiper(blackCollection);
+
+	$("#swipe-wrapper").click(function(e){
+		e.stopPropagation();
+	})
 })
 
 var ObjectLike = {
@@ -87,7 +91,8 @@ function changeContainer(){
 	
 }
 
-function clickPanel(selected){
+function clickPanel(event,selected){
+	event.stopPropagation();
 	console.log(selected);
 	goTo('.detail-wrapper');
 	changeContainer();
@@ -171,4 +176,15 @@ function fillPreferencesList(listType){
 				            "</div>";
 		$(".list-wrapper").append(selectedCard)
 	}
+}
+
+function countRemaining(){
+	var remaining = $("#swipe-wrapper ul li").length;
+	console.log(remaining)
+	if(remaining == 0){
+		$("#swipe-wrapper").hide();
+		$(".wrap").append("<h2 class='text-center'>¡Gracias por tu participación!</h2>");
+	}
+
+
 }
