@@ -1,5 +1,5 @@
 $(document).ready(function(){
-	fillColectionSwiper(blackCollection)
+	fillCollectionSwiper(blackCollection)
 })
 
 var ObjectLike = {
@@ -42,8 +42,6 @@ var blackCollection = [{
 	"imgSrc":"img/list-covers/black/black-1.png"
 }]
 
-
-
 function fillObject(category,item){
 	eval("ObjectLike." + category + ".push({\"coleccion\":item.data(\"coleccion\"),\"nombre\":item.data(\"nombre\"),\"imagen\":item.data(\"imagen\")})");
 	//Objeto.push({"coleccion":item.data("coleccion"),"nombre":item.data("nombre"),"imagen":item.data("imagen")});
@@ -83,10 +81,9 @@ function clickPanel(selected){
 	goTo('.detail-wrapper');
 	changeContainer();
 	toggleHeaderBtn('.btn-back-white');
-	changeContainer()
 }
 
-function fillColectionSwiper(collection){
+function fillCollectionSwiper(collection){
 	var selectedCollection = collection;
 	console.log(collection)
 	$("#swipe-wrapper ul").empty()

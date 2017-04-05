@@ -403,66 +403,62 @@ h1 {
 }
 
 .container-fluid{
-
     .btn.btn-back-white{
         margin-left: 25px;
         margin-top: 20px;
     }
-
     &.main-container{
-    .header{
-        margin-top: 0px;
-        .row{
-            background-color:#424242;
-            padding-bottom: 60px;
-        }
-    }
-    .detail-wrapper{
-        .like-btn{
-            position: relative;
-            background: url("../img/heart-ico.svg") no-repeat scroll center center;
-            width: 39px;
-            height: 39px;
-            background-size: 100%;
-            float: right;
-            margin-top: 15px;
-        }
-
-        .row.bgBlack{
-            height:550px;
-            overflow: hidden;
-        }
-
-        .title-note{
-            color:#424242;
-            font:{
-                size:40px;
-                family:"latobold";
+        .header{
+            margin-top: 0px;
+            .row{
+                background-color:#424242;
+                padding-bottom: 60px;
             }
         }
-
-        .counterLikes{
-            color:$redText;
-            font:{
-                size:25px;
-                family:"latoregular";
+        .detail-wrapper{
+            .like-btn{
+                position: relative;
+                background: url("../img/heart-ico.svg") no-repeat scroll center center;
+                width: 39px;
+                height: 39px;
+                background-size: 100%;
+                float: right;
+                margin-top: 15px;
             }
-            float:right;
-            margin-right: 20px;
-            margin-top: 15px;
+
+            .row.bgBlack{
+                height:550px;
+                overflow: hidden;
+            }
+
+            .title-note{
+                color:#424242;
+                font:{
+                    size:40px;
+                    family:"latobold";
+                }
+            }
+
+            .counterLikes{
+                color:$redText;
+                font:{
+                    size:25px;
+                    family:"latoregular";
+                }
+                float:right;
+                margin-right: 20px;
+                margin-top: 15px;
+            }
+
+            p.descriptionNote{
+                color:#424242;
+                font-size:25px;
+                font-family:"latoregular";
+            }
+
+            .actions{
+                margin-top: 30px;
+            }
         }
-
-        p.descriptionNote{
-            color:#424242;
-            font-size:25px;
-            font-family:"latoregular";
-        }
-
-        .actions{
-            margin-top: 30px;
-        }
-
-    }
-
     }
 }
