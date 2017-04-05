@@ -172,5 +172,3 @@ function fillPreferencesList(listType){
 		$(".list-wrapper").append(selectedCard)
 	}
 }
-
-
