@@ -108,9 +108,8 @@ function clickPanel(selected){
 	goTo('.detail-wrapper');
 	changeContainer();
 	toggleHeaderBtn('.btn-back-white');
-	changeContainer()
 }
 
 function fillColectionSwiper(collection){
-	
+
 }
