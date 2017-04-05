@@ -404,7 +404,7 @@ h1 {
 
 .container-fluid{
     .btn.btn-back-white{
-        margin-left: 25px;
+        margin-left: 30px;
         margin-top: 20px;
     }
     &.main-container{
@@ -416,6 +416,13 @@ h1 {
             }
         }
         .detail-wrapper{
+            .img-wrapper{
+                img{
+                    max-width: 90%;
+                    @include auto-center();
+                }
+            }
+
             .like-btn{
                 position: relative;
                 background: url("../img/heart-ico.svg") no-repeat scroll center center;
@@ -423,7 +430,8 @@ h1 {
                 height: 39px;
                 background-size: 100%;
                 float: right;
-                margin-top: 15px;
+                margin-top: 30px;
+                margin-right: 20px;
             }
 
             .row.bgBlack{
@@ -437,6 +445,7 @@ h1 {
                     size:40px;
                     family:"latobold";
                 }
+                padding:20px 0px 0px 30px;
             }
 
             .counterLikes{
@@ -447,13 +456,15 @@ h1 {
                 }
                 float:right;
                 margin-right: 20px;
-                margin-top: 15px;
+                margin-top: 30px;
+
             }
 
             p.descriptionNote{
                 color:#424242;
                 font-size:25px;
                 font-family:"latoregular";
+                padding:20px 0px 0px 20px;
             }
 
             .actions{
