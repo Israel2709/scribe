@@ -52,22 +52,25 @@ h1 {
     display: block;
     margin: 0px auto; }
   .main-container .header .show-list {
-    background: url("../img/list-ico.svg");
+    background: url("../img/list-ico.svg") no-repeat;
+    background-size: 100%;
     width: 40px;
     height: 40px;
     position: absolute;
     top: 15px;
+    left: 25px;
     transition: all 0.3s ease;
     -ms-transition: all 0.3s ease;
     -webkit-transition: all 0.3s ease;
     -o-transition: all 0.3s ease;
     -moz-transition: all 0.3s ease; }
   .main-container .header .btn-back {
-    background: url("../img/previous.svg");
+    background: url("../img/previous.svg") no-repeat;
     width: 40px;
     height: 40px;
     position: absolute;
     top: 15px;
+    left: 25px;
     transition: all 0.3s ease;
     -ms-transition: all 0.3s ease;
     -webkit-transition: all 0.3s ease;
@@ -234,64 +237,81 @@ h1 {
   #swipe-wrapper .like-btn {
     position: absolute;
     background: url("../img/heart-ico.svg") no-repeat scroll center center;
-    width: 39px;
-    height: 39px;
+    width: 40px;
+    height: 40px;
     background-size: 100%;
     right: 50px;
     bottom: 25px; }
 
-.preferences-wrapper .preferences-control {
-  border: 1px solid #9B9B9B;
-  border-radius: 50px;
-  height: 50px;
-  box-sizing: border-box;
-  font-size: 20px;
-  line-height: 1.2;
-  width: 50%;
-  overflow: hidden;
-  position: relative;
-  display: block;
-  margin: 0px auto;
-  margin-top: 20px; }
-  .preferences-wrapper .preferences-control .btn {
-    width: 55%;
-    position: absolute;
-    top: 0;
-    color: #9B9B9B;
-    font-family: 'latoregular';
-    text-align: center;
+.preferences-wrapper {
+  padding: 5%; }
+  .preferences-wrapper .preferences-control {
+    border: 1px solid #9B9B9B;
+    border-radius: 50px;
     height: 50px;
-    padding-top: 13px; }
-    .preferences-wrapper .preferences-control .btn.like-control {
-      right: 0px; }
-    .preferences-wrapper .preferences-control .btn.dislike-control {
-      left: 0px; }
-    .preferences-wrapper .preferences-control .btn.active {
-      background: #FE5068;
-      z-index: 1000;
-      color: white;
-      border-radius: 50px; }
-
-.preferences-wrapper .list-wrapper {
-  margin-top: 40px; }
-
-.preferences-wrapper .list-card {
-  padding: 10px; }
-  .preferences-wrapper .list-card img {
-    width: 100%; }
-  .preferences-wrapper .list-card .card-name {
-    float: left;
-    width: 100%;
+    box-sizing: border-box;
     font-size: 20px;
-    font-family: 'latoregular'; }
-  .preferences-wrapper .list-card .like-count .counter {
-    color: #FE5068;
-    font-size: 30px;
-    font-family: 'latoregular'; }
-  .preferences-wrapper .list-card .like-count .like-btn {
-    width: 30px;
-    height: 30px;
-    background: url("../img/heart-ico.svg"); }
+    line-height: 1.2;
+    width: 50%;
+    overflow: hidden;
+    position: relative;
+    display: block;
+    margin: 0px auto;
+    margin-top: 20px; }
+    .preferences-wrapper .preferences-control .btn {
+      width: 55%;
+      position: absolute;
+      top: 0;
+      color: #9B9B9B;
+      font-family: 'latoregular';
+      text-align: center;
+      height: 50px;
+      padding-top: 13px; }
+      .preferences-wrapper .preferences-control .btn.like-control {
+        right: 0px; }
+      .preferences-wrapper .preferences-control .btn.dislike-control {
+        left: 0px; }
+      .preferences-wrapper .preferences-control .btn.active {
+        background: #FE5068;
+        z-index: 1000;
+        color: white;
+        border-radius: 50px; }
+  .preferences-wrapper .list-wrapper {
+    margin-top: 40px; }
+  .preferences-wrapper .list-card {
+    padding: 20px;
+    box-shadow: 0px 5px 15px #9B9B9B;
+    border-radius: 5px;
+    min-height: 290px;
+    margin-bottom: 15px; }
+    .preferences-wrapper .list-card img {
+      width: 100%; }
+    .preferences-wrapper .list-card .card-name {
+      float: left;
+      width: 100%;
+      font-size: 30px;
+      font-family: 'latoregular';
+      margin: 10px 0; }
+    .preferences-wrapper .list-card .like-count {
+      float: left;
+      position: relative;
+      width: 100%;
+      min-height: 40px; }
+      .preferences-wrapper .list-card .like-count .counter {
+        color: #FE5068;
+        font-size: 30px;
+        font-family: 'latoregular';
+        position: absolute;
+        bottom: 0;
+        padding: 0px; }
+      .preferences-wrapper .list-card .like-count .like-btn {
+        width: 30px;
+        height: 30px;
+        background: url(../img/heart-ico.svg) center no-repeat;
+        background-size: 100%;
+        position: absolute;
+        top: 5px;
+        right: 0px; }
 
 /* Image text */
 /* Image rotation */

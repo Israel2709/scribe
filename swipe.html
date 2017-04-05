@@ -62,7 +62,7 @@
                         <!-- end padding container -->
                         <!-- jTinder trigger by buttons  -->
                         <div class="actions">
-                            <div class="btn reload-btn"></div>
+                            <div class="btn reload-btn" onclick="location.reload()"></div>
                             <a href="#" class="dislike"><i></i></a>
                             <a href="#" class="like"><i></i></a>
                             <div class="btn menu-btn"></div>
@@ -75,8 +75,8 @@
             </div>
             <div class="preferences-wrapper section hidden">
                 <div class="preferences-control">
-                    <div class="btn like-control active" onclick="fillPreferencesList('like')">LIKES</div>
-                    <div class="btn dislike-control" onclick="fillPreferencesList('dislike')">DISLIKES</div>
+                    <div class="btn like-control active" onclick="fillPreferencesList('like');togglePreferencesList(this);">LIKES</div>
+                    <div class="btn dislike-control" onclick="fillPreferencesList('dislike');togglePreferencesList(this);">DISLIKES</div>
                 </div>
                 <div class="row list-wrapper">
                     <div class="col-xs-12 col-sm-4 list-card">
