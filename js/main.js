@@ -1,9 +1,15 @@
 $(document).ready(function(){
 	fillCollectionSwiper(blackCollection);
 
-	$("#swipe-wrapper").click(function(e){
-		e.stopPropagation();
-	})
+	$(".genero img").click(function(){
+		$(".genero img").css("transform","scale(1)");
+
+		//$(this).attr("src","img/dislike-btn.svg")
+		$(this).css({
+			transform:"scale(1.25)"
+		});
+		
+	});
 })
 
 var ObjectLike = {
@@ -185,6 +191,4 @@ function countRemaining(){
 		$("#swipe-wrapper").hide();
 		$(".wrap").append("<h2 class='text-center'>¡Gracias por tu participación!</h2>");
 	}
-
-
 }

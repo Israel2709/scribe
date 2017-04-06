@@ -5,13 +5,11 @@
   src: url("../fonts/lato/lato-regular-webfont.woff2") format("woff2"), url("../fonts/lato/lato-regular-webfont.woff") format("woff"), url("../fonts/lato/lato-regular-webfont.ttf") format("truetype"), url("../fonts/lato/lato-regular-webfont.svg#latoregular") format("svg");
   font-weight: normal;
   font-style: normal; }
-
 @font-face {
   font-family: 'latobold';
   src: url("../fonts/lato/lato-bold-webfont.woff2") format("woff2"), url("../fonts/lato/lato-bold-webfont.woff") format("woff"), url("../fonts/lato/lato-bold-webfont.ttf") format("truetype"), url("../fonts/lato/lato-bold-webfont.svg#latobold") format("svg");
   font-weight: normal;
   font-style: normal; }
-
 /*Mixins*/
 body {
   background: src("../img/main-bckgnd.svg"); }
@@ -87,7 +85,6 @@ h1 {
     -webkit-transition: all 0.3s ease;
     -o-transition: all 0.3s ease;
     -moz-transition: all 0.3s ease; }
-
 .main-container .header.resized {
   margin-top: 30px; }
   .main-container .header.resized img {
@@ -100,12 +97,10 @@ h1 {
     max-width: 589px;
     display: block;
     margin: 0px auto; }
-
 .login h1 {
   width: 80%;
   margin: 50px auto 0 auto;
   text-align: center; }
-
 .login .red-btn {
   width: 450px;
   display: block;
@@ -323,14 +318,8 @@ h1 {
 .actions {
   text-align: center;
   width: 100%;
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-justify-content: center;
-  -ms-flex-pack: center;
   justify-content: center;
-  -webkit-align-items: center;
-  -ms-flex-align: center;
   align-items: center;
   margin: 0 auto; }
   .actions div {
@@ -384,18 +373,15 @@ h1 {
 .container-fluid .btn.btn-back-white {
   margin-left: 30px;
   margin-top: 20px; }
-
 .container-fluid.main-container .header {
   margin-top: 0px; }
   .container-fluid.main-container .header .row {
     background-color: #424242;
     padding-bottom: 60px; }
-
 .container-fluid.main-container .detail-wrapper .img-wrapper img {
   max-width: 90%;
   display: block;
   margin: 0px auto; }
-
 .container-fluid.main-container .detail-wrapper .like-btn {
   position: relative;
   background: url("../img/heart-ico.svg") no-repeat scroll center center;
@@ -405,17 +391,14 @@ h1 {
   float: right;
   margin-top: 30px;
   margin-right: 20px; }
-
 .container-fluid.main-container .detail-wrapper .row.bgBlack {
   height: 550px;
   overflow: hidden; }
-
 .container-fluid.main-container .detail-wrapper .title-note {
   color: #424242;
   font-size: 40px;
   font-family: "latobold";
   padding: 20px 0px 0px 30px; }
-
 .container-fluid.main-container .detail-wrapper .counterLikes {
   color: #FE5068;
   font-size: 25px;
@@ -423,12 +406,52 @@ h1 {
   float: right;
   margin-right: 20px;
   margin-top: 30px; }
-
 .container-fluid.main-container .detail-wrapper p.descriptionNote {
   color: #424242;
   font-size: 25px;
   font-family: "latoregular";
   padding: 20px 0px 0px 20px; }
-
 .container-fluid.main-container .detail-wrapper .actions {
   margin-top: 30px; }
+
+.genero .main-cover {
+  width: 100%;
+  margin-top: 50px; }
+  .genero .main-cover img {
+    max-width: 589px;
+    display: block;
+    margin: 0px auto; }
+.genero h1 {
+  width: 80%;
+  margin: 50px auto 30px auto;
+  text-align: center; }
+.genero .red-btn {
+  width: 450px;
+  display: block;
+  margin: 0px auto;
+  margin-top: 50px; }
+.genero input {
+  width: 400px;
+  height: 65px;
+  margin-top: 50px;
+  font-size: 25px;
+  padding: 20px; }
+.genero img {
+  -webkit-transition: all .9s ease;
+  /* Safari y Chrome */
+  -moz-transition: all .9s ease;
+  /* Firefox */
+  -o-transition: all .9s ease;
+  /* IE 9 */
+  -ms-transition: all .9s ease;
+  /* Opera */
+  width: 100%;
+  /*&:hover{
+      -webkit-transform:scale(1.25);
+      -moz-transform:scale(1.25);
+      -ms-transform:scale(1.25);
+      -o-transform:scale(1.25);
+      transform:scale(1.25);
+  }*/ }
+
+/*# sourceMappingURL=style.css.map */
