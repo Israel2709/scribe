@@ -37,6 +37,11 @@ angular
         controller: 'UploadformCtrl',
         controllerAs: 'uploadForm'
       })
+      .when('/swipe', {
+        templateUrl: 'views/swipe.html',
+        controller: 'SwipeCtrl',
+        controllerAs: 'swipe'
+      })
       .otherwise({
         redirectTo: '/'
       });
