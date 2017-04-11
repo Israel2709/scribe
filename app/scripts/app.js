@@ -40,8 +40,10 @@ angular
       .otherwise({
         redirectTo: '/'
       });
+      BackandProvider.setAppName('scribev2');
+      BackandProvider.setSignUpToken('c810661b-2ae2-4dbb-ac5f-e3f44dc9358c');
+      BackandProvider.setAnonymousToken('85287cc5-3404-4318-97e7-0571e2c805e8');
     $locationProvider.hashPrefix('')
-    BackandProvider.setAppName('scribe');
-    BackandProvider.setSignUpToken('1a6494b3-0874-4ca7-81e4-abebda17f6d1');
-    BackandProvider.setAnonymousToken('a3cacd9a-831f-4aa8-8872-7d80470a000e');
+
+    
   });

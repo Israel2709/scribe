@@ -1,46 +1,35 @@
 <div class="row">
+	<h1>Cargar colección</h1>
+	<form>
+		<div class="form-group">
+			<label for="nombre">Nombre:</label>
+			<input type="text" class="form-control" id="nombre" placeholder="Nombre" data-ng-model="collection.name">
+		</div>
+		<button type="submit" class="btn btn-default" data-ng-click="uploadCollection()">Cargar</button>
+	</form>
+
+	
+</div>
+<div class="row">
 	<h1>Cargar Libreta</h1>
 	<form>
 		<div class="form-group">
 			<label for="nombre">Nombre:</label>
-			<input type="text" class="form-control" id="nombre" placeholder="Nombre">
+			<input type="text" class="form-control" id="nombre" placeholder="Nombre" data-ng-model="notebookObject.name">
 		</div>
 		<div class="form-group">
 			<label for="url-cover">URL Portada</label>
-			<input type="text" class="form-control" id="url-cover" placeholder="URL Portada">
+			<input type="text" class="form-control" id="url-cover" placeholder="URL Portada" data-ng-model="notebookObject.coverSource">
 		</div>
 		<div class="form-group">
 			<label for="url-list-cover">File input</label>
-			<input type="text" class="form-control" id="url-list-cover" placeholder="URL Portada">
+			<input type="text" class="form-control" id="url-list-cover" placeholder="URL Portada" data-ng-model="notebookObject.listCoverSource">
 		</div>
 		<div class="form-group">
 			<label for="collection">Colección</label>
-			<select id="collection" class="form-control">
-				<option>Disabled select</option>
+			<select id="collection" class="form-control" data-ng-model="selectedCollection" data-ng-change="setCollectionId();">
+				<option data-ng-repeat="collection in collectionsList" value="{{collection.id}}">{{collection.name}}</option>
 			</select>
 		</div>
-		<button type="submit" class="btn btn-default">Submit</button>
-	</form>
-	<h1>Cargar Libreta</h1>
-	<form>
-		<div class="form-group">
-			<label for="nombre">Nombre:</label>
-			<input type="text" class="form-control" id="nombre" placeholder="Nombre">
-		</div>
-		<div class="form-group">
-			<label for="url-cover">URL Portada</label>
-			<input type="text" class="form-control" id="url-cover" placeholder="URL Portada">
-		</div>
-		<div class="form-group">
-			<label for="url-list-cover">File input</label>
-			<input type="text" class="form-control" id="url-list-cover" placeholder="URL Portada">
-		</div>
-		<div class="form-group">
-			<label for="collection">Colección</label>
-			<select id="collection" class="form-control">
-				<option>Disabled select</option>
-			</select>
-		</div>
-		<button type="submit" class="btn btn-default">Submit</button>
-	</form>
+		<button type="submit" class="btn btn-default" data-ng-click="uploadNotebook();">Submit</button>
 </div>
