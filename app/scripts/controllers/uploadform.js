@@ -87,52 +87,30 @@ angular.module('scribeApp')
 
 
         $scope.uploadFile =  function() {
+            var url = "https://luisvardez.000webhostapp.com/upload.php";
+            var inputFileImage = $("#fileupload")[0].files[0];
+            var dataImage = new FormData();
 
-            var file = $scope.file;
-            upload.uploadFile(file).then(function(){
+            dataImage.append('file', inputFileImage);
+            $http({
+                method: "POST",
+                url: url,
+                data: dataImage,
+                headers: {
+                  'Content-Type': undefined
+                }
+              })
+              .then(function(res) {
+                console.log(res)
+                
+              })
+              .catch(function(res) {
+                console.log(res)
+              })
 
-            }) 
+           
         }
     })
 
-    .directive('uploaderModel',["$parse",function($parse){
-        return{
-            restrict: 'A',
-            link:function(scope,iElement,iAttrs){
-                iElement.on("change",function(e){
-                    $parse(iAttrs.uploaderModel).assign(scope,iElement[0].files[0]);
-                })
-            }
-        }
-    }])
 
-    .service('upload',["$http","$q",function($http,$q){
-
-        var url = "upload.php";
-        this.uploadFile = function (file) {
-          var deferred = $q.defer();
-          //var inputFileImage = $("#fileupload")[0].files[0];
-          var dataImage = new FormData();
-
-          dataImage.append('file', file);
-
-          return $http({
-                method:"POST",
-                url:url,
-                data:dataImage,
-                headers: {'Content-Type': 'application/x-www-form-urlencoded'}
-            })
-            .then(function(res){
-                console.log(res)
-              deferred.resolve(res)
-            })
-            .catch(function(msg, code){
-                console.log(msg)
-              deferred.reject(msg);
-            })
-
-          return deferred.promise;
-        }
-
-
-    }])
+    
