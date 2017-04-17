@@ -42,6 +42,7 @@ angular
         controller: 'SwipeCtrl',
         controllerAs: 'swipe'
       })
+
       .otherwise({
         redirectTo: '/'
       });

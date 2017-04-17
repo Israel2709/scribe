@@ -8,7 +8,7 @@
  * Controller of the scribeApp
  */
 angular.module('scribeApp')
-    .controller('UploadformCtrl', function($scope, $http) {
+    .controller('UploadformCtrl', function($scope, $http,upload) {
         this.awesomeThings = [
             'HTML5 Boilerplate',
             'AngularJS',
@@ -85,4 +85,54 @@ angular.module('scribeApp')
             );
         }
 
-    });
+
+        $scope.uploadFile =  function() {
+
+            var file = $scope.file;
+            upload.uploadFile(file).then(function(){
+
+            }) 
+        }
+    })
+
+    .directive('uploaderModel',["$parse",function($parse){
+        return{
+            restrict: 'A',
+            link:function(scope,iElement,iAttrs){
+                iElement.on("change",function(e){
+                    $parse(iAttrs.uploaderModel).assign(scope,iElement[0].files[0]);
+                })
+            }
+        }
+    }])
+
+    .service('upload',["$http","$q",function($http,$q){
+
+        var url = "upload.php";
+        this.uploadFile = function (file) {
+          var deferred = $q.defer();
+          //var inputFileImage = $("#fileupload")[0].files[0];
+          var dataImage = new FormData();
+
+          dataImage.append('file', file);
+
+          return $http({
+                method:"POST",
+                url:url,
+                data:dataImage,
+                headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+            })
+            .then(function(res){
+                console.log(res)
+              deferred.resolve(res)
+            })
+            .catch(function(msg, code){
+                console.log(msg)
+              deferred.reject(msg);
+            })
+
+          return deferred.promise;
+        }
+
+
+    }])

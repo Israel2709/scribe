@@ -31,5 +31,12 @@
 				<option data-ng-repeat="collection in collectionsList" value="{{collection.id}}">{{collection.name}}</option>
 			</select>
 		</div>
-		<button type="submit" class="btn btn-default" data-ng-click="uploadNotebook();">Submit</button>
+		<div class="form-group">
+		<span class="btn btn-success fileinput-button">
+              <i class="glyphicon glyphicon-plus"></i>
+              <span>Select files...</span>
+              <input id="fileupload" type="file" name="files[]" multiple>
+            </span></div>
+
+		<button type="submit" class="btn btn-default" data-ng-click="uploadNotebook();uploadFile()">Submit</button>
 </div>
