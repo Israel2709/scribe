@@ -27,10 +27,6 @@ angular.module('scribeApp')
         //variable en la cual se guarda el resultado de la petición al guardar imagen en el servidor
         $scope.resUploadFile;
 
-        var urlModal;
-        var urlDetalle;
-        var urlLista;
-
         $scope.getCollectionList = function() {
             $http({
                 method: 'GET',
@@ -118,22 +114,30 @@ angular.module('scribeApp')
         }
 
         $scope.uploadNotebook = function(){
-            console.log($scope.notebookObject)
-            $http.post('https://api.backand.com:443/1/objects/notebook', $scope.notebookObject, {
-                headers: {
-                    AnonymousToken: "a3cacd9a-831f-4aa8-8872-7d80470a000e"
-                }
-            }).then(
-                function(response) {
-                    alert("cargada con éxito")
-                    $scope.notebookObject={};
-                    $scope.selectedCollection = {}
 
-                },
-                function(response) {
-                    alert("error")
-                }
-            );
+            $scope.uploadFile('fileupload');
+
+            setTimeout(function() {
+                if($scope.resUploadFile != "error" || $scope.resUploadFile != undefined){
+                    $scope.notebookObject.coverSource = $scope.resUploadFile;
+                    $http.post('https://api.backand.com:443/1/objects/notebook', $scope.notebookObject, {
+                            headers: {
+                                AnonymousToken: "a3cacd9a-831f-4aa8-8872-7d80470a000e"
+                            }
+                        }).then(
+                            function(response) {
+                                alert("cargada con éxito")
+                                $scope.notebookObject={};
+                                $scope.selectedCollection = {}
+
+                            },
+                            function(response) {
+                                alert("error")
+                            }
+                        );
+                  
+              }
+              }, 400);
         }
 
         $scope.uploadFile =  function(id) {
@@ -154,6 +158,7 @@ angular.module('scribeApp')
                 transformRequest:angular.identity
               })
               .then(function(res) {
+                  console.log(res)
                   if(res.data != "error" || res.data != "no_permitido"){
                     $scope.resUploadFile = res.data;
                   } 
