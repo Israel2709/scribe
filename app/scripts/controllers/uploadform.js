@@ -8,7 +8,7 @@
  * Controller of the scribeApp
  */
 angular.module('scribeApp')
-    .controller('UploadformCtrl', function($scope, $http,upload) {
+    .controller('UploadformCtrl', function($scope, $http) {
         this.awesomeThings = [
             'HTML5 Boilerplate',
             'AngularJS',
@@ -23,7 +23,7 @@ angular.module('scribeApp')
                 method: 'GET',
                 url: 'https://api.backand.com:443/1/objects/collection?pageSize=20&pageNumber=1',
                 headers: {
-                    AnonymousToken: "85287cc5-3404-4318-97e7-0571e2c805e8"
+                    AnonymousToken: "a3cacd9a-831f-4aa8-8872-7d80470a000e"
                 },
                 params: {
                     pageSize: 20,
@@ -46,7 +46,7 @@ angular.module('scribeApp')
             console.log($scope.collection);
             $http.post('https://api.backand.com:443/1/objects/collection', $scope.collection, {
                 headers: {
-                    AnonymousToken: "85287cc5-3404-4318-97e7-0571e2c805e8"
+                    AnonymousToken: "a3cacd9a-831f-4aa8-8872-7d80470a000e"
                 }
             }).then(
                 function(response) {
@@ -70,7 +70,7 @@ angular.module('scribeApp')
             console.log($scope.notebookObject)
             $http.post('https://api.backand.com:443/1/objects/notebook', $scope.notebookObject, {
                 headers: {
-                    AnonymousToken: "85287cc5-3404-4318-97e7-0571e2c805e8"
+                    AnonymousToken: "a3cacd9a-831f-4aa8-8872-7d80470a000e"
                 }
             }).then(
                 function(response) {
@@ -91,7 +91,9 @@ angular.module('scribeApp')
             var inputFileImage = $("#fileupload")[0].files[0];
             var dataImage = new FormData();
 
-            dataImage.append('file', inputFileImage);
+            dataImage.append("carpeta", 'Black');
+            dataImage.append("file", inputFileImage);
+
             $http({
                 method: "POST",
                 url: url,
