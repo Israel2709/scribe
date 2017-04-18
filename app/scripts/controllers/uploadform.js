@@ -164,6 +164,53 @@ angular.module('scribeApp')
                   } 
               })           
         }
+        $scope.getSingleCollection = function (){
+            $http({
+                method: 'GET',
+                url: 'https://api.backand.com:443/1/objects/collection/47', /*el último número debe ser el id de la colección a consultar*/
+                headers: {
+                    AnonymousToken: "a3cacd9a-831f-4aa8-8872-7d80470a000e"
+                },
+                params: {
+                    pageSize: 20,
+                    pageNumber: 1
+                }
+            }).then(
+                function(response) {
+                    console.log(response.data)
+                    $scope.getCollectionNotebooks();
+                },
+                function(response) {
+                    alert("error")
+                });
+        }
+
+        $scope.getCollectionNotebooks = function (){
+            $http({
+                method: 'GET',
+                url: 'https://api.backand.com:443/1/objects/notebook?pageSize=20&pageNumber=1',
+                headers: {
+                    AnonymousToken: "a3cacd9a-831f-4aa8-8872-7d80470a000e"
+                },
+                params: {
+                    pageSize: 20,
+                    pageNumber: 1,
+                    "filter": [ 
+                        {
+                          "fieldName": "collection",
+                          "operator": "in",
+                          "value": "42" /*aqui va el id de la colección a consultar*/
+                        }
+                    ],
+                }
+            }).then(
+                function(response) {
+                    console.log(response.data.data)
+                },
+                function(response) {
+                    alert("error")
+                });
+        }
     })
 
 
