@@ -8,7 +8,7 @@
  * Controller of the scribeApp
  */
 angular.module('scribeApp')
-    .controller('UploadformCtrl', function($scope, $http,upload) {
+    .controller('UploadformCtrl', function($scope, $http, $timeout) {
         this.awesomeThings = [
             'HTML5 Boilerplate',
             'AngularJS',
@@ -16,14 +16,16 @@ angular.module('scribeApp')
         ];
         $scope.collection = {};
         $scope.collectionsList;
+        $scope.collectionsNames=[]
         $scope.notebookObject={};
+        
 
         $scope.getCollectionList = function() {
             $http({
                 method: 'GET',
                 url: 'https://api.backand.com:443/1/objects/collection?pageSize=20&pageNumber=1',
                 headers: {
-                    AnonymousToken: "85287cc5-3404-4318-97e7-0571e2c805e8"
+                    AnonymousToken: "a3cacd9a-831f-4aa8-8872-7d80470a000e"
                 },
                 params: {
                     pageSize: 20,
@@ -34,31 +36,55 @@ angular.module('scribeApp')
                     console.log(response.data.data)
                     $scope.collectionsList = response.data.data;
                     console.log($scope.collectionsList)
+                    $scope.listCollectionNames()
                 },
                 function(response) {
                     alert("error")
                 });
         }
 
+        $scope.listCollectionNames = function(){
+            var i;
+            for (i=0; i< $scope.collectionsList.length;i++){
+                $scope.collectionsNames.push($scope.collectionsList[i].name)
+            }
+            console.log($scope.collectionsNames)
+        }
+
         $scope.getCollectionList();
-        
+
         $scope.uploadCollection = function() {
             console.log($scope.collection);
-            $http.post('https://api.backand.com:443/1/objects/collection', $scope.collection, {
-                headers: {
-                    AnonymousToken: "85287cc5-3404-4318-97e7-0571e2c805e8"
-                }
-            }).then(
-                function(response) {
-                    alert("cargada con éxito")
-                    $scope.collection.name = "";
-                    $scope.getCollectionList()
+            
 
-                },
-                function(response) {
-                    alert("error")
-                }
-            );
+            if ($.inArray($scope.collection.name, $scope.collectionsNames) > -1) {
+                alert("la coleccion ya existe");
+                return false
+            } else {
+                var filename = $("#picture").val();
+            var nameLength = filename.length
+            filename = filename.substr((filename.lastIndexOf("\\") + 1), nameLength);
+            console.log(filename)
+            $scope.collection.modalCoverUrl = "images/collection-catalog/"+$scope.collection.name+"/"+filename
+                console.log($scope.collection)
+                /*$http.post('https://api.backand.com:443/1/objects/collection', $scope.collection, {
+                    headers: {
+                        AnonymousToken: "a3cacd9a-831f-4aa8-8872-7d80470a000e"
+                    }
+                }).then(
+                    function(response) {
+                        alert("cargada con éxito")
+                        $scope.collection.name = "";
+                        $scope.getCollectionList()
+
+                    },
+                    function(response) {
+                        alert("error")
+                    }
+                );*/
+            }
+
+
         }
 
         $scope.setCollectionId = function(){
@@ -70,7 +96,7 @@ angular.module('scribeApp')
             console.log($scope.notebookObject)
             $http.post('https://api.backand.com:443/1/objects/notebook', $scope.notebookObject, {
                 headers: {
-                    AnonymousToken: "85287cc5-3404-4318-97e7-0571e2c805e8"
+                    AnonymousToken: "a3cacd9a-831f-4aa8-8872-7d80470a000e"
                 }
             }).then(
                 function(response) {
