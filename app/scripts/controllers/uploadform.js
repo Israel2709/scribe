@@ -14,11 +14,22 @@ angular.module('scribeApp')
             'AngularJS',
             'Karma'
         ];
+
+        $scope.urlUpload = "https://luisvardez.000webhostapp.com/upload.php";
+
         $scope.collection = {};
         $scope.collectionsList;
         $scope.collectionsNames=[]
         $scope.notebookObject={};
         
+        $scope.collectionSelected;
+
+        //variable en la cual se guarda el resultado de la petición al guardar imagen en el servidor
+        $scope.resUploadFile;
+
+        var urlModal;
+        var urlDetalle;
+        var urlLista;
 
         $scope.getCollectionList = function() {
             $http({
@@ -54,41 +65,56 @@ angular.module('scribeApp')
         $scope.getCollectionList();
 
         $scope.uploadCollection = function() {
-            console.log($scope.collection);
 
             if ($.inArray($scope.collection.name, $scope.collectionsNames) > -1) {
-                alert("la coleccion ya existe");
-                return false
+              alert("la coleccion ya existe");
+              return false
             } else {
-                var filename = $("#picture").val();
-            var nameLength = filename.length
-            filename = filename.substr((filename.lastIndexOf("\\") + 1), nameLength);
-            console.log(filename)
-            $scope.collection.modalCoverUrl = "images/collection-catalog/"+$scope.collection.name+"/"+filename
-                console.log($scope.collection)
-                /*$http.post('https://api.backand.com:443/1/objects/collection', $scope.collection, {
-                    headers: {
-                        AnonymousToken: "a3cacd9a-831f-4aa8-8872-7d80470a000e"
-                    }
-                }).then(
-                    function(response) {
-                        alert("cargada con éxito")
-                        $scope.collection.name = "";
-                        $scope.getCollectionList()
+              //var filename = $("#picture").val();
+              //var nameLength = filename.length
+              //filename = filename.substr((filename.lastIndexOf("\\") + 1), nameLength);
 
-                    },
-                    function(response) {
-                        alert("error")
-                    }
-                );*/
+              //$scope.collection.modalCoverUrl = "images/collection-catalog/" + $scope.collection.name + "/" + filename
+              
+              $scope.collectionSelected = $scope.collection.name;
+              $scope.uploadFile('picture');
+
+              setTimeout(function() {
+                if($scope.resUploadFile != "error" || $scope.resUploadFile != undefined){
+                  $scope.collection.coverUrl = $scope.resUploadFile;
+
+                  $http.post('https://api.backand.com:443/1/objects/collection', $scope.collection, {
+                      headers: {
+                          AnonymousToken: "a3cacd9a-831f-4aa8-8872-7d80470a000e"
+                      }
+                  }).then(
+                      function (response) {
+                          alert("cargada con éxito")
+                          $scope.collection.name = "";
+                          $scope.getCollectionList()
+
+                      },
+                      function (response) {
+                          alert("error")
+                      }
+                );
+              }
+              }, 400);
+              
             }
-
-
         }
 
         $scope.setCollectionId = function(){
-            console.log($scope.selectedCollection)
-            $scope.notebookObject.collection = $scope.selectedCollection
+
+            $scope.notebookObject.collection = $scope.selectedCollection;
+
+            console.log($scope.collectionsList)
+            $scope.collectionsList.forEach(function(value,key) {
+                if(value.id == $scope.selectedCollection){
+                     $scope.collectionSelected = value.name;
+                }
+            }, this);
+            
         }
 
         $scope.uploadNotebook = function(){
@@ -110,32 +136,28 @@ angular.module('scribeApp')
             );
         }
 
-
-        $scope.uploadFile =  function() {
-            var url = "https://luisvardez.000webhostapp.com/upload.php";
-            var inputFileImage = $("#fileupload")[0].files[0];
+        $scope.uploadFile =  function(id) {
+            
+            var inputFileImage = $("#" + id)[0].files[0];
             var dataImage = new FormData();
-
-            dataImage.append("carpeta", 'Black');
+            
             dataImage.append("file", inputFileImage);
+            dataImage.append('carpeta', $scope.collectionSelected);
 
             $http({
                 method: "POST",
-                url: url,
+                url: $scope.urlUpload,
                 data: dataImage,
                 headers: {
                   'Content-Type': undefined
-                }
+                },
+                transformRequest:angular.identity
               })
               .then(function(res) {
-                console.log(res)
-                
-              })
-              .catch(function(res) {
-                console.log(res)
-              })
-
-           
+                  if(res.data != "error" || res.data != "no_permitido"){
+                    $scope.resUploadFile = res.data;
+                  } 
+              })           
         }
     })
 
