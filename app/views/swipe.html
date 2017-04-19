@@ -3,7 +3,8 @@
         <div class="row">
             <div class="btn show-list" ng-click="changeView('preferences');toggleHeaderBtn('.btn-back');fillPreferencesList('like')"></div>
             <div class="btn btn-back hidden" ng-click="changeView('content');toggleHeaderBtn('.show-list')"></div>
-            <div class="btn btn-back-white hidden" ng-click="changeView('content');toggleHeaderBtn('.show-list');changeContainer();"></div> <img src="images/scribe-logo.svg" class="img-logo" alt=""> </div>
+            <div class="btn btn-back-white hidden" ng-click="changeView('content');toggleHeaderBtn('.show-list');changeContainer();"></div>
+            <img src="images/scribe-logo.svg" class="img-logo" alt="" ng-click="getCollectionNotebooks()"> </div>
     </div>
     <div class="content-wrapper section" ng-switch-when="content">
         <div class="row">

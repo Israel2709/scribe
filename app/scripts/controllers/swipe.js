@@ -8,7 +8,7 @@
  * Controller of the scribeApp
  */
 angular.module('scribeApp')
-  .controller('SwipeCtrl', function ($document, $scope) {
+  .controller('SwipeCtrl', function ($document, $scope,$http) {
     this.awesomeThings = [
       'HTML5 Boilerplate',
       'AngularJS',
@@ -120,6 +120,31 @@ angular.module('scribeApp')
         $(".main-container").removeClass("container-fluid");
       }
       
+    }
+
+    $scope.getCollectionNotebooks = function () {
+      $http({
+        method: 'GET',
+        url: 'https://api.backand.com:443/1/objects/notebook?pageSize=20&pageNumber=1',
+        headers: {
+          AnonymousToken: "a3cacd9a-831f-4aa8-8872-7d80470a000e"
+        },
+        params: {
+          pageSize: 20,
+          pageNumber: 1,
+          "filter": [{
+            "fieldName": "collection",
+            "operator": "in",
+            "value": "53" /*aqui va el id de la colección a consultar*/
+          }],
+        }
+      }).then(
+        function (response) {
+          console.log(response.data.data)
+        },
+        function (response) {
+          alert("error")
+        });
     }
 
   });

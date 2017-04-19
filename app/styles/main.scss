@@ -98,6 +98,10 @@ h1 {
     	text-decoration: none;
     }
 }
+
+.displayN{
+    display: none;
+}
 .main-container {
     .header {
         width: 100%;
@@ -583,6 +587,7 @@ h1 {
 }
 
 
+/*Estilos para inputs de tipo file*/
 .fileinput-button {
   position: relative;
   overflow: hidden;
