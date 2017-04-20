@@ -17,12 +17,15 @@ angular.module('scribeApp')
 
     $scope.selection;
 
+    //arreglo donde se guardan los like y dislikes de las imagenes
     $scope.ObjectLike = {
       "like":[],
       "dislike":[]
     }; 
-   
 
+    $scope.collectionNotebooks = {};
+   
+    //función para inicializar el plug in de tinder.
     $scope.initJtinder = function(){
         $("#swipe-wrapper").jTinder({
           onDislike: function (item) {
@@ -49,65 +52,28 @@ angular.module('scribeApp')
     $scope.changeView = function(value){
       $scope.selection = value;
       setTimeout(function() {
-        $scope.initJtinder();
+        $scope.getCollectionNotebooks();
+        
       }, 500);
+
+      setTimeout(function() {
+        $scope.initJtinder();
+      }, 1000);
       
     }
 
-     $scope.changeView('content');
+    $scope.changeView('content');
 
   
     function fillObject(category,item){
       eval("$scope.ObjectLike." + category + ".push({\"coleccion\":item.data(\"coleccion\"),\"nombre\":item.data(\"nombre\"),\"imagen\":item.data(\"imagen\")})");
       console.log($scope.ObjectLike)
     }
-
-    $scope.goTo = function(){
-      alert("goto")
-      /*$(".section").addClass("hidden")
-      $(destiny).toggleClass("hidden")*/
-    }
-
    
+    //funciones manipulación de vista
     $scope.toggleHeaderBtn =  function(btn){
       $(".header .btn").addClass("hidden");
       $(btn).toggleClass("hidden");
-    }
-
-    $scope.togglePreferencesList =  function(selection){
-      $(".preferences-control .btn").removeClass("active")
-      $(selection).addClass("active")
-    }
-
-    $scope.fillPreferencesList =  function(listType){
-      console.log(listType)
-      var selectedList;
-      switch (listType){
-        case "like":
-        selectedList = $scope.ObjectLike.like;
-        console.log(selectedList)
-        break;
-
-        case "dislike":
-        selectedList = $scope.ObjectLike.dislike;
-        console.log(selectedList)
-        break;
-      }
-
-      $(".list-wrapper").empty();
-      for(i=0; i<selectedList.length; i++){
-            var selectedCard = 	"<div class='col-xs-12 col-sm-4'>" +
-                      "<div class='list-card'>"+
-                        "<img src='"+selectedList[i].imagen+"' alt=''>" +
-                        "<p class='card-name'>"+selectedList[i].nombre+"</p>" +
-                        "<div class='like-count'>" +
-                        "<span class='counter'>"+Math.floor((Math.random() * 500) + 100)+"</span>" +
-                        "<div class='like-btn'></div>" +
-                        "</div>" +
-                        "</div>" +
-                        "</div>";
-        $(".list-wrapper").append(selectedCard)
-      }
     }
 
     $scope.changeContainer = function(){
@@ -122,6 +88,56 @@ angular.module('scribeApp')
       
     }
 
+    //NOTA: NO ESTA PASANDO LA REFERENCIA DEL ELEMENTO AL QUE SE ESTA DANDO CLICK, AL PARECER POR LA REFERENCIA DE NG-CLICK... VALIDAR
+    $scope.togglePreferencesList =  function(selection){
+      console.log(selection)
+      $(".preferences-control .btn").removeClass("active");
+      $(selection).children().addClass("active");
+    }
+
+    $scope.fillPreferencesList =  function(listType){
+      var selectedList;
+      switch (listType){
+        case "like":
+        selectedList = $scope.ObjectLike.like;
+        console.log(selectedList)
+        break;
+
+        case "dislike":
+        selectedList = $scope.ObjectLike.dislike;
+        console.log(selectedList)
+        break;
+      }
+
+      $(".list-wrapper").empty();
+      var selectedCard = "";
+      var contador = 0;
+      for(var i=0; i<selectedList.length; i++){
+          if(contador == 0){
+            selectedCard += "<div class='row'>";
+          }
+          selectedCard += "<div class='col-xs-12 col-sm-4'>" +
+              "<div class='list-card'>"+
+                "<img src='https://luisvardez.000webhostapp.com/"+selectedList[i].imagen+"' alt=''>" +
+                "<p class='card-name'>"+selectedList[i].nombre+"</p>" +
+                "<div class='like-count'>" +
+                "<span class='counter'>"+Math.floor((Math.random() * 500) + 100)+"</span>" +
+                "<div class='like-btn'></div>" +
+                "</div>" +
+                "</div>" +
+                "</div>";
+
+            contador++;
+            if(contador == 3){
+              selectedCard +="</div>";
+              contador = 0;
+            }
+      }
+      $(".list-wrapper").append(selectedCard);
+
+    }
+
+    //obtención de la lista de libretas de una colección
     $scope.getCollectionNotebooks = function () {
       $http({
         method: 'GET',
@@ -140,7 +156,8 @@ angular.module('scribeApp')
         }
       }).then(
         function (response) {
-          console.log(response.data.data)
+          $scope.collectionNotebooks = response.data.data;
+          console.log($scope.collectionNotebooks);
         },
         function (response) {
           alert("error")
