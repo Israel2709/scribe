@@ -59,7 +59,6 @@ angular.module('scribeApp')
       setTimeout(function() {
         $scope.initJtinder();
       }, 1000);
-      
     }
 
     $scope.changeView('content');
@@ -151,7 +150,7 @@ angular.module('scribeApp')
           "filter": [{
             "fieldName": "collection",
             "operator": "in",
-            "value": "53" /*aqui va el id de la colección a consultar*/
+            "value": "54" /*aqui va el id de la colección a consultar*/
           }],
         }
       }).then(
