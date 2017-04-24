@@ -183,7 +183,6 @@
 
 	 function countRemaining(){
       var remaining = $("#swipe-wrapper ul li").length;
-      console.log(remaining)
       if(remaining == 0){
         $("#swipe-wrapper").hide();
         $(".wrap").append("<h2 class='text-center'>¡Gracias por tu participación!</h2>");

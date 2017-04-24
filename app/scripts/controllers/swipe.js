@@ -8,6 +8,17 @@
  * Controller of the scribeApp
  */
 angular.module('scribeApp')
+  .directive('myRepeatDirective',function(){
+      return function(scope, element, attrs) {
+        if (scope.$last){
+          setTimeout(function() {
+             scope.initJtinder();
+          }, 600);
+         
+        }
+      };
+  })
+
   .controller('SwipeCtrl', function ($document, $scope,$http) {
     this.awesomeThings = [
       'HTML5 Boilerplate',
@@ -15,6 +26,7 @@ angular.module('scribeApp')
       'Karma'
     ];
 
+    //varible para mostrar las diferentes capas dependiendo del contendino
     $scope.selection;
 
     //arreglo donde se guardan los like y dislikes de las imagenes
@@ -24,6 +36,8 @@ angular.module('scribeApp')
     }; 
 
     $scope.collectionNotebooks = {};
+
+
    
     //función para inicializar el plug in de tinder.
     $scope.initJtinder = function(){
@@ -31,10 +45,24 @@ angular.module('scribeApp')
           onDislike: function (item) {
               $('#status').html('Dislike image ' + (item.index()+1));
               fillObject("dislike",item);
+
+              //elimina del arreglo el elemento que ya fue evaluado, esto para que cuando cambiemos de pantalla y regresemos no se esten rpesentando los
+              //todos aunque ya los hayamos evaluado
+              $scope.collectionNotebooks.forEach(function(index,value) {  
+              if($scope.collectionNotebooks[value].id == item.data("id")){
+                $scope.collectionNotebooks.splice(value,1)
+              }
+            }, this);
           },
           onLike: function (item) {
-              $('#status').html('Like image ' + (item.index()+1));
+            $('#status').html('Like image ' + (item.index()+1));
             fillObject("like",item);
+
+            $scope.collectionNotebooks.forEach(function(index,value) {  
+              if($scope.collectionNotebooks[value].id == item.data("id")){
+                $scope.collectionNotebooks.splice(value,1)
+              }
+            }, this);
           },
         animationRevertSpeed: 200,
         animationSpeed: 400,
@@ -49,16 +77,53 @@ angular.module('scribeApp')
       });
     }
 
-    $scope.changeView = function(value){
+    $scope.changeView = function(value,image=""){
       $scope.selection = value;
-      setTimeout(function() {
-        $scope.getCollectionNotebooks();
-        
-      }, 500);
 
-      setTimeout(function() {
-        $scope.initJtinder();
-      }, 1000);
+      if($scope.selection == "preferences"){
+        setTimeout(function() { 
+           $scope.fillPreferencesList('like');     
+        }, 600);
+       
+      }else if($scope.selection == "content"){
+        $scope.getCollectionNotebooks();
+      }else{
+        console.log(image.notebooks.coverSource)
+        setTimeout(function() {
+          $("#img-detail").attr("src","https://luisvardez.000webhostapp.com/"+image.notebooks.coverSource);
+        }, 200);
+        
+      }
+      
+    }
+
+     $scope.getCollectionNotebooks = function () {
+      console.log($scope.collectionNotebooks.length)
+       if($scope.collectionNotebooks.length == 0 || $scope.collectionNotebooks.length == undefined){
+      $http({
+        method: 'GET',
+        url: 'https://api.backand.com:443/1/objects/notebook?pageSize=20&pageNumber=1',
+        headers: {
+          AnonymousToken: "a3cacd9a-831f-4aa8-8872-7d80470a000e"
+        },
+        params: {
+          pageSize: 20,
+          pageNumber: 1,
+          "filter": [{
+            "fieldName": "collection",
+            "operator": "in",
+            "value": "56" /*aqui va el id de la colección a consultar*/
+          }],
+        }
+      }).then(
+        function (response) {
+          $scope.collectionNotebooks = response.data.data;
+          console.log($scope.collectionNotebooks);       
+        },
+        function (response) {
+          alert("error")
+        });
+       }
     }
 
     $scope.changeView('content');
@@ -80,9 +145,11 @@ angular.module('scribeApp')
       if($(".main-container").hasClass("container")){
         $(".main-container").removeClass("container");
         $(".main-container").addClass("container-fluid");
+        $(".main-container .header").addClass("displayN")
       }else{
         $(".main-container").addClass("container");
         $(".main-container").removeClass("container-fluid");
+        $(".main-container .header").removeClass("displayN")
       }
       
     }
@@ -95,19 +162,19 @@ angular.module('scribeApp')
     }
 
     $scope.fillPreferencesList =  function(listType){
+
       var selectedList;
       switch (listType){
         case "like":
         selectedList = $scope.ObjectLike.like;
         console.log(selectedList)
         break;
-
         case "dislike":
         selectedList = $scope.ObjectLike.dislike;
         console.log(selectedList)
         break;
-      }
-
+      }    
+      
       $(".list-wrapper").empty();
       var selectedCard = "";
       var contador = 0;
@@ -127,7 +194,7 @@ angular.module('scribeApp')
                 "</div>";
 
             contador++;
-            if(contador == 3){
+            if(contador === 3){
               selectedCard +="</div>";
               contador = 0;
             }
@@ -135,33 +202,6 @@ angular.module('scribeApp')
       $(".list-wrapper").append(selectedCard);
 
     }
-
     //obtención de la lista de libretas de una colección
-    $scope.getCollectionNotebooks = function () {
-      $http({
-        method: 'GET',
-        url: 'https://api.backand.com:443/1/objects/notebook?pageSize=20&pageNumber=1',
-        headers: {
-          AnonymousToken: "a3cacd9a-831f-4aa8-8872-7d80470a000e"
-        },
-        params: {
-          pageSize: 20,
-          pageNumber: 1,
-          "filter": [{
-            "fieldName": "collection",
-            "operator": "in",
-            "value": "54" /*aqui va el id de la colección a consultar*/
-          }],
-        }
-      }).then(
-        function (response) {
-          $scope.collectionNotebooks = response.data.data;
-          console.log($scope.collectionNotebooks);
-        },
-        function (response) {
-          alert("error")
-        });
-    }
-
   });
 

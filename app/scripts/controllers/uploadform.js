@@ -69,7 +69,7 @@ angular.module('scribeApp')
 
         $scope.collectionSelected = $scope.collection.name;
 
-        upload.upload('picture', $scope.collectionSelected).then(function (response) {
+        upload.upload('picture', $scope.collectionSelected,'modal').then(function (response) {
           if (response.status == '200') {
             $scope.collection.coverUrl = response.data;
 
@@ -110,13 +110,13 @@ angular.module('scribeApp')
     $scope.uploadNotebook = function () {
 
       //se manda llamar el servicio creado para la carga de las imagenes,
-      //Parametros:  Id de input tipo file  y el nombre de la coleccion que se envía
-      upload.upload('fileupload',$scope.collectionSelected).then(function(response){
-  
+      //Parametros:  Id de input tipo file,nombre de la coleccion que se envía y el nombre del tipo de imagen
+      //:notebook y detail
+      upload.upload('fileupload',$scope.collectionSelected,'notebook').then(function(response){
         if(response.status == '200'){
            $scope.notebookObject.coverSource = response.data;
 
-           upload.upload('fileupload2',$scope.collectionSelected).then(function(response){
+           upload.upload('fileupload2',$scope.collectionSelected,'detail').then(function(response){
                $scope.notebookObject.listCoverSource = response.data;
               $http.post('https://api.backand.com:443/1/objects/notebook', $scope.notebookObject, {
                 headers: {
@@ -198,16 +198,18 @@ angular.module('scribeApp')
   })
 
   //servicio para la ejecución de peticion y guardado de imagenes
+  //Prefix: modal,notebook,detail
   .service('upload',[
     '$http',
     function($http){
-      this.upload =  function(id,selected){
+      this.upload =  function(id,selected,prefix){
       
       var inputFileImage = $("#" + id)[0].files[0];
       var dataImage = new FormData();
 
       dataImage.append("file", inputFileImage);
       dataImage.append('carpeta',selected);
+      dataImage.append('prefix',prefix)
 
         return $http({
           method: "POST",
