@@ -35,6 +35,7 @@ angular.module('scribeApp')
       "dislike":[]
     }; 
 
+    //arreglo que guarda la lista de libretas
     $scope.collectionNotebooks = {};
    
     //función para inicializar el plug in de tinder.
@@ -95,33 +96,31 @@ angular.module('scribeApp')
       
     }
 
-     $scope.getCollectionNotebooks = function () {
-      console.log($scope.collectionNotebooks.length)
-       if($scope.collectionNotebooks.length == 0 || $scope.collectionNotebooks.length == undefined){
-      $http({
-        method: 'GET',
-        url: 'https://api.backand.com:443/1/objects/notebook?pageSize=20&pageNumber=1',
-        headers: {
-          AnonymousToken: "a3cacd9a-831f-4aa8-8872-7d80470a000e"
-        },
-        params: {
-          pageSize: 20,
-          pageNumber: 1,
-          "filter": [{
-            "fieldName": "collection",
-            "operator": "in",
-            "value": "56" /*aqui va el id de la colección a consultar*/
-          }],
-        }
-      }).then(
-        function (response) {
-          $scope.collectionNotebooks = response.data.data;
-          console.log($scope.collectionNotebooks);       
-        },
-        function (response) {
-          alert("error")
-        });
-       }
+    $scope.getCollectionNotebooks = function () {
+      if ($scope.collectionNotebooks.length == 0 || $scope.collectionNotebooks.length == undefined) {
+        $http({
+          method: 'GET',
+          url: 'https://api.backand.com:443/1/objects/notebook?pageSize=20&pageNumber=1',
+          headers: {
+            AnonymousToken: "a3cacd9a-831f-4aa8-8872-7d80470a000e"
+          },
+          params: {
+            pageSize: 20,
+            pageNumber: 1,
+            "filter": [{
+              "fieldName": "collection",
+              "operator": "in",
+              "value": "56" /*aqui va el id de la colección a consultar*/
+            }],
+          }
+        }).then(
+          function (response) {
+            $scope.collectionNotebooks = response.data.data;
+          },
+          function (response) {
+            alert("error")
+          });
+      }
     }
 
     $scope.changeView('content');
@@ -129,7 +128,6 @@ angular.module('scribeApp')
   
     function fillObject(category,item){
       eval("$scope.ObjectLike." + category + ".push({\"coleccion\":item.data(\"coleccion\"),\"nombre\":item.data(\"nombre\"),\"imagen\":item.data(\"imagen\")})");
-      console.log($scope.ObjectLike)
     }
    
     //funciones manipulación de vista
@@ -154,7 +152,6 @@ angular.module('scribeApp')
 
     //NOTA: NO ESTA PASANDO LA REFERENCIA DEL ELEMENTO AL QUE SE ESTA DANDO CLICK, AL PARECER POR LA REFERENCIA DE NG-CLICK... VALIDAR
     $scope.togglePreferencesList =  function(selection){
-      console.log(selection)
       $(".preferences-control .btn").removeClass("active");
       $(selection).children().addClass("active");
     }
@@ -165,11 +162,9 @@ angular.module('scribeApp')
       switch (listType){
         case "like":
         selectedList = $scope.ObjectLike.like;
-        console.log(selectedList)
         break;
         case "dislike":
         selectedList = $scope.ObjectLike.dislike;
-        console.log(selectedList)
         break;
       }    
       
@@ -200,33 +195,7 @@ angular.module('scribeApp')
       $(".list-wrapper").append(selectedCard);
 
     }
-    //obtención de la lista de libretas de una colección
-    $scope.getCollectionNotebooks = function () {
-      $http({
-        method: 'GET',
-        url: 'https://api.backand.com:443/1/objects/notebook?pageSize=20&pageNumber=1',
-        headers: {
-          AnonymousToken: "a3cacd9a-831f-4aa8-8872-7d80470a000e"
-        },
-        params: {
-          pageSize: 20,
-          pageNumber: 1,
-          "filter": [{
-            "fieldName": "collection",
-            "operator": "in",
-            "value": "54" /*aqui va el id de la colección a consultar*/
-          }],
-        }
-      }).then(
-        function (response) {
-          $scope.collectionNotebooks = response.data.data;
-          console.log($scope.collectionNotebooks);
-        },
-        function (response) {
-          alert("error")
-        });
-    }
-
+    
     $scope.collectionsList;
 
     $scope.getCollectionList = function () {
