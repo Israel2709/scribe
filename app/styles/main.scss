@@ -15,12 +15,12 @@ body {
 }
 
 /* Everything but the jumbotron gets side spacing for mobile first views */
-.header,
+/*.header,
 .marketing,
 .footer {
   padding-left: 15px;
   padding-right: 15px;
-}
+}*/
 
 
 /********************************************************************************/
@@ -483,9 +483,16 @@ h1 {
             }
         }
         .detail-wrapper{
+            .header{
+                position:relative;
+                .row{
+                    position: absolute;
+                    z-index: 10;
+                }
+            }
             .img-wrapper{
                 img{
-                    max-width: 90%;
+                    max-width: 100%;
                     @include auto-center();
                 }
             }
@@ -504,6 +511,10 @@ h1 {
             .row.bgBlack{
                 height:550px;
                 overflow: hidden;
+
+                .col-xs-12{
+                    padding: 0px;
+                }
             }
 
             .title-note{
