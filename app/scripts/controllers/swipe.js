@@ -36,7 +36,6 @@ angular.module('scribeApp')
     }; 
 
     $scope.collectionNotebooks = {};
-
    
     //función para inicializar el plug in de tinder.
     $scope.initJtinder = function(){
@@ -202,5 +201,58 @@ angular.module('scribeApp')
 
     }
     //obtención de la lista de libretas de una colección
+    $scope.getCollectionNotebooks = function () {
+      $http({
+        method: 'GET',
+        url: 'https://api.backand.com:443/1/objects/notebook?pageSize=20&pageNumber=1',
+        headers: {
+          AnonymousToken: "a3cacd9a-831f-4aa8-8872-7d80470a000e"
+        },
+        params: {
+          pageSize: 20,
+          pageNumber: 1,
+          "filter": [{
+            "fieldName": "collection",
+            "operator": "in",
+            "value": "54" /*aqui va el id de la colección a consultar*/
+          }],
+        }
+      }).then(
+        function (response) {
+          $scope.collectionNotebooks = response.data.data;
+          console.log($scope.collectionNotebooks);
+        },
+        function (response) {
+          alert("error")
+        });
+    }
+
+    $scope.collectionsList;
+
+    $scope.getCollectionList = function () {
+      $http({
+        method: 'GET',
+        url: 'https://api.backand.com:443/1/objects/collection?pageSize=20&pageNumber=1',
+        headers: {
+          AnonymousToken: "a3cacd9a-831f-4aa8-8872-7d80470a000e"
+        },
+        params: {
+          pageSize: 20,
+          pageNumber: 1
+        }
+      }).then(
+        function (response) {
+          console.log(response.data.data)
+          $scope.collectionsList = response.data.data;
+          console.log($scope.collectionsList)
+        },
+        function (response) {
+          alert("error")
+        });
+    }
+
+    $scope.getCollectionList();
+
+
   });
 
