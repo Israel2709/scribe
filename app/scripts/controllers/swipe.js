@@ -37,7 +37,6 @@ angular.module('scribeApp')
 
     $scope.collectionNotebooks = {};
 
-
    
     //función para inicializar el plug in de tinder.
     $scope.initJtinder = function(){
@@ -88,9 +87,9 @@ angular.module('scribeApp')
       }else if($scope.selection == "content"){
         $scope.getCollectionNotebooks();
       }else{
-        console.log(image.notebooks.coverSource)
         setTimeout(function() {
           $("#img-detail").attr("src","https://luisvardez.000webhostapp.com/"+image.notebooks.coverSource);
+          $(".title-note").text(image.notebooks.name);
         }, 200);
         
       }
