@@ -24,6 +24,14 @@ angular.module('scribeApp')
     }; 
 
     $scope.collectionNotebooks = {};
+
+    $scope.showModal = function(){
+      $("#collecion-modal").modal("show")
+    }
+
+    $scope.showModal()
+
+    
    
     //función para inicializar el plug in de tinder.
     $scope.initJtinder = function(){
@@ -162,6 +170,32 @@ angular.module('scribeApp')
           alert("error")
         });
     }
+
+    $scope.collectionsList;
+
+    $scope.getCollectionList = function () {
+      $http({
+        method: 'GET',
+        url: 'https://api.backand.com:443/1/objects/collection?pageSize=20&pageNumber=1',
+        headers: {
+          AnonymousToken: "a3cacd9a-831f-4aa8-8872-7d80470a000e"
+        },
+        params: {
+          pageSize: 20,
+          pageNumber: 1
+        }
+      }).then(
+        function (response) {
+          console.log(response.data.data)
+          $scope.collectionsList = response.data.data;
+          console.log($scope.collectionsList)
+        },
+        function (response) {
+          alert("error")
+        });
+    }
+
+    $scope.getCollectionList();
 
   });
 

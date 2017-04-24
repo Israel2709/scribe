@@ -8,7 +8,7 @@
  * Controller of the scribeApp
  */
 angular.module('scribeApp')
-  .controller('AboutCtrl', function () {
+  .controller('AboutCtrl', function ($scope, $http) {
     this.awesomeThings = [
       'HTML5 Boilerplate',
       'AngularJS',
