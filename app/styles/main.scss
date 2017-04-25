@@ -624,3 +624,51 @@ h1 {
     height: 100%;
   }
 }
+
+#collection-modal{
+    .modal-header{
+        .modal-title{
+            margin-top: 20px;
+            font-size: 30px;
+            font-family: "latoregular";
+        }
+        h4{
+            margin-top: 0px;
+            font-family: "latoregular"
+        }
+    }
+    .modal-content{
+        padding: 0px 5px;
+    }
+    .collection-wrapper{
+        position: relative;
+        margin-bottom: 30px;
+        img{
+            width: 100%;
+        }
+        h1{
+            position: absolute;
+            color: white;
+            font-family: "latobold";
+            font-size: 14px;
+            bottom: 0;
+            text-transform: capitalize;
+            text-align: center;
+            width: 85%;
+            font-size: 20px;
+            margin: 0px;
+            bottom: 3px;
+        }
+    }
+    .close{
+        opacity:1;
+        position: absolute;
+        right: 20px;
+        span{
+            font-size: 45px;
+            font-weight: normal;
+            opacity: 1 !important;
+            color: black;
+        }
+    }
+}

@@ -36,6 +36,7 @@ angular.module('scribeApp')
     }; 
 
     $scope.collectionNotebooks = {};
+    var selectedCollection = "56"
    
     //función para inicializar el plug in de tinder.
     $scope.initJtinder = function(){
@@ -84,7 +85,7 @@ angular.module('scribeApp')
         }, 600);
        
       }else if($scope.selection == "content"){
-        $scope.getCollectionNotebooks();
+        $scope.getCollectionNotebooks(selectedCollection);
       }else{
         console.log(image.notebooks.coverSource)
         setTimeout(function() {
@@ -95,9 +96,11 @@ angular.module('scribeApp')
       
     }
 
-     $scope.getCollectionNotebooks = function () {
+    
+
+     $scope.getCollectionNotebooks = function (selectedCollection) {
       console.log($scope.collectionNotebooks.length)
-       if($scope.collectionNotebooks.length == 0 || $scope.collectionNotebooks.length == undefined){
+       //if($scope.collectionNotebooks.length == 0 || $scope.collectionNotebooks.length == undefined){
       $http({
         method: 'GET',
         url: 'https://api.backand.com:443/1/objects/notebook?pageSize=20&pageNumber=1',
@@ -110,7 +113,7 @@ angular.module('scribeApp')
           "filter": [{
             "fieldName": "collection",
             "operator": "in",
-            "value": "56" /*aqui va el id de la colección a consultar*/
+            "value": selectedCollection /*aqui va el id de la colección a consultar*/
           }],
         }
       }).then(
@@ -121,7 +124,7 @@ angular.module('scribeApp')
         function (response) {
           alert("error")
         });
-       }
+       
     }
 
     $scope.changeView('content');
@@ -200,32 +203,7 @@ angular.module('scribeApp')
       $(".list-wrapper").append(selectedCard);
 
     }
-    //obtención de la lista de libretas de una colección
-    $scope.getCollectionNotebooks = function () {
-      $http({
-        method: 'GET',
-        url: 'https://api.backand.com:443/1/objects/notebook?pageSize=20&pageNumber=1',
-        headers: {
-          AnonymousToken: "a3cacd9a-831f-4aa8-8872-7d80470a000e"
-        },
-        params: {
-          pageSize: 20,
-          pageNumber: 1,
-          "filter": [{
-            "fieldName": "collection",
-            "operator": "in",
-            "value": "54" /*aqui va el id de la colección a consultar*/
-          }],
-        }
-      }).then(
-        function (response) {
-          $scope.collectionNotebooks = response.data.data;
-          console.log($scope.collectionNotebooks);
-        },
-        function (response) {
-          alert("error")
-        });
-    }
+   
 
     $scope.collectionsList;
 
@@ -252,6 +230,14 @@ angular.module('scribeApp')
     }
 
     $scope.getCollectionList();
+
+    $scope.selectCollection = function(selected){
+      console.log(selected)
+      selectedCollection = selected.toString();
+      console.log(selectedCollection)
+      $scope.getCollectionNotebooks(selectedCollection)
+      $("#collection-modal").modal("hide")
+    }
 
 
   });
