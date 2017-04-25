@@ -35,6 +35,7 @@ angular.module('scribeApp')
       "dislike":[]
     }; 
 
+    //arreglo que guarda la lista de libretas
     $scope.collectionNotebooks = {};
     var selectedCollection = "56"
    
@@ -87,9 +88,9 @@ angular.module('scribeApp')
       }else if($scope.selection == "content"){
         $scope.getCollectionNotebooks(selectedCollection);
       }else{
-        console.log(image.notebooks.coverSource)
         setTimeout(function() {
           $("#img-detail").attr("src","https://luisvardez.000webhostapp.com/"+image.notebooks.coverSource);
+          $(".title-note").text(image.notebooks.name);
         }, 200);
         
       }
@@ -124,7 +125,6 @@ angular.module('scribeApp')
         function (response) {
           alert("error")
         });
-       
     }
 
     $scope.changeView('content');
@@ -132,7 +132,6 @@ angular.module('scribeApp')
   
     function fillObject(category,item){
       eval("$scope.ObjectLike." + category + ".push({\"coleccion\":item.data(\"coleccion\"),\"nombre\":item.data(\"nombre\"),\"imagen\":item.data(\"imagen\")})");
-      console.log($scope.ObjectLike)
     }
    
     //funciones manipulación de vista
@@ -157,7 +156,6 @@ angular.module('scribeApp')
 
     //NOTA: NO ESTA PASANDO LA REFERENCIA DEL ELEMENTO AL QUE SE ESTA DANDO CLICK, AL PARECER POR LA REFERENCIA DE NG-CLICK... VALIDAR
     $scope.togglePreferencesList =  function(selection){
-      console.log(selection)
       $(".preferences-control .btn").removeClass("active");
       $(selection).children().addClass("active");
     }
@@ -168,11 +166,9 @@ angular.module('scribeApp')
       switch (listType){
         case "like":
         selectedList = $scope.ObjectLike.like;
-        console.log(selectedList)
         break;
         case "dislike":
         selectedList = $scope.ObjectLike.dislike;
-        console.log(selectedList)
         break;
       }    
       
@@ -203,7 +199,6 @@ angular.module('scribeApp')
       $(".list-wrapper").append(selectedCard);
 
     }
-   
 
     $scope.collectionsList;
 
