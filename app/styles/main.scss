@@ -300,15 +300,28 @@ h1 {
         font-family: 'latobold';
         color: black;
     }
-    .like-btn{
-    	position: absolute;
-    	background: url("../images/heart-ico.svg") no-repeat scroll center center;
-    	width: 40px;
-    	height: 40px;
-    	background-size: 100%;
-    	right: 50px;
-    	bottom: 25px;
+
+    .like-count{
+        .counter{
+            position: absolute;
+            float:right;
+            bottom: 25px;
+            right: 115px;
+            color:#FE5068;
+            font-family: "lato-regular";
+            font-size: 30px;
+        }
+        .like-btn{
+            position: absolute;
+            background: url("../images/heart-ico.svg") no-repeat scroll center center;
+            width: 40px;
+            height: 40px;
+            background-size: 100%;
+            right: 50px;
+            bottom: 25px;
+        }
     }
+
 }
 
 .preferences-wrapper{

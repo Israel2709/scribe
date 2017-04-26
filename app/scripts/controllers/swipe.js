@@ -11,10 +11,12 @@ angular.module('scribeApp')
   .directive('myRepeatDirective',function(){
       return function(scope, element, attrs) {
         if (scope.$last){
+          $("#swipe-wrapper").css("display","block");
+          $(".text-center").css("display","none");
           setTimeout(function() {
              scope.initJtinder();
+             console.log("inicializacion")
           }, 600);
-         
         }
       };
   })
@@ -37,7 +39,14 @@ angular.module('scribeApp')
 
     //arreglo que guarda la lista de libretas
     $scope.collectionNotebooks = {};
-    var selectedCollection = "56"
+    var selectedCollection = "56";
+
+    $('#collection-modal').on('hidden.bs.modal', function (e) {
+      $scope.initJtinder();
+      console.log("ejecucion ")
+    })
+
+    $("#collection-modal").modal("show")
    
     //función para inicializar el plug in de tinder.
     $scope.initJtinder = function(){
@@ -86,7 +95,7 @@ angular.module('scribeApp')
         }, 600);
        
       }else if($scope.selection == "content"){
-        $scope.getCollectionNotebooks(selectedCollection);
+        //$("#collection-modal").modal("show")
       }else{
         setTimeout(function() {
           $("#img-detail").attr("src","https://luisvardez.000webhostapp.com/"+image.notebooks.coverSource);
@@ -100,7 +109,6 @@ angular.module('scribeApp')
     
 
      $scope.getCollectionNotebooks = function (selectedCollection) {
-      console.log($scope.collectionNotebooks.length)
        //if($scope.collectionNotebooks.length == 0 || $scope.collectionNotebooks.length == undefined){
       $http({
         method: 'GET',
@@ -119,8 +127,7 @@ angular.module('scribeApp')
         }
       }).then(
         function (response) {
-          $scope.collectionNotebooks = response.data.data;
-          console.log($scope.collectionNotebooks);       
+          $scope.collectionNotebooks = response.data.data;     
         },
         function (response) {
           alert("error")
@@ -132,7 +139,9 @@ angular.module('scribeApp')
   
     function fillObject(category,item){
       eval("$scope.ObjectLike." + category + ".push({\"coleccion\":item.data(\"coleccion\"),\"nombre\":item.data(\"nombre\"),\"imagen\":item.data(\"imagen\")})");
-    }
+ 
+      $scope.getSelectedNotebook(item.data('id'));
+  }
    
     //funciones manipulación de vista
     $scope.toggleHeaderBtn =  function(btn){
@@ -227,13 +236,48 @@ angular.module('scribeApp')
     $scope.getCollectionList();
 
     $scope.selectCollection = function(selected){
-      console.log(selected)
       selectedCollection = selected.toString();
-      console.log(selectedCollection)
       $scope.getCollectionNotebooks(selectedCollection)
       $("#collection-modal").modal("hide")
     }
 
+    $scope.getSelectedNotebook = function(idNote){
+      $http({
+        method: 'GET',
+        url: 'https://api.backand.com:443/1/objects/notebook/' + idNote,
+        headers: {
+          AnonymousToken: "a3cacd9a-831f-4aa8-8872-7d80470a000e"
+        }
+      }).then(
+        function (response) {
+          var likes = response.data.like;
+          if(typeof(response.data.like) ==  "string"){
+            likes = 0;
+          }
+          likes = parseInt(likes) + 1;     
+          $scope.updateLikes(idNote,likes);
+        },
+        function (response) {
+          alert("error")
+        });
+    }
+
+    $scope.updateLikes = function(id,count){
+      $http({
+        method:'PUT',
+        url: 'https://api.backand.com:443/1/objects/notebook/'+id,
+        data:{like:count},
+        headers: {
+          AnonymousToken: "a3cacd9a-831f-4aa8-8872-7d80470a000e"
+        }
+      }).then(
+        function (response) {
+          console.log(response);
+        },
+        function (response) {
+          alert("error")
+        });
+    }
 
   });
 
