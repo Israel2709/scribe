@@ -36,14 +36,17 @@
                     <!-- start jtinder container -->
                     <div id="swipe-wrapper" >
                         <ul>
-                            <li class="pane pane1" data-coleccion="black" data-id="{{notebooks.id}}" data-nombre="{{notebooks.name}}" data-imagen="{{notebooks.listCoverSource}}" ng-click="changeView('detail',this);toggleHeaderBtn('.btn-back-white');changeContainer()" ng-repeat="notebooks in collectionNotebooks" my-repeat-directive>
+                            <li class="pane pane1" data-coleccion="{{notebooks.collection}}" data-id="{{notebooks.id}}" data-nombre="{{notebooks.name}}" data-imagen="{{notebooks.listCoverSource}}" ng-click="changeView('detail',this);toggleHeaderBtn('.btn-back-white');changeContainer()" ng-repeat="notebooks in collectionNotebooks" my-repeat-directive>
                                 <div class="img-wrapper">
                                     <img ng-src="https://luisvardez.000webhostapp.com/{{notebooks.coverSource}}" alt="">
                                 </div>
                                 <p class="slide-name">{{notebooks.name}}</p>
                                 <div class="like"></div>
-                                    <div class="dislike"></div>
+                                <div class="dislike"></div>
+                                <div class="like-count">
+                                <div class="counter">{{notebooks.like}}</div>
                                 <div class="like-btn"></div>
+                                </div>
                             </li>
                         </ul>
                     </div>
@@ -53,7 +56,7 @@
                 <!-- jTinder trigger by buttons  -->
                 <div class="actions">
                     <div class="btn reload-btn" onclick="location.reload()"></div> <a href="#" class="dislike"><i></i></a> <a href="#" class="like"><i></i></a>
-                    <div class="btn menu-btn"></div>
+                    <div class="btn menu-btn" onclick=" $('#collection-modal').modal('show')"></div>
                 </div>
                 <!-- jTinder status text  -->
                 <div id="status"></div>
