@@ -11,8 +11,6 @@ angular.module('scribeApp')
   .directive('myRepeatDirective',function(){
       return function(scope, element, attrs) {
         if (scope.$last){
-          $("#swipe-wrapper").css("display","block");
-          $(".text-center").css("display","none");
           setTimeout(function() {
              scope.initJtinder();
              console.log("inicializacion")
@@ -39,12 +37,7 @@ angular.module('scribeApp')
 
     //arreglo que guarda la lista de libretas
     $scope.collectionNotebooks = {};
-    var selectedCollection = "56";
-
-    $('#collection-modal').on('hidden.bs.modal', function (e) {
-      $scope.initJtinder();
-      console.log("ejecucion ")
-    })
+    var selectedCollection = "56"
 
     $("#collection-modal").modal("show")
    
@@ -139,7 +132,7 @@ angular.module('scribeApp')
   
     function fillObject(category,item){
       eval("$scope.ObjectLike." + category + ".push({\"coleccion\":item.data(\"coleccion\"),\"nombre\":item.data(\"nombre\"),\"imagen\":item.data(\"imagen\")})");
- 
+      console.log($scope.ObjectLike.like);
       $scope.getSelectedNotebook(item.data('id'));
   }
    
