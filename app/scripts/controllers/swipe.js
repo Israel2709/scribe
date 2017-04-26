@@ -35,37 +35,48 @@ angular.module('scribeApp')
       "dislike":[]
     }; 
 
+    $("#collection-modal").modal("show")
+    $("#collection-modal").on("hidden.bs.modal",function(e){
+      $('#swipe-wrapper').unbind().removeData();
+      $scope.initJtinder()
+      console.log("closing modal")
+    })
+
     //arreglo que guarda la lista de libretas
     $scope.collectionNotebooks = {};
+
     var selectedCollection = "56"
 
     $("#collection-modal").modal("show")
+
+    var selectedCollection = "56";
+
    
     //función para inicializar el plug in de tinder.
-    $scope.initJtinder = function(){
-        $("#swipe-wrapper").jTinder({
-          onDislike: function (item) {
-              $('#status').html('Dislike image ' + (item.index()+1));
-              fillObject("dislike",item);
+    $scope.initJtinder = function() {
+      $("#swipe-wrapper").jTinder({
+        onDislike: function(item) {
+            $('#status').html('Dislike image ' + (item.index() + 1));
+            fillObject("dislike", item);
 
-              //elimina del arreglo el elemento que ya fue evaluado, esto para que cuando cambiemos de pantalla y regresemos no se esten rpesentando los
-              //todos aunque ya los hayamos evaluado
-              $scope.collectionNotebooks.forEach(function(index,value) {  
-              if($scope.collectionNotebooks[value].id == item.data("id")){
-                $scope.collectionNotebooks.splice(value,1)
-              }
+            //elimina del arreglo el elemento que ya fue evaluado, esto para que cuando cambiemos de pantalla y regresemos no se esten rpesentando los
+            //todos aunque ya los hayamos evaluado
+            $scope.collectionNotebooks.forEach(function(index, value) {
+                if ($scope.collectionNotebooks[value].id == item.data("id")) {
+                    $scope.collectionNotebooks.splice(value, 1)
+                }
             }, this);
-          },
-          onLike: function (item) {
-            $('#status').html('Like image ' + (item.index()+1));
-            fillObject("like",item);
+        },
+        onLike: function(item) {
+            $('#status').html('Like image ' + (item.index() + 1));
+            fillObject("like", item);
 
-            $scope.collectionNotebooks.forEach(function(index,value) {  
-              if($scope.collectionNotebooks[value].id == item.data("id")){
-                $scope.collectionNotebooks.splice(value,1)
-              }
+            $scope.collectionNotebooks.forEach(function(index, value) {
+                if ($scope.collectionNotebooks[value].id == item.data("id")) {
+                    $scope.collectionNotebooks.splice(value, 1)
+                }
             }, this);
-          },
+        },
         animationRevertSpeed: 200,
         animationSpeed: 400,
         threshold: 1,
@@ -73,30 +84,27 @@ angular.module('scribeApp')
         dislikeSelector: '.dislike'
       });
 
-      $('.actions .like, .actions .dislike').click(function(e){
+      $('.actions .like, .actions .dislike').click(function(e) {
         e.preventDefault();
         $("#swipe-wrapper").jTinder($(this).attr('class'));
       });
     }
 
-    $scope.changeView = function(value,image=""){
+    $scope.changeView = function(value, image = "") {
       $scope.selection = value;
-
-      if($scope.selection == "preferences"){
-        setTimeout(function() { 
-           $scope.fillPreferencesList('like');     
-        }, 600);
-       
-      }else if($scope.selection == "content"){
-        //$("#collection-modal").modal("show")
-      }else{
+      if ($scope.selection == "preferences") {
         setTimeout(function() {
-          $("#img-detail").attr("src","https://luisvardez.000webhostapp.com/"+image.notebooks.coverSource);
-          $(".title-note").text(image.notebooks.name);
+            $scope.fillPreferencesList('like');
+        }, 600);
+
+      } else if ($scope.selection == "content") {
+          //$("#collection-modal").modal("show")
+      } else {
+        setTimeout(function() {
+            $("#img-detail").attr("src", "https://luisvardez.000webhostapp.com/" + image.notebooks.coverSource);
+            $(".title-note").text(image.notebooks.name);
         }, 200);
-        
       }
-      
     }
 
     
