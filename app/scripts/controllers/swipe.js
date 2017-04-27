@@ -11,10 +11,11 @@ angular.module('scribeApp')
   .directive('myRepeatDirective',function(){
       return function(scope, element, attrs) {
         if (scope.$last){
+          $("#swipe-wrapper").css("display","block");
+          $(".text-center").css("display","none");
           setTimeout(function() {
              scope.initJtinder();
-             console.log("inicializacion")
-          }, 600);
+          }, 400);
         }
       };
   })
@@ -50,7 +51,6 @@ angular.module('scribeApp')
     $("#collection-modal").modal("show")
 
     var selectedCollection = "56";
-
    
     //función para inicializar el plug in de tinder.
     $scope.initJtinder = function() {
@@ -103,6 +103,7 @@ angular.module('scribeApp')
         setTimeout(function() {
             $("#img-detail").attr("src", "https://luisvardez.000webhostapp.com/" + image.notebooks.coverSource);
             $(".title-note").text(image.notebooks.name);
+            $(".counterLikes").text(image.notebooks.like);
         }, 200);
       }
     }
@@ -139,8 +140,8 @@ angular.module('scribeApp')
 
   
     function fillObject(category,item){
-      eval("$scope.ObjectLike." + category + ".push({\"coleccion\":item.data(\"coleccion\"),\"nombre\":item.data(\"nombre\"),\"imagen\":item.data(\"imagen\")})");
-      console.log($scope.ObjectLike.like);
+      eval("$scope.ObjectLike." + category + ".push({\"coleccion\":item.data(\"coleccion\"),\"nombre\":item.data(\"nombre\"),\"imagen\":item.data(\"imagen\"),\"like\":item.data(\"like\")})");
+      console.log($scope.ObjectLike)
       $scope.getSelectedNotebook(item.data('id'));
   }
    
@@ -165,13 +166,13 @@ angular.module('scribeApp')
     }
 
     //NOTA: NO ESTA PASANDO LA REFERENCIA DEL ELEMENTO AL QUE SE ESTA DANDO CLICK, AL PARECER POR LA REFERENCIA DE NG-CLICK... VALIDAR
-    $scope.togglePreferencesList =  function(selection){
+    $scope.togglePreferencesList =  function(event){
+      var target = $(event.target)
       $(".preferences-control .btn").removeClass("active");
-      $(selection).children().addClass("active");
+      target.addClass("active");
     }
 
     $scope.fillPreferencesList =  function(listType){
-
       var selectedList;
       switch (listType){
         case "like":
@@ -194,7 +195,7 @@ angular.module('scribeApp')
                 "<img src='https://luisvardez.000webhostapp.com/"+selectedList[i].imagen+"' alt=''>" +
                 "<p class='card-name'>"+selectedList[i].nombre+"</p>" +
                 "<div class='like-count'>" +
-                "<span class='counter'>"+Math.floor((Math.random() * 500) + 100)+"</span>" +
+                "<span class='counter'>"+selectedList[i].like+"</span>" +
                 "<div class='like-btn'></div>" +
                 "</div>" +
                 "</div>" +
@@ -236,10 +237,16 @@ angular.module('scribeApp')
 
     $scope.getCollectionList();
 
-    $scope.selectCollection = function(selected){
+    $scope.selectCollection = function(selected,target){
+      var target = $(event.target);
+
       selectedCollection = selected.toString();
-      $scope.getCollectionNotebooks(selectedCollection)
-      $("#collection-modal").modal("hide")
+      $scope.getCollectionNotebooks(selectedCollection);
+
+      target.css("opacity","0.5");
+      target.parent().attr("disabled",true);
+
+      $("#collection-modal").modal("hide");
     }
 
     $scope.getSelectedNotebook = function(idNote){
