@@ -361,6 +361,9 @@ h1 {
                 color: white;
                 border-radius: 50px;
             }
+            &:focus{
+                outline:none
+            }
         }
 
     }
