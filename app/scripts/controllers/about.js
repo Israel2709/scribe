@@ -70,6 +70,4 @@ angular.module('scribeApp')
           alert("error")
         });
     }
-
-
   });
