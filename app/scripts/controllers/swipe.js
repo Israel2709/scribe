@@ -42,7 +42,7 @@ angular.module('scribeApp')
       $scope.initJtinder()
       console.log("closing modal")
     })
-
+    
     //arreglo que guarda la lista de libretas
     $scope.collectionNotebooks = {};
 
@@ -84,8 +84,8 @@ angular.module('scribeApp')
         dislikeSelector: '.dislike'
       });
 
-      $('.actions .like, .actions .dislike').click(function(e) {
-        e.preventDefault();
+      $('.actions .like, .actions .dislike').click(function(event) {
+        event.preventDefault();
         $("#swipe-wrapper").jTinder($(this).attr('class'));
       });
     }
