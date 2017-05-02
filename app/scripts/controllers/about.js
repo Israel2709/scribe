@@ -22,6 +22,5 @@ angular.module('scribeApp')
         transform: "scale(1.25)"
       });
     });
-
     
   });

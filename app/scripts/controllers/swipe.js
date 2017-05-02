@@ -12,7 +12,7 @@ angular.module('scribeApp')
       return function(scope, element, attrs) {
         if (scope.$last){
           $("#swipe-wrapper").css("display","block");
-          $(".text-center").css("display","none");
+          $(".congrats").css("display","none");
           setTimeout(function() {
              scope.initJtinder();
           }, 400);
@@ -46,11 +46,9 @@ angular.module('scribeApp')
     //arreglo que guarda la lista de libretas
     $scope.collectionNotebooks = {};
 
-    var selectedCollection = "56"
-
     $("#collection-modal").modal("show")
 
-    var selectedCollection = "56";
+    var selectedCollection;
    
     //función para inicializar el plug in de tinder.
     $scope.initJtinder = function() {
@@ -108,183 +106,178 @@ angular.module('scribeApp')
       }
     }
 
-    
-
-     $scope.getCollectionNotebooks = function (selectedCollection) {
-       //if($scope.collectionNotebooks.length == 0 || $scope.collectionNotebooks.length == undefined){
+    $scope.getCollectionNotebooks = function(selectedCollection) {
+      //if($scope.collectionNotebooks.length == 0 || $scope.collectionNotebooks.length == undefined){
       $http({
-        method: 'GET',
-        url: 'https://api.backand.com:443/1/objects/notebook?pageSize=20&pageNumber=1',
-        headers: {
-          AnonymousToken: "a3cacd9a-831f-4aa8-8872-7d80470a000e"
-        },
-        params: {
-          pageSize: 20,
-          pageNumber: 1,
-          "filter": [{
-            "fieldName": "collection",
-            "operator": "in",
-            "value": selectedCollection /*aqui va el id de la colección a consultar*/
-          }],
-        }
+          method: 'GET',
+          url: 'https://api.backand.com:443/1/objects/notebook?pageSize=20&pageNumber=1',
+          headers: {
+              AnonymousToken: "a3cacd9a-831f-4aa8-8872-7d80470a000e"
+          },
+          params: {
+              pageSize: 20,
+              pageNumber: 1,
+              "filter": [{
+                  "fieldName": "collection",
+                  "operator": "in",
+                  "value": selectedCollection /*aqui va el id de la colección a consultar*/
+              }],
+          }
       }).then(
-        function (response) {
-          $scope.collectionNotebooks = response.data.data;     
-        },
-        function (response) {
-          alert("error")
-        });
+          function(response) {
+              $scope.collectionNotebooks = response.data.data;
+          },
+          function(response) {
+              alert("error")
+          }
+        );
     }
 
     $scope.changeView('content');
 
   
-    function fillObject(category,item){
-      eval("$scope.ObjectLike." + category + ".push({\"coleccion\":item.data(\"coleccion\"),\"nombre\":item.data(\"nombre\"),\"imagen\":item.data(\"imagen\"),\"like\":item.data(\"like\")})");
-      console.log($scope.ObjectLike)
-      $scope.getSelectedNotebook(item.data('id'));
-  }
+    function fillObject(category, item) {
+        eval("$scope.ObjectLike." + category + ".push({\"coleccion\":item.data(\"coleccion\"),\"nombre\":item.data(\"nombre\"),\"imagen\":item.data(\"imagen\"),\"like\":item.data(\"like\")})");
+        console.log($scope.ObjectLike)
+        $scope.getSelectedNotebook(item.data('id'));
+    }
    
     //funciones manipulación de vista
-    $scope.toggleHeaderBtn =  function(btn){
-      $(".header .btn").addClass("hidden");
-      $(btn).toggleClass("hidden");
+    $scope.toggleHeaderBtn = function(btn) {
+        $(".header .btn").addClass("hidden");
+        $(btn).toggleClass("hidden");
     }
 
-    $scope.changeContainer = function(){
-      $(".img-logo").toggleClass("hidden");
-      if($(".main-container").hasClass("container")){
-        $(".main-container").removeClass("container");
-        $(".main-container").addClass("container-fluid");
-        $(".main-container .header").addClass("displayN")
-      }else{
-        $(".main-container").addClass("container");
-        $(".main-container").removeClass("container-fluid");
-        $(".main-container .header").removeClass("displayN")
-      }
-      
+    $scope.changeContainer = function() {
+        $(".img-logo").toggleClass("hidden");
+        if ($(".main-container").hasClass("container")) {
+            $(".main-container").removeClass("container");
+            $(".main-container").addClass("container-fluid");
+            $(".main-container .header").addClass("displayN")
+        } else {
+            $(".main-container").addClass("container");
+            $(".main-container").removeClass("container-fluid");
+            $(".main-container .header").removeClass("displayN")
+        }
     }
 
     //NOTA: NO ESTA PASANDO LA REFERENCIA DEL ELEMENTO AL QUE SE ESTA DANDO CLICK, AL PARECER POR LA REFERENCIA DE NG-CLICK... VALIDAR
-    $scope.togglePreferencesList =  function(event){
-      var target = $(event.target)
-      $(".preferences-control .btn").removeClass("active");
-      target.addClass("active");
+    $scope.togglePreferencesList = function(event) {
+        var target = $(event.target)
+        $(".preferences-control .btn").removeClass("active");
+        target.addClass("active");
     }
 
-    $scope.fillPreferencesList =  function(listType){
-      var selectedList;
-      switch (listType){
-        case "like":
-        selectedList = $scope.ObjectLike.like;
-        break;
-        case "dislike":
-        selectedList = $scope.ObjectLike.dislike;
-        break;
-      }    
-      
-      $(".list-wrapper").empty();
-      var selectedCard = "";
-      var contador = 0;
-      for(var i=0; i<selectedList.length; i++){
-          if(contador == 0){
-            selectedCard += "<div class='row'>";
-          }
-          selectedCard += "<div class='col-xs-12 col-sm-4'>" +
-              "<div class='list-card'>"+
-                "<img src='https://luisvardez.000webhostapp.com/"+selectedList[i].imagen+"' alt=''>" +
-                "<p class='card-name'>"+selectedList[i].nombre+"</p>" +
+    $scope.fillPreferencesList = function(listType) {
+        var selectedList;
+        switch (listType) {
+            case "like":
+                selectedList = $scope.ObjectLike.like;
+                break;
+            case "dislike":
+                selectedList = $scope.ObjectLike.dislike;
+                break;
+        }
+        $(".list-wrapper").empty();
+        var selectedCard = "";
+        var contador = 0;
+        for (var i = 0; i < selectedList.length; i++) {
+            if (contador == 0) {
+                selectedCard += "<div class='row'>";
+            }
+            selectedCard += "<div class='col-xs-12 col-sm-4'>" +
+                "<div class='list-card'>" +
+                "<img src='https://luisvardez.000webhostapp.com/" + selectedList[i].imagen + "' alt=''>" +
+                "<p class='card-name'>" + selectedList[i].nombre + "</p>" +
                 "<div class='like-count'>" +
-                "<span class='counter'>"+selectedList[i].like+"</span>" +
+                "<span class='counter'>" + selectedList[i].like + "</span>" +
                 "<div class='like-btn'></div>" +
                 "</div>" +
                 "</div>" +
                 "</div>";
 
             contador++;
-            if(contador === 3){
-              selectedCard +="</div>";
-              contador = 0;
+            if (contador === 3) {
+                selectedCard += "</div>";
+                contador = 0;
             }
-      }
-      $(".list-wrapper").append(selectedCard);
-
+        }
+        $(".list-wrapper").append(selectedCard);
     }
 
     $scope.collectionsList;
 
-    $scope.getCollectionList = function () {
-      $http({
-        method: 'GET',
-        url: 'https://api.backand.com:443/1/objects/collection?pageSize=20&pageNumber=1',
-        headers: {
-          AnonymousToken: "a3cacd9a-831f-4aa8-8872-7d80470a000e"
-        },
-        params: {
-          pageSize: 20,
-          pageNumber: 1
-        }
-      }).then(
-        function (response) {
-          console.log(response.data.data)
-          $scope.collectionsList = response.data.data;
-          console.log($scope.collectionsList)
-        },
-        function (response) {
-          alert("error")
-        });
+    $scope.getCollectionList = function() {
+        $http({
+            method: 'GET',
+            url: 'https://api.backand.com:443/1/objects/collection?pageSize=20&pageNumber=1',
+            headers: {
+                AnonymousToken: "a3cacd9a-831f-4aa8-8872-7d80470a000e"
+            },
+            params: {
+                pageSize: 20,
+                pageNumber: 1
+            }
+        }).then(
+            function(response) {
+                console.log(response.data.data)
+                $scope.collectionsList = response.data.data;
+                console.log($scope.collectionsList)
+            },
+            function(response) {
+                alert("error")
+            });
     }
 
     $scope.getCollectionList();
 
-    $scope.selectCollection = function(selected,target){
-      var target = $(event.target);
-
-      selectedCollection = selected.toString();
-      $scope.getCollectionNotebooks(selectedCollection);
-
-      target.css("opacity","0.5");
-      target.parent().attr("disabled",true);
-
-      $("#collection-modal").modal("hide");
+    $scope.selectCollection = function(selected, target) {
+        var target = $(event.target);
+        selectedCollection = selected.toString();
+        $scope.getCollectionNotebooks(selectedCollection);
+        target.css("opacity", "0.5");
+        target.parent().unbind().removeData()
+        $("#collection-modal").modal("hide");
     }
 
-    $scope.getSelectedNotebook = function(idNote){
-      $http({
-        method: 'GET',
-        url: 'https://api.backand.com:443/1/objects/notebook/' + idNote,
-        headers: {
-          AnonymousToken: "a3cacd9a-831f-4aa8-8872-7d80470a000e"
-        }
-      }).then(
-        function (response) {
-          var likes = response.data.like;
-          if(typeof(response.data.like) ==  "string"){
-            likes = 0;
-          }
-          likes = parseInt(likes) + 1;     
-          $scope.updateLikes(idNote,likes);
-        },
-        function (response) {
-          alert("error")
-        });
+    $scope.getSelectedNotebook = function(idNote) {
+        $http({
+            method: 'GET',
+            url: 'https://api.backand.com:443/1/objects/notebook/' + idNote,
+            headers: {
+                AnonymousToken: "a3cacd9a-831f-4aa8-8872-7d80470a000e"
+            }
+        }).then(
+            function(response) {
+                var likes = response.data.like;
+                if (typeof(response.data.like) == "string") {
+                    likes = 0;
+                }
+                likes = parseInt(likes) + 1;
+                $scope.updateLikes(idNote, likes);
+            },
+            function(response) {
+                alert("error")
+            });
     }
 
-    $scope.updateLikes = function(id,count){
-      $http({
-        method:'PUT',
-        url: 'https://api.backand.com:443/1/objects/notebook/'+id,
-        data:{like:count},
-        headers: {
-          AnonymousToken: "a3cacd9a-831f-4aa8-8872-7d80470a000e"
-        }
-      }).then(
-        function (response) {
-          console.log(response);
-        },
-        function (response) {
-          alert("error")
-        });
+    $scope.updateLikes = function(id, count) {
+        $http({
+            method: 'PUT',
+            url: 'https://api.backand.com:443/1/objects/notebook/' + id,
+            data: {
+                like: count
+            },
+            headers: {
+                AnonymousToken: "a3cacd9a-831f-4aa8-8872-7d80470a000e"
+            }
+        }).then(
+            function(response) {
+                console.log(response);
+            },
+            function(response) {
+                alert("error")
+            });
     }
 
   });
