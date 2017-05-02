@@ -99,8 +99,11 @@ angular.module('scribeApp')
 
       } else if ($scope.selection == "content") {
           //$("#collection-modal").modal("show")
+
+           if($scope.collectionNotebooks.length == 0){
+              $("#collection-modal").modal("show")
+            }
       } else {
-        console.log(image)
         $scope.detailElement = image;
         setTimeout(function() {
             $("#img-detail").attr("src", "https://luisvardez.000webhostapp.com/" + image.notebooks.coverSource);
@@ -108,6 +111,9 @@ angular.module('scribeApp')
             $(".counterLikes").text(image.notebooks.like);
         }, 200);
       }
+
+
+     
     }
 
     $scope.getCollectionNotebooks = function(selectedCollection) {
@@ -287,8 +293,9 @@ angular.module('scribeApp')
       $(".detail-wrapper .card-text").css("opacity","0");
       $(".detail-wrapper ."+action).css("opacity","1");
 
+
       eval("$scope.ObjectLike." + action + ".push({\"coleccion\":$scope.detailElement.notebooks.collection,\"nombre\":$scope.detailElement.notebooks.name,\"imagen\":$scope.detailElement.notebooks.listCoverSource,\"like\":$scope.detailElement.notebooks.like})");
-      console.log($scope.ObjectLike)
+      
        $scope.collectionNotebooks.forEach(function(index, value) {
             if ($scope.collectionNotebooks[value].id == $scope.detailElement.notebooks.id) {
                 $scope.collectionNotebooks.splice(value, 1)
