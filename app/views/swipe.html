@@ -36,7 +36,15 @@
                     <!-- start jtinder container -->
                     <div id="swipe-wrapper" >
                         <ul>
-                            <li class="pane pane1" data-coleccion="{{notebooks.collection}}" data-id="{{notebooks.id}}" data-nombre="{{notebooks.name}}" data-imagen="{{notebooks.listCoverSource}}" data-like="{{notebooks.like}}" ng-click="changeView('detail',this);toggleHeaderBtn('.btn-back-white');changeContainer()" ng-repeat="notebooks in collectionNotebooks" my-repeat-directive>
+                            <li class="pane pane1" 
+                            data-coleccion="{{notebooks.collection}}" 
+                            data-id="{{notebooks.id}}" 
+                            data-nombre="{{notebooks.name}}" 
+                            data-imagen="{{notebooks.listCoverSource}}" 
+                            data-like="{{notebooks.like}}" 
+                            data-ng-click="changeView('detail',this);toggleHeaderBtn('.btn-back-white');changeContainer()" 
+                            data-ng-repeat="notebooks in collectionNotebooks" 
+                            my-repeat-directive>
                                 <div class="img-wrapper">
                                     <img ng-src="https://luisvardez.000webhostapp.com/{{notebooks.coverSource}}" alt="">
                                 </div>

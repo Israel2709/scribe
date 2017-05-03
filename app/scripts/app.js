@@ -37,6 +37,16 @@ angular
         controller: 'UploadformCtrl',
         controllerAs: 'uploadForm'
       })
+      .when('/upload-collection', {
+        templateUrl: 'views/uploadform.html',
+        controller: 'UploadformCtrl',
+        controllerAs: 'uploadForm'
+      })
+      .when('/upload-notebook', {
+        templateUrl: 'views/uploadform.html',
+        controller: 'UploadformCtrl',
+        controllerAs: 'uploadForm'
+      })
       .when('/swipe', {
         templateUrl: 'views/swipe.html',
         controller: 'SwipeCtrl',
