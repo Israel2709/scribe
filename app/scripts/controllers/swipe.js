@@ -109,7 +109,7 @@ angular.module('scribeApp')
             $("#img-detail").attr("src", "https://luisvardez.000webhostapp.com/" + image.notebooks.coverSource);
             $(".title-note").text(image.notebooks.name);
             $(".counterLikes").text(image.notebooks.like);
-            $(".descriptionNote").text(image.notebooks.description)
+            $(".descriptionNote").text(image.notebooks.descripcion)
         }, 200);
       }
 
@@ -246,7 +246,7 @@ angular.module('scribeApp')
         selectedCollection = selected.toString();
         $scope.getCollectionNotebooks(selectedCollection);
         target.css("opacity", "0.5");
-        target.parent().unbind().removeData()
+        target.parent().unbind().removeData();
         $("#collection-modal").modal("hide");
     }
 
@@ -302,6 +302,12 @@ angular.module('scribeApp')
                 $scope.collectionNotebooks.splice(value, 1)
             }
         }, this);
+
+        $(".detail-button a").unbind().removeData();
+
+        $(".detail-button a").click(function(event){
+            event.preventDefault();
+        })
         
     } 
   });

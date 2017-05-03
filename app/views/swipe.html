@@ -41,7 +41,8 @@
                             data-id="{{notebooks.id}}" 
                             data-nombre="{{notebooks.name}}" 
                             data-imagen="{{notebooks.listCoverSource}}" 
-                            data-like="{{notebooks.like}}" 
+                            data-like="{{notebooks.like}}"
+                            data-descripcion="{{notebooks.descripcion}}"
                             data-ng-click="changeView('detail',this);toggleHeaderBtn('.btn-back-white');changeContainer()" 
                             data-ng-repeat="notebooks in collectionNotebooks" 
                             my-repeat-directive>
