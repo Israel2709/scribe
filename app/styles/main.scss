@@ -102,6 +102,7 @@ h1 {
 .displayN{
     display: none;
 }
+
 .main-container {
     .header {
         width: 100%;
@@ -724,5 +725,29 @@ h1 {
             opacity: 1 !important;
             color: black;
         }
+    }
+}
+
+.upload-form-wrapper{
+    padding: 15px;
+}
+
+#upload-notebook{
+    .fileinput-button{
+        width: 100%;
+        background:none;
+        border: none;
+        height: 40px;
+        background: $redBackground;
+        border-radius: 20px; 
+        padding-top: 10px;
+        span{
+            width: 100%;
+            margin-top: 10px;
+        }
+    }
+    img{
+        width: 100%;
+        margin-top: 20px;
     }
 }

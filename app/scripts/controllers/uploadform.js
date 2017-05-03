@@ -190,7 +190,7 @@ angular.module('scribeApp')
           var reader = new FileReader();
           reader.onload = function (e) {
               $(input).parent().next().attr('src', e.target.result);
-              $(input).parent().next().removeClass("displayN");
+              $(input).parent().next().removeClass("hidden");
           };
           reader.readAsDataURL(input.files[0]);   
       }
