@@ -102,6 +102,7 @@ angular.module('scribeApp')
             $("#img-detail").attr("src", "https://luisvardez.000webhostapp.com/" + image.notebooks.coverSource);
             $(".title-note").text(image.notebooks.name);
             $(".counterLikes").text(image.notebooks.like);
+            $(".descriptionNote").text(image.notebooks.description)
         }, 200);
       }
     }
