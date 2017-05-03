@@ -16,7 +16,7 @@
 						<span class="btn btn-success fileinput-button">
 							<i class="glyphicon glyphicon-plus"></i>
 							<span>Agrega la imagen de colección</span>
-							<input id="fileupload3" type="file" name="file" id="picture" multiple onchange="angular.element(this).scope().readURL(this)">
+							<input type="file" name="files" id="picture" multiple onchange="angular.element(this).scope().readURL(this)">
 						</span>
 					</div>
 					<button type="submit" class="btn btn-default" data-ng-click="uploadCollection()">Cargar</button>
