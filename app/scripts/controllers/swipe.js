@@ -36,13 +36,15 @@ angular.module('scribeApp')
       "dislike":[]
     }; 
 
+    $scope.detailElement;
+
     $("#collection-modal").modal("show")
     $("#collection-modal").on("hidden.bs.modal",function(e){
       $('#swipe-wrapper').unbind().removeData();
       $scope.initJtinder()
       console.log("closing modal")
     })
-    
+
     //arreglo que guarda la lista de libretas
     $scope.collectionNotebooks = {};
 
@@ -97,7 +99,12 @@ angular.module('scribeApp')
 
       } else if ($scope.selection == "content") {
           //$("#collection-modal").modal("show")
+
+           if($scope.collectionNotebooks.length == 0){
+              $("#collection-modal").modal("show")
+            }
       } else {
+        $scope.detailElement = image;
         setTimeout(function() {
             $("#img-detail").attr("src", "https://luisvardez.000webhostapp.com/" + image.notebooks.coverSource);
             $(".title-note").text(image.notebooks.name);
@@ -105,10 +112,12 @@ angular.module('scribeApp')
             $(".descriptionNote").text(image.notebooks.description)
         }, 200);
       }
+
+
+     
     }
 
     $scope.getCollectionNotebooks = function(selectedCollection) {
-      //if($scope.collectionNotebooks.length == 0 || $scope.collectionNotebooks.length == undefined){
       $http({
           method: 'GET',
           url: 'https://api.backand.com:443/1/objects/notebook?pageSize=20&pageNumber=1',
@@ -281,5 +290,19 @@ angular.module('scribeApp')
             });
     }
 
+    $scope.showAction =  function(action){
+      $(".detail-wrapper .card-text").css("opacity","0");
+      $(".detail-wrapper ."+action).css("opacity","1");
+
+
+      eval("$scope.ObjectLike." + action + ".push({\"coleccion\":$scope.detailElement.notebooks.collection,\"nombre\":$scope.detailElement.notebooks.name,\"imagen\":$scope.detailElement.notebooks.listCoverSource,\"like\":$scope.detailElement.notebooks.like})");
+      
+       $scope.collectionNotebooks.forEach(function(index, value) {
+            if ($scope.collectionNotebooks[value].id == $scope.detailElement.notebooks.id) {
+                $scope.collectionNotebooks.splice(value, 1)
+            }
+        }, this);
+        
+    } 
   });
 
