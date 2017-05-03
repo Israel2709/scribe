@@ -303,7 +303,11 @@ angular.module('scribeApp')
             }
         }, this);
 
-        $(".detail-wrapper .card-text").unbind().removeData();
+        $(".detail-button a").unbind().removeData();
+
+        $(".detail-button a").click(function(event){
+            event.preventDefault();
+        })
         
     } 
   });
