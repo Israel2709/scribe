@@ -245,7 +245,7 @@ angular.module('scribeApp')
         selectedCollection = selected.toString();
         $scope.getCollectionNotebooks(selectedCollection);
         target.css("opacity", "0.5");
-        target.parent().unbind().removeData()
+        target.parent().unbind().removeData();
         $("#collection-modal").modal("hide");
     }
 
@@ -301,6 +301,8 @@ angular.module('scribeApp')
                 $scope.collectionNotebooks.splice(value, 1)
             }
         }, this);
+
+        $(".detail-wrapper .card-text").unbind().removeData();
         
     } 
   });
