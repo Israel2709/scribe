@@ -296,8 +296,9 @@ angular.module('scribeApp')
 
 
       eval("$scope.ObjectLike." + action + ".push({\"coleccion\":$scope.detailElement.notebooks.collection,\"nombre\":$scope.detailElement.notebooks.name,\"imagen\":$scope.detailElement.notebooks.listCoverSource,\"like\":$scope.detailElement.notebooks.like})");
-      
-       $scope.collectionNotebooks.forEach(function(index, value) {
+      $scope.getSelectedNotebook($scope.detailElement.notebooks.id);
+       
+        $scope.collectionNotebooks.forEach(function(index, value) {
             if ($scope.collectionNotebooks[value].id == $scope.detailElement.notebooks.id) {
                 $scope.collectionNotebooks.splice(value, 1)
             }
