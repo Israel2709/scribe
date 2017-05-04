@@ -90,7 +90,7 @@ angular.module('scribeApp')
       });
     }
 
-    $scope.changeView = function(value, image = "") {
+    $scope.changeView = function(value, image) {
       $scope.selection = value;
       if ($scope.selection == "preferences") {
         setTimeout(function() {
