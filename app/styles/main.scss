@@ -375,23 +375,25 @@ h1 {
         padding: 20px;
         box-shadow: 0px 5px 15px $grayText;
         border-radius: 5px;
-        min-height: 290px;
+        min-height: 260px;
         margin-bottom: 15px;
+        position:relative;
         img{
             width: 100%;
         }
         .card-name{
-            float: left;
-            width: 100%;
+            width: 80%;
             font-size: 30px;
             font-family: 'latoregular';
             margin: 10px 0;
+            bottom: 40px;
+            position: absolute;
         }
         .like-count{
-            float: left;
-            position: relative;
-            width: 100%;
+            width: 80%;
             min-height: 40px;
+            position: absolute;
+            bottom: 10px;
             .counter{ 
                 color: #FE5068;
                 font-size: 30px;
@@ -698,6 +700,7 @@ h1 {
     .collection-wrapper{
         position: relative;
         margin-bottom: 30px;
+        min-height: 165px;
         img{
             width: 100%;
         }
