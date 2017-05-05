@@ -1,11 +1,16 @@
 <div class="full-overlay hidden">
 	<img src="images/preloader.gif" alt="" class="center-block">
 </div>
+<div class="header resized">
+	<div class="row">
+		<div class="btn btn-back-white hidden" ng-click="changeView('content');toggleHeaderBtn('.show-list');changeContainer();"></div>
+	<img src="images/scribe-logo.svg" class="img-logo" alt=""> </div>
+</div>
 <div class="row">
 	<div class="upload-form-wrapper">
 		<ul class="nav nav-tabs" role="tablist">
-			<li role="presentation" class="active"><a href="#upload-collection" aria-controls="upload-collection" role="tab" data-toggle="tab">Dar de alta nueva colección</a></li>
-			<li role="presentation"><a href="#upload-notebook" aria-controls="upload-notebook" role="tab" data-toggle="tab">Dar de alta nueva libreta</a></li>
+			<li role="presentation" class="active" data-ng-click="toggleTabContent('#upload-collection');"><a   role="tab" data-toggle="tab" >Dar de alta nueva colección</a></li>
+			<li data-ng-click="toggleTabContent('#upload-notebook');" role="presentation"><a   role="tab" data-toggle="tab" >Dar de alta nueva libreta</a></li>
 		</ul>
 		<div class="tab-content">
 			<div role="tabpanel" class="tab-pane active" id="upload-collection">
@@ -52,7 +57,7 @@
 				<div class="col-sm-12">
 					<div class="form-group">
 						<label for="descripcion">Descripción:</label>
-						<input type="text" class="form-control" id="descripcion" placeholder="descripcion" data-ng-model="notebookObject.description">
+						<input type="text" class="form-control" id="descripcion" placeholder="descripcion" data-ng-model="notebookObject.descripcion">
 					</div>
 				</div>
 				<div class="col-sm-6">
