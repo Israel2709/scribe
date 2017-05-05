@@ -67,6 +67,8 @@ angular.module('scribeApp')
         return false
       } else {
 
+        $(".full-overlay").removeClass("hidden");
+
         $scope.collectionSelected = $scope.collection.name;
 
         upload.upload('picture', $scope.collectionSelected,'modal').then(function (response) {
@@ -82,7 +84,7 @@ angular.module('scribeApp')
                 alert("cargada con éxito")
                 $scope.collection.name = "";
                 $scope.getCollectionList()
-
+                 $(".full-overlay").addClass("hidden");
               },
               function (response) {
                 alert("error")
@@ -108,7 +110,7 @@ angular.module('scribeApp')
 
     //carga de libretas
     $scope.uploadNotebook = function () {
-
+       $(".full-overlay").removeClass("hidden");
       //se manda llamar el servicio creado para la carga de las imagenes,
       //Parametros:  Id de input tipo file,nombre de la coleccion que se envía y el nombre del tipo de imagen
       //:notebook y detail
@@ -127,7 +129,10 @@ angular.module('scribeApp')
                 function (response) {
                   alert("cargada con éxito")
                   $scope.notebookObject = {};
-                  $scope.selectedCollection = {}
+                  $scope.selectedCollection = {};
+                  $(".full-overlay").addClass("hidden");
+                  $("#fileupload,#fileuload2").attr({ value: '' });
+                  $(".img-prev").attr("src","").addClass("hidden");
                 },
                 function (response) {
                   alert("error")
