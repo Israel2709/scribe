@@ -696,6 +696,8 @@ h1 {
     }
     .modal-content{
         padding: 0px 5px;
+        max-height: 850px;
+        overflow-y: scroll;
     }
     .collection-wrapper{
         position: relative;

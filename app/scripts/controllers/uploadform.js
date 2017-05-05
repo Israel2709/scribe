@@ -160,6 +160,11 @@ angular.module('scribeApp')
         });
     }
 
+    $scope.toggleTabContent = function (activeTab){
+      $(".tab-pane").css({display:"none"});
+      $(activeTab).css({display:"block"});
+    }
+
     $scope.getCollectionNotebooks = function () {
       $http({
         method: 'GET',
