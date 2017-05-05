@@ -269,6 +269,7 @@ angular.module('scribeApp')
             function(response) {
                 alert("error")
             });
+        return true;
     }
 
     $scope.updateLikes = function(id, count) {
@@ -290,25 +291,32 @@ angular.module('scribeApp')
             });
     }
 
-    $scope.showAction =  function(action){
-      $(".detail-wrapper .card-text").css("opacity","0");
-      $(".detail-wrapper ."+action).css("opacity","1");
-
+    $scope.showAction = function (action) {
 
       eval("$scope.ObjectLike." + action + ".push({\"coleccion\":$scope.detailElement.notebooks.collection,\"nombre\":$scope.detailElement.notebooks.name,\"imagen\":$scope.detailElement.notebooks.listCoverSource,\"like\":$scope.detailElement.notebooks.like})");
-      
-       $scope.collectionNotebooks.forEach(function(index, value) {
-            if ($scope.collectionNotebooks[value].id == $scope.detailElement.notebooks.id) {
-                $scope.collectionNotebooks.splice(value, 1)
-            }
-        }, this);
 
-        $(".detail-button a").unbind().removeData();
+      $scope.getSelectedNotebook($scope.detailElement.notebooks.id);
+      $scope.collectionNotebooks.forEach(function (index, value) {
+        if ($scope.collectionNotebooks[value].id == $scope.detailElement.notebooks.id) {
+          $scope.collectionNotebooks.splice(value, 1)
+        }
+      }, this);
 
-        $(".detail-button a").click(function(event){
-            event.preventDefault();
-        })
-        
-    } 
+      $(".detail-button a").unbind().removeData();
+
+      $(".detail-button a").click(function (event) {
+        event.preventDefault();
+      });
+
+
+      $(".detail-wrapper .card-text").css("opacity", "0");
+      $(".detail-wrapper ." + action).css("opacity", "1").queue(function () {
+        setTimeout(function () {
+          angular.element('.btn-back-white').triggerHandler('click');
+        }, 500);
+      });
+
+    }
+
   });
 
