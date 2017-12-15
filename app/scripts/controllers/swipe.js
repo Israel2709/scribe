@@ -192,16 +192,19 @@ angular.module('scribeApp')
         var selectedCard = "";
         var contador = 0;
         for (var i = 0; i < selectedList.length; i++) {
+          var back = ["Aquamarine","blue","gray", "red", "yellow", "pink", "coral", "cyan", "DarkMagenta", "gold", "HoneyDew", "LightBlue"];
+          var rand = back[Math.floor(Math.random() * back.length)];
             if (contador == 0) {
                 selectedCard += "<div class='row'>";
             }
             selectedCard += "<div class='col-xs-12 col-sm-4'>" +
                 "<div class='list-card'>" +
-                "<img src='https://luisvardez.000webhostapp.com/" + selectedList[i].imagen + "' alt=''>" +
-                "<p class='card-name'>" + selectedList[i].nombre + "</p>" +
+                "<div class='content-image' style='background:"+rand+";'>"+
+                "<img src='https://luisvardez.000webhostapp.com/" + selectedList[i].imagen + "' alt=''></div>" +
+                "<div class='detail-card'><p class='card-name'>" + selectedList[i].nombre + "</p>" +
                 "<div class='like-count'>" +
                 "<span class='counter'>" + selectedList[i].like + "</span>" +
-                "<div class='like-btn'></div>" +
+                "<div class='like-btn'></div></div>" +
                 "</div>" +
                 "</div>" +
                 "</div>";

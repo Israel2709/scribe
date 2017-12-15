@@ -1,3 +1,4 @@
+'use strict';
 /*
  * jTinder v.1.0.0
  * https://github.com/do-web/jTinder
@@ -184,8 +185,10 @@
 	 function countRemaining(){
       var remaining = $("#swipe-wrapper ul li").length;
       if(remaining == 0){
-        $("#swipe-wrapper").hide();
-        $(".wrap").append("<h2 class='text-center congrats'>¡Gracias por tu participación!</h2>");
+      	$("#swipe-wrapper").hide();
+         window.location = "#/finish";
+
+       /* $(".wrap").append("<h2 class='text-center congrats'>¡Gracias por tu participación!</h2>");*/
       }
     }
 

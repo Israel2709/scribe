@@ -53,6 +53,11 @@ angular
         controllerAs: 'swipe'
       })
 
+      .when('/finish', {
+        templateUrl: 'views/finish.html',
+        controller: 'FinishCtrl',
+        controllerAs: 'finish'
+      })
       .otherwise({
         redirectTo: '/'
       });
