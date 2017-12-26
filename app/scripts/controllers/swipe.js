@@ -251,6 +251,7 @@ angular.module('scribeApp')
         target.css("opacity", "0.5");
         target.parent().unbind().removeData();
         $("#collection-modal").modal("hide");
+        console.log(selectedCollection)
     }
 
     $scope.getSelectedNotebook = function(idNote) {

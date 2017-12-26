@@ -58,6 +58,11 @@ angular
         controller: 'FinishCtrl',
         controllerAs: 'finish'
       })
+      .when('/admin', {
+        templateUrl: 'views/admin.html',
+        controller: 'AdminCtrl',
+        controllerAs: 'admin'
+      })
       .otherwise({
         redirectTo: '/'
       });

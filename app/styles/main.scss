@@ -12,7 +12,7 @@ $icon-font-path: "../bower_components/bootstrap-sass-official/assets/fonts/boots
 
 body {
   padding: 0;
-  background-image: linear-gradient(-180deg, #FFFFFF 0%, #F3F4F8 91%);
+  
 }
 
 /* Everything but the jumbotron gets side spacing for mobile first views */
@@ -37,7 +37,8 @@ body {
   padding: 0;
   margin: 0;
   position: relative;
-  overflow: hidden;
+/*   overflow: hidden; */
+  background-image: linear-gradient(-180deg, #FFFFFF 0%, #F3F4F8 91%);
 }
 
 
@@ -60,6 +61,7 @@ $grayText:#9B9B9B;
     font-weight: normal;
     font-style: normal;
 }
+
 /*Mixins*/
 
 @mixin auto-center() {
@@ -892,3 +894,412 @@ h1 {
 }
 
 
+/* CSS Admin */
+.menu{
+    height: 100px;
+    background-color: #FFFFFF;
+    border-bottom: none;
+    .icon-box{
+        height: 100px;
+        border-right: 1px solid #E7E9EA;
+    }
+    .img-logo{
+        width: 45.4px;
+        height: 29px;
+        margin: 30px 15px;
+    }
+    .user{
+        background-image: url('../images/Oval_2.png');
+        width: 60px;
+        height: 60px;
+        background-size: contain;
+        float: right;
+        margin: 20px 20px;
+    }
+    .searching{
+        margin: 20px 0px;
+        input{
+            background-image: url('../images/search_icon.svg');
+            background-repeat: no-repeat;
+            background-position: left;
+            border: none;
+            box-shadow: none;
+            margin-top: 10px;
+        }
+        input::placeholder {
+            padding-left: 20px;
+            color: #989898;
+            opacity: .5;
+            font-size: 16px;
+        }
+    }
+    .navbar-right{
+        height: 100px;
+        position: absolute;
+        right: 15px;
+    }
+    .borderB{
+        border-bottom: 1px solid #E7E9EA;
+    }
+}
+
+.wrapper{
+    margin-top: 100px;
+    position: absolute;
+    right: 0;
+    left: 0;
+    padding-left: 15px;
+    padding-right: 15px;
+    font-family: 'latoregular';
+    .ico{
+        display: block;
+        margin-right: auto;
+        margin-left: auto;
+        &.dashboard{
+            background-image: url('../images/dashboard_icon.svg');
+            width: 23px;
+            height: 18px;
+        }
+        &.admin{
+            background-image: url('../images/2017-12-20.png');
+            width: 20px;
+            height: 20px;
+            background-size: contain;
+        }
+        &.meetings{
+            background-image: url('../images/Meetings_icon.svg');
+            width: 21px;
+            height: 21px;
+        }
+        &.files{
+            background-image:url('../images/Files_icon.svg');
+            width: 18px;
+            height: 22px;
+        }
+         &.chat{
+            background-image:url('../images/Conversations_icon.svg');
+            width: 23px;
+            height: 22px;
+        }
+         &.settings{
+            background-image:url('../images/Settings_icon.svg');
+            width: 21px;
+            height: 21px;
+        }
+    }
+    .menu-box{
+        border-right: 1px solid #E7E9EA;
+        background-color: #FFFFFF;
+        position: fixed;
+        bottom: 0px;
+        top: 100px;
+    }
+    .container-box{
+        position: absolute;
+        right: 0px;
+    }
+    .title-admin{
+        font-size: 38px;
+        color: #233539;
+        margin-top: 49px;
+    }
+    .fill{
+        background-image: url('../images/Fill_1.png');
+        width: 11.2px;
+        height: 9.7px;
+        display: inline-block;
+    }
+    .light-text{
+        font-family: 'lato-light';
+        font-size: 18px;
+        color: #233539;
+        margin-bottom: 20px; 
+    }
+    .general-input{
+        background: #FFFFFF;
+        border: 1px solid rgba(110,110,110,0.35);
+        border-radius: 100px;
+        width: 100%;
+        height: 40px;
+        font-size: 16px;
+        color: rgba(0,0,0,0.26);
+        text-align: center;
+    }
+    .general-input::placeholder{
+        font-size: 16px;
+        color: rgba(0,0,0,0.26);
+    }
+    select {
+        background-image: url('../images/combo_triangle.svg')!important; 
+        background-repeat: no-repeat!important;
+        background-position: 94% center!important;
+        -webkit-appearance: none!important;
+        -moz-appearance: none!important;
+        -o-appearance: none!important;
+        appearance: none!important;
+        text-align-last: center;
+    }
+    .capitalize{
+        text-transform: capitalize;
+    }
+    .heading{
+        margin-top: 28px;
+        p{
+            color: #474F58;
+            font-size: 16px;
+            .text-bold{
+                font-family: 'latobold';
+            }
+        }
+        .select{
+            background-image: url('../images/Rectangle-path.svg');
+            width: 52px;
+            height: 4px;
+            display: block;
+
+        }
+        .options{
+            width: 110px;
+            float: right;
+            margin-right: 15px;
+            margin-top: -35px;
+            .views{
+                width: 50%;
+                height: 52px;
+                display: inline-block;
+                background: #FFFFFF;
+                box-shadow: 0 2px 9px 0 rgba(0,0,0,0.03);
+                border-radius: 3px;
+                img{
+                    width: 20px;
+                    height: 20px;
+                    margin: 15px;
+                }
+            }
+            .views:nth-of-type(2){
+                float: right;
+            }
+        }
+    }
+    .collection-list{
+        margin-top: 31px;
+        .list-box{
+            position: relative;
+            margin-bottom: 16px;
+            min-height: 174px;
+            img{
+                width: 100%;
+                height: 174px;
+            }
+            h1{
+                position: absolute;
+                color: white;
+                font-family: "latobold";
+                text-transform: capitalize;
+                text-align: center;
+                width: 85%;
+                font-size: 25px;
+                margin: 0px;
+                bottom: 3px;
+            }
+            .title-note{
+                bottom: 1px;
+                font-size: 18px;
+            }
+        }
+    }
+    .list-stats{
+        font-family: 'latobold';
+        font-size: 15px;
+        color: #424242;
+        .panel-default{
+            border-radius: 7px;
+            box-shadow: 0 3px 5px 0 #E6E6E6;
+            img{
+                width: 100%;
+            }
+            .detail{
+                font-size: 12px;
+                color: #9B9B9B;
+                padding-left: 2px;
+            }
+            .row{
+                div{
+                    border-right: 1px solid #E2E2E2;
+                }
+                div:first-child, div:last-child{
+                    border-right: none;
+                }
+            }
+            .ico{
+                display: block;
+                padding-left: 25px;
+                &.gender{
+                    background-image: url('../images/gender_icon.svg');
+                    background-repeat: no-repeat;
+                    width: 20px;
+                    height: 16px;
+                }
+                &.ages{
+                    background-image: url('../images/Ag-Icon.svg');
+                    background-repeat: no-repeat;
+                    width: 16px;
+                    height: 17px;
+                }
+                &.likes-icon{
+                    background-image: url('../images/Happy-Face.svg');
+                    background-repeat: no-repeat;
+                    width: 24px;
+                    height: 25px;
+                }
+            }
+        } 
+    }
+    .more{
+        background-image: url(../images/Triangle.svg);
+        width: 68px;
+        height: 9px;
+        display: block;
+        bottom: 0px;
+        position: absolute;
+        left: 50%;
+        right: 50%;
+    }
+    .preferences-wrapper{
+        overflow: hidden;
+        .preferences-control{
+            width: 100%;
+            .btn{
+                width: 38%;
+                &.colection-button{
+                    left: 0px;
+                }
+                &.notebook-button{
+                    left: 30%;
+                }
+                &.stats-button{
+                    right: 0px;
+                }
+            }
+        }
+    }
+    
+}
+
+.btn-gray{
+    background: #88939E;
+    border: 1px solid rgba(110,110,110,0.35);
+    border-radius: 100px;
+    font-size: 16px;
+    color: #FFFFFF!important;
+    width: 100%;
+}
+
+.btn-red{
+    border-radius: 25px;
+    margin-top: 58.5px;
+    border-color: #E11D24;
+    color: #E11D24;
+    background: #FFFFFF;
+}
+
+.btn-allred{
+    width: 220px;
+    border: none;
+    height: 40px;
+    background: #E11D24;
+    border-radius: 20px;
+    padding-top: 10px;
+    color: #FFFFFF;
+    font-size: 16px;
+}
+
+.marginL50{
+    margin-left: 50px;
+}
+
+.marginT20{
+    margin-top: 20px;
+}
+
+.paddingLess{
+    padding-left: 0px;
+}
+.no-marginB{
+    margin-bottom: 0px!important;
+}
+.stats-wrapper{
+    position: absolute;
+    width: 96%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Pruebas graficos */
+
+.donut-chart {
+  position: relative;
+    width: 70px;
+  height: 70px;
+    margin: 0 auto 2rem;
+    border-radius: 100%
+ }
+p.center-date {
+  background: #FFFFFF;
+  position: absolute;
+  text-align: center;
+    font-size: 28px;
+  top:0;left:0;bottom:0;right:0;
+  width: 35px;
+  height: 35px;
+  margin: auto;
+  border-radius: 50%;
+  line-height: 35px;
+  padding: 15% 0 0;
+}
+.center-date span.scnd-font-color {
+ line-height: 0; 
+}
+.recorte {
+    border-radius: 50%;
+    clip: rect(0px, 70px, 70px, 35px);
+    height: 100%;
+    position: absolute;
+    width: 100%;
+  }
+.quesito {
+    border-radius: 50%;
+    height: 100%;
+    position: absolute;
+    width: 100%;
+    font-family: monospace;
+    font-size: 1.5rem;
+  }
+#porcion1 {
+    transform: rotate(0deg);
+  }
+
+#porcion1 .quesito {
+    background-color: #E64C65;
+    transform: rotate(76deg);
+  }
+#porcion2 {
+    transform: rotate(180deg);
+  }
+#porcion2 .quesito {
+    background-color: #11A8AB;
+/*     transform: rotate(140deg); */
+  }
+.nota-final {
+  clear: both;
+  color: #4FC4F6;
+  font-size: 1rem;
+  padding: 2rem 0;
+}
+.nota-final strong {
+  color: #E64C65;
+}
+.nota-final a {
+  color: #FCB150;
+  font-size: inherit;
+}
