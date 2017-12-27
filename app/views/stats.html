@@ -1,0 +1,154 @@
+<nav class="navbar navbar-default navbar-fixed-top menu">
+	<div class="container-fluid">
+		<div class="row">
+			<div class=" col-md-1 col-sm-2 icon-box">
+				<img src="images/scribe-logo.svg" class="img-logo" alt="">
+			</div>
+			<div class="col-md-11 col-sm-10 borderB">
+				<div class="col-sm-4 searching">
+					<div class="form-group">
+						<input type="text" class="form-control ico-search" placeholder="Buscar">
+						<span class="ico-search"></span>
+					</div>
+				</div>
+				<div class="col-sm-8">
+					<div id="navbar" class="navbar-collapse collapse">
+						<ul class="nav navbar-nav navbar-right">
+							<li><span class="user"></span></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+	</div>
+</nav>
+<div class="wrapper">
+	<div class="row">
+		<div class="col-md-1 col-sm-2 menu-box">
+			<ul class="nav flex-column">
+				<li class="nav-item">
+					<a class="nav-link" href="">
+						<span class="ico dashboard"></span>
+					</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="#/admin">
+						<span class="ico collect"></span>
+					</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="#/newnotebook">
+						<span class="ico notes"></span>
+					</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link active" href="#/stats">
+						<span class="ico stat"></span>
+					</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="">
+						<span class="ico settings"></span>
+					</a>
+				</li>
+			</ul>
+		</div>
+		<div class="col-md-11 col-sm-10 container-box">
+			<div class="stats-wrapper section">
+				<div class="row marginL50">
+					<div class="col-sm-3 paddingLess">
+						<p class="title-admin">Estadísticas</p>
+					</div>
+					<div class="col-sm-3">
+						<button type="button" class="btn btn-red">
+						<span class="fill"></span>
+						Exportar</button>
+					</div>
+				</div>
+				<div class="row marginL50">
+					<p class="light-text no-marginB">ADMINISTRACIÓN DE ESTADÍSTICAS</p>
+				</div>
+				<div class="row marginL50">
+					<div class="col-sm-3 paddingLess marginT20">
+						<select class="selectpicker general-input capitalize" ng-change="setCollection(selections); pruebas()" ng-model="selections">
+							<option class="selected">Colecciones</option>
+							<option data-ng-repeat="collection in collectionsList"  ng-value="{{collection.id}}">{{collection.name}}</option>
+						</select>
+					<!-- 	<div ng-controller="StatsCtrl">
+					      <canvas tc-chartjs-bar chart-data="data"
+					              chart-options="options" width="350"
+					              height="200">
+					      </canvas>
+					  </div> -->
+					</div>
+					<div class="col-sm-12">
+						<div class="list-stats col-sm-8" >
+							<div class="panel panel-default" data-ng-repeat="notebooks in collectionNotebooks" data-coleccion="{{notebooks.collection}}" data-id="{{notebooks.id}}" data-nombre="{{notebooks.name}}">
+								<div class="panel-body" >
+									<div class="row">
+										<div class="col-sm-3">
+											<img data-ng-src="https://luisvardez.000webhostapp.com/{{notebooks.coverSource}}" alt="">
+										</div>
+										<div class="col-sm-3">
+											<span class="ico gender">Género</span>
+											<!-- <div class="donut-chart">
+											<div id="porcion1" class="recorte"><div class="quesito ios" data-rel="60"></div></div>
+										    <div id="porcion2" class="recorte"><div class="quesito mac" data-rel="40"></div></div>
+										    <p class="center-date"></p>  
+											</div> -->
+											<p>{{notebooks.likedToFemale}} <span class="detail"> Hombres</span></p>
+											<p>{{notebooks.likedToMale}} <span class="detail"> Mujeres</span></p>
+										</div>
+										<div class="col-sm-3">
+											<span class="ico ages">Edades</span>
+										<!-- 	<div class="donut-chart">
+											<div id="porcion1" class="recorte"><div class="quesito ios" data-rel="60"></div></div>
+										    <div id="porcion2" class="recorte"><div class="quesito mac" data-rel="40"></div></div>
+										    <p class="center-date"></p>  
+											</div> -->
+											<p> 50%<span class="detail"> 16-25</span></p>
+											<p>40% <span class="detail"> 26-40</span></p>
+										</div>
+										<div class="col-sm-3">
+											<span class="ico likes-icon">Likes</span>
+											<!-- <canvas id="myChart"></canvas>  -->
+											<p class="likeCounter">{{(notebooks.like * 100 / (notebooks.like + notebooks.dislike) | number:0)}}%<span class="detail"> Likes</span></p>
+											<p class="dislikeCounter">{{(notebooks.dislike * 100 / (notebooks.like + notebooks.dislike) | number:0)}}%<span class="detail"> Dislikes</span></p>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- <script>
+	
+	function pruebas(){
+		var ctx = document.getElementById("myChart").getContext('2d');
+		console.log(ctx)
+		var myChart = new Chart(ctx, {
+	  	type: 'doughnut',
+	  	data: {
+	    labels: ["M", "T", "W", "T", "F", "S", "S"],
+	    datasets: [{
+	      backgroundColor: [
+	        "#2ecc71",
+	        "#3498db",
+	        "#95a5a6",
+	        "#9b59b6",
+	        "#f1c40f",
+	        "#e74c3c",
+	        "#34495e"
+	      ],
+	      data: [12, 19, 3, 17, 28, 24, 7]
+	    }]
+	  }
+	});
+	}
+</script>
+ -->

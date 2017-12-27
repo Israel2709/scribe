@@ -18,8 +18,8 @@ angular
     'ngRoute',
     'ngSanitize',
     'ngTouch',
-    'backand'
-  ])
+    'backand',
+    ])
   .config(function ($routeProvider,BackandProvider,$locationProvider) {
     $routeProvider
       .when('/', {
@@ -62,6 +62,16 @@ angular
         templateUrl: 'views/admin.html',
         controller: 'AdminCtrl',
         controllerAs: 'admin'
+      })
+      .when('/newnotebook', {
+        templateUrl: 'views/newnotebook.html',
+        controller: 'NewnotebookCtrl',
+        controllerAs: 'newnotebook'
+      })
+      .when('/stats', {
+        templateUrl: 'views/stats.html',
+        controller: 'StatsCtrl',
+        controllerAs: 'stats'
       })
       .otherwise({
         redirectTo: '/'

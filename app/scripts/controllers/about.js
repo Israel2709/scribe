@@ -37,9 +37,11 @@ angular.module('scribeApp')
       if($scope.genero == "H"){
         $(this).attr("src","images/card-men_selected.svg");
         $(".genero img[data-genero='M']").attr("src","images/card-woman.svg");
+
       }else{
          $(this).attr("src","images/card-woman_selected.svg");
          $(".genero img[data-genero='H']").attr("src","images/card-men.svg");
+
       }
 
       $(".genero img").css("transform", "scale(1)");
@@ -70,4 +72,24 @@ angular.module('scribeApp')
           alert("error")
         });
     }
+
+    /*$scope.updateGender = function(male, female) {
+        $http({
+            method: 'PUT',
+            url: 'https://api.backand.com:443/1/objects/notebook/' + id,
+            data: {
+                likedToFemale: female,
+                likedToMale: male
+            },
+            headers: {
+                AnonymousToken: "a3cacd9a-831f-4aa8-8872-7d80470a000e"
+            }
+        }).then(
+            function(response) {
+                console.log(response);
+            },
+            function(response) {
+                alert("error")
+            });
+    }*/
   });

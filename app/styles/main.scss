@@ -37,10 +37,15 @@ body {
   padding: 0;
   margin: 0;
   position: relative;
-/*   overflow: hidden; */
+  overflow: scroll;
   background-image: linear-gradient(-180deg, #FFFFFF 0%, #F3F4F8 91%);
 }
 
+@media screen and (max-width: 768px) {
+    body {
+        overflow: hidden;
+    }
+}
 
 /*Colors*/
 
@@ -951,40 +956,54 @@ h1 {
     padding-left: 15px;
     padding-right: 15px;
     font-family: 'latoregular';
+    .nav-link{
+        &.active{
+           background-image: url("../images/indicator.svg");
+           background-repeat: no-repeat;
+           width: 10.2px;
+           height: 44px;
+           padding-left: 48px;
+            margin-left: -15px;
+        }
+    }
     .ico{
         display: block;
         margin-right: auto;
         margin-left: auto;
+        background-repeat: no-repeat;
+        width: 22px;
+        height: 22px;
+        background-size: contain;
         &.dashboard{
             background-image: url('../images/dashboard_icon.svg');
-            width: 23px;
-            height: 18px;
+            /* width: 23px;
+            height: 18px; */
         }
-        &.admin{
-            background-image: url('../images/2017-12-20.png');
-            width: 20px;
+        &.collect{
+            background-image: url('../images/Collection_icon.svg');
+           /*  width: 22px;
             height: 20px;
-            background-size: contain;
+            background-size: contain; */
         }
-        &.meetings{
-            background-image: url('../images/Meetings_icon.svg');
-            width: 21px;
-            height: 21px;
+        &.notes{
+            background-image: url('../images/Notebook_icon.svg');
+       /*      width: 20px;
+            height: 22px; */
         }
-        &.files{
-            background-image:url('../images/Files_icon.svg');
-            width: 18px;
-            height: 22px;
+        &.stat{
+            background-image:url('../images/Stats_icon.svg');
+           /*  width: 21px;
+            height: 22px; */
         }
-         &.chat{
+       /*   &.chat{
             background-image:url('../images/Conversations_icon.svg');
             width: 23px;
             height: 22px;
-        }
+        } */
          &.settings{
             background-image:url('../images/Settings_icon.svg');
-            width: 21px;
-            height: 21px;
+          /*   width: 21px;
+            height: 21px; */
         }
     }
     .menu-box{
@@ -1112,6 +1131,9 @@ h1 {
         font-family: 'latobold';
         font-size: 15px;
         color: #424242;
+        padding: 0px;
+        margin-top: 20px;
+        margin-left: -15px;
         .panel-default{
             border-radius: 7px;
             box-shadow: 0 3px 5px 0 #E6E6E6;

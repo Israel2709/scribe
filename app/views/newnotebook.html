@@ -33,12 +33,12 @@
 					</a>
 				</li>
 				<li class="nav-item">
-					<a class="nav-link active" href="#/admin">
+					<a class="nav-link" href="#/admin">
 						<span class="ico collect"></span>
 					</a>
 				</li>
 				<li class="nav-item">
-					<a class="nav-link" href="#/newnotebook">
+					<a class="nav-link active" href="#/newnotebook">
 						<span class="ico notes"></span>
 					</a>
 				</li>
@@ -47,11 +47,6 @@
 						<span class="ico stat"></span>
 					</a>
 				</li>
-			<!-- 	<li class="nav-item">
-					<a class="nav-link" href="#">
-						<span class="ico chat"></span>
-					</a>
-				</li> -->
 				<li class="nav-item">
 					<a class="nav-link" href="">
 						<span class="ico settings"></span>
@@ -60,10 +55,10 @@
 			</ul>
 		</div>
 		<div class="col-md-11 col-sm-10 container-box">
-			<div class="collections-wrapper">
+			<div class="notebooks-wrapper section">
 				<div class="row marginL50">
 					<div class="col-sm-3 paddingLess">
-						<p class="title-admin">Collecciones</p>
+						<p class="title-admin">Libretas</p>
 					</div>
 					<div class="col-sm-3">
 						<button type="button" class="btn btn-red">
@@ -72,23 +67,38 @@
 					</div>
 				</div>
 				<div class="row marginL50">
-					<p class="light-text">DAR DE ALTA UNA NUEVA COLECCIÓN</p>
+					<p class="light-text">DAR DE ALTA UNA NUEVA LIBRETA</p>
 					<div class="col-sm-3 paddingLess">
-						<input type="text" placeholder="Nombre de la colección" class="general-input">
+						<select class="selectpicker general-input capitalize" ng-change="setCollection(selection)" ng-model="selection">
+							<option class="selected">Colecciones</option>
+							<option data-ng-repeat="collection in collectionsList"  ng-value="{{collection.id}}">{{collection.name}}</option>
+						</select>
 					</div>
 					<div class="col-sm-3">
-						<div class="fileUpload btn btn-gray" ng-click="openFileDialog('#file-btns')">
-							<span>+ Imagen de la collección</span>
-						</div>
-						<input type="file" id="file-btns" class="hidden">
+						<input type="text" placeholder="Nombre" class="general-input">
 					</div>
-					<div class="col-sm-12 marginT20 paddingLess">
+					<div class="col-sm-5">
+						<input type="text" placeholder="Descripción" class="general-input">
+					</div>
+					<div class="col-sm-3 marginT20 paddingLess">
+						<div class="fileUpload btn btn-gray" ng-click="openFileDialog('#file-btn2')">
+							<span>+ Imagen de portada</span>
+						</div>
+						<input type="file" id="file-btn2" class="hidden">
+					</div>
+					<div class="col-sm-3 marginT20">
+						<div class="fileUpload btn btn-gray" ng-click="openFileDialog('#file-btn3')">
+							<span>+ Imagen del detalle</span>
+						</div>
+						<input type="file" id="file-btn3" class="hidden">
+					</div>
+					<div class="col-sm-3 marginT20">
 						<button type="button" class="btn btn-allred">Cargar</button>
 					</div>
 				</div>
 				<div class="row marginL50">
 					<div class="heading">
-						<p>Todas las Colecciones</p>
+						<p>Cargar Libreta /<span class="text-bold note-selected capitalize"></span></p>
 						<span class="select"></span>
 						<div class="options">
 							<div class="views">
@@ -100,9 +110,9 @@
 						</div>
 					</div>
 					<div class="collection-list">
-						<div class="col-sm-2 list-box" data-ng-repeat="collection in collectionsList">
-							<img data-ng-src="https://luisvardez.000webhostapp.com/{{collection.coverUrl}}" alt="">
-							<h1>{{collection.name}}</h1>
+						<div class="col-sm-2 list-box" data-coleccion="{{notebooks.collection}}" data-id="{{notebooks.id}}" data-nombre="{{notebooks.name}}" data-ng-repeat="notebooks in collectionNotebooks">
+							<img data-ng-src="https://luisvardez.000webhostapp.com/{{notebooks.coverSource}}" alt="">
+							<h1 class="title-note">{{notebooks.name}}</h1>
 						</div>
 					</div>
 					<span class="more"></span>

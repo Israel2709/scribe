@@ -2,20 +2,22 @@
 
 /**
  * @ngdoc function
- * @name scribeApp.controller:AdminCtrl
+ * @name scribeApp.controller:StatsCtrl
  * @description
- * # AdminCtrl
+ * # StatsCtrl
  * Controller of the scribeApp
  */
 angular.module('scribeApp')
-  .controller('AdminCtrl', function ($scope, $http) {
+  .controller('StatsCtrl', function ($scope, $http) {
+
     this.awesomeThings = [
       'HTML5 Boilerplate',
       'AngularJS',
       'Karma'
     ];
+        $scope.collectionsList;
 
-    $scope.collectionsList;
+    
 
     $scope.getCollectionList = function() {
         $http({
@@ -80,25 +82,4 @@ angular.module('scribeApp')
         $(idBtn).trigger("click")
     }
 
-    /*$scope.getNotebookArray = function() {
-        $http({
-            method: 'GET',
-            url: 'https://api.backand.com/1/objects/notebook',
-            headers: {
-                AnonymousToken: "a3cacd9a-831f-4aa8-8872-7d80470a000e"
-            }
-        }).then(
-            function(response) {
-                $scope.notebookArray = response.data.data;
-                console.log($scope.notebookArray[0])
-            },
-            function(response) {
-                alert("error")
-            }
-        );
-    }
-
-    $scope.getNotebookArray()*/
-
-    
   });

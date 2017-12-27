@@ -147,9 +147,15 @@ angular.module('scribeApp')
 
   
     function fillObject(category, item) {
-        eval("$scope.ObjectLike." + category + ".push({\"coleccion\":item.data(\"coleccion\"),\"nombre\":item.data(\"nombre\"),\"imagen\":item.data(\"imagen\"),\"like\":item.data(\"like\")})");
-        console.log($scope.ObjectLike)
-        $scope.getSelectedNotebook(item.data('id'));
+        if(category == "like"){
+          eval("$scope.ObjectLike." + category + ".push({\"coleccion\":item.data(\"coleccion\"),\"nombre\":item.data(\"nombre\"),\"imagen\":item.data(\"imagen\"),\"like\":item.data(\"like\")})");
+          $scope.getSelectedNotebook(item.data('id'), category);
+        }
+        else{
+          eval("$scope.ObjectLike." + category + ".push({\"coleccion\":item.data(\"coleccion\"),\"nombre\":item.data(\"nombre\"),\"imagen\":item.data(\"imagen\"),\"dislike\":item.data(\"dislike\")})");
+          $scope.getSelectedNotebook(item.data('id'), category);
+        }
+        
     }
    
     //funciones manipulación de vista
@@ -254,7 +260,7 @@ angular.module('scribeApp')
         console.log(selectedCollection)
     }
 
-    $scope.getSelectedNotebook = function(idNote) {
+    $scope.getSelectedNotebook = function(idNote, statusLikes) {
         $http({
             method: 'GET',
             url: 'https://api.backand.com:443/1/objects/notebook/' + idNote,
@@ -263,12 +269,24 @@ angular.module('scribeApp')
             }
         }).then(
             function(response) {
+                console.log(statusLikes)
                 var likes = response.data.like;
-                if (typeof(response.data.like) == "string") {
-                    likes = 0;
+                var dislikes = response.data.dislike;
+                var female = 1;
+                var male = 1;
+                if(statusLikes == "like"){  
+                    if (typeof(response.data.like) == "string") {
+                        likes = 0;
+                    }
+                    likes = parseInt(likes) + 1;
                 }
-                likes = parseInt(likes) + 1;
-                $scope.updateLikes(idNote, likes);
+                else{
+                  if(typeof(response.data.dislike) == "string"){
+                    dislikes = 0;
+                  }
+                  dislikes = parseInt(dislikes) + 1;
+                }
+                $scope.updateLikes(idNote, likes, dislikes, female, male);
             },
             function(response) {
                 alert("error")
@@ -276,12 +294,15 @@ angular.module('scribeApp')
         return true;
     }
 
-    $scope.updateLikes = function(id, count) {
+    $scope.updateLikes = function(id, count, count2, prueba, prueba2) {
         $http({
             method: 'PUT',
             url: 'https://api.backand.com:443/1/objects/notebook/' + id,
             data: {
-                like: count
+                like: count,
+                dislike: count2,
+                likedToFemale: prueba,
+                likedToMale: prueba2
             },
             headers: {
                 AnonymousToken: "a3cacd9a-831f-4aa8-8872-7d80470a000e"
