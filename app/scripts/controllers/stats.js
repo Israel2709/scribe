@@ -16,9 +16,7 @@ angular.module('scribeApp')
       'Karma'
     ];
         $scope.collectionsList;
-
     
-
     $scope.getCollectionList = function() {
         $http({
             method: 'GET',

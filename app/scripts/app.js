@@ -19,6 +19,7 @@ angular
     'ngSanitize',
     'ngTouch',
     'backand',
+    'ng-fusioncharts'
     ])
   .config(function ($routeProvider,BackandProvider,$locationProvider) {
     $routeProvider

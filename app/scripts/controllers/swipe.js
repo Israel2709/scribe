@@ -286,7 +286,7 @@ angular.module('scribeApp')
                   }
                   dislikes = parseInt(dislikes) + 1;
                 }
-                $scope.updateLikes(idNote, likes, dislikes, female, male);
+                $scope.updateLikes(idNote, likes, dislikes);
             },
             function(response) {
                 alert("error")
@@ -294,15 +294,13 @@ angular.module('scribeApp')
         return true;
     }
 
-    $scope.updateLikes = function(id, count, count2, prueba, prueba2) {
+    $scope.updateLikes = function(id, count, count2) {
         $http({
             method: 'PUT',
             url: 'https://api.backand.com:443/1/objects/notebook/' + id,
             data: {
                 like: count,
-                dislike: count2,
-                likedToFemale: prueba,
-                likedToMale: prueba2
+                dislike: count2
             },
             headers: {
                 AnonymousToken: "a3cacd9a-831f-4aa8-8872-7d80470a000e"

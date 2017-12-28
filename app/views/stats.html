@@ -71,16 +71,10 @@
 				</div>
 				<div class="row marginL50">
 					<div class="col-sm-3 paddingLess marginT20">
-						<select class="selectpicker general-input capitalize" ng-change="setCollection(selections); pruebas()" ng-model="selections">
+						<select class="selectpicker general-input capitalize" ng-change="setCollection(selections)" ng-model="selections">
 							<option class="selected">Colecciones</option>
 							<option data-ng-repeat="collection in collectionsList"  ng-value="{{collection.id}}">{{collection.name}}</option>
 						</select>
-					<!-- 	<div ng-controller="StatsCtrl">
-					      <canvas tc-chartjs-bar chart-data="data"
-					              chart-options="options" width="350"
-					              height="200">
-					      </canvas>
-					  </div> -->
 					</div>
 					<div class="col-sm-12">
 						<div class="list-stats col-sm-8" >
@@ -92,29 +86,69 @@
 										</div>
 										<div class="col-sm-3">
 											<span class="ico gender">Género</span>
-											<!-- <div class="donut-chart">
-											<div id="porcion1" class="recorte"><div class="quesito ios" data-rel="60"></div></div>
-										    <div id="porcion2" class="recorte"><div class="quesito mac" data-rel="40"></div></div>
-										    <p class="center-date"></p>  
-											</div> -->
-											<p>{{notebooks.likedToFemale}} <span class="detail"> Hombres</span></p>
-											<p>{{notebooks.likedToMale}} <span class="detail"> Mujeres</span></p>
+											<fusioncharts 
+												    width="150" 
+												    height="150"
+												    type="doughnut2d" 
+												    datasource='{"chart": {
+											        "paletteColors": "#AAC1EC,#F8BD97",
+											        "bgColor": "#ffffff",
+											        "captionOnTop": "false",
+											        "pieRadius": "150px",
+											        "doughnutRadius": "300px",
+											        "showLabels": "0",
+											        "showValues": "0",
+											        "doughnutRadius": "100px",
+											        "pieRadius": "200px",
+											        "showLegend": "0",
+											        "showBorder": "0"},
+											        "data":[{"value":"40%"},{"value":"60%"}]}'
+												></fusioncharts>
+											<p>{{notebooks.likedToMale}}%<span class="detail"> Hombres</span></p>
+											<p>{{notebooks.likedToFemale}}%<span class="detail"> Mujeres</span></p>
 										</div>
 										<div class="col-sm-3">
 											<span class="ico ages">Edades</span>
-										<!-- 	<div class="donut-chart">
-											<div id="porcion1" class="recorte"><div class="quesito ios" data-rel="60"></div></div>
-										    <div id="porcion2" class="recorte"><div class="quesito mac" data-rel="40"></div></div>
-										    <p class="center-date"></p>  
-											</div> -->
+											<fusioncharts 
+												    width="150" 
+												    height="150"
+												    type="doughnut2d" 
+												    datasource='{"chart": {
+											        "paletteColors": "#AAC1EC,#DBF3C2",
+											        "bgColor": "#ffffff",
+											        "pieRadius": "150px",
+											        "doughnutRadius": "300px",
+											        "showLabels": "0",
+											        "showValues": "0",
+											        "doughnutRadius": "100px",
+											        "pieRadius": "200px",
+											        "showLegend": "0",
+											        "showBorder": "0"},
+											        "data":[{"value":"40%"},{"value":"60%"}]}'
+												></fusioncharts>
 											<p> 50%<span class="detail"> 16-25</span></p>
 											<p>40% <span class="detail"> 26-40</span></p>
 										</div>
 										<div class="col-sm-3">
 											<span class="ico likes-icon">Likes</span>
-											<!-- <canvas id="myChart"></canvas>  -->
-											<p class="likeCounter">{{(notebooks.like * 100 / (notebooks.like + notebooks.dislike) | number:0)}}%<span class="detail"> Likes</span></p>
-											<p class="dislikeCounter">{{(notebooks.dislike * 100 / (notebooks.like + notebooks.dislike) | number:0)}}%<span class="detail"> Dislikes</span></p>
+											    <fusioncharts 
+												    width="150" 
+												    height="150"
+												    type="doughnut2d" 
+												    datasource='{"chart": {
+											        "paletteColors": "#A7F0E0,#E77F8C",
+											        "bgColor": "#ffffff",
+											        "pieRadius": "150px",
+											        "doughnutRadius": "300px",
+											        "showLabels": "0",
+											        "showValues": "0",
+											        "doughnutRadius": "100px",
+											        "pieRadius": "200px",
+											        "showLegend": "0",
+											        "showBorder": "0"},"data":[{"value":"{{(notebooks.like * 100 / (notebooks.like + notebooks.dislike) | number:0)}}%"},{"value":"{{(notebooks.dislike * 100 / (notebooks.like + notebooks.dislike) | number:0)}}%"}]}'
+												></fusioncharts>
+											<p>{{(notebooks.like * 100 / (notebooks.like + notebooks.dislike) | number:0)}}%<span class="detail"> Likes</span></p>
+											<p>{{(notebooks.dislike * 100 / (notebooks.like + notebooks.dislike) | number:0)}}%<span class="detail"> Dislikes</span></p>
 										</div>
 									</div>
 								</div>
@@ -126,29 +160,3 @@
 		</div>
 	</div>
 </div>
-<!-- <script>
-	
-	function pruebas(){
-		var ctx = document.getElementById("myChart").getContext('2d');
-		console.log(ctx)
-		var myChart = new Chart(ctx, {
-	  	type: 'doughnut',
-	  	data: {
-	    labels: ["M", "T", "W", "T", "F", "S", "S"],
-	    datasets: [{
-	      backgroundColor: [
-	        "#2ecc71",
-	        "#3498db",
-	        "#95a5a6",
-	        "#9b59b6",
-	        "#f1c40f",
-	        "#e74c3c",
-	        "#34495e"
-	      ],
-	      data: [12, 19, 3, 17, 28, 24, 7]
-	    }]
-	  }
-	});
-	}
-</script>
- -->

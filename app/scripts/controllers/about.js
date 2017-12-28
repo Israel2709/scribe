@@ -73,23 +73,4 @@ angular.module('scribeApp')
         });
     }
 
-    /*$scope.updateGender = function(male, female) {
-        $http({
-            method: 'PUT',
-            url: 'https://api.backand.com:443/1/objects/notebook/' + id,
-            data: {
-                likedToFemale: female,
-                likedToMale: male
-            },
-            headers: {
-                AnonymousToken: "a3cacd9a-831f-4aa8-8872-7d80470a000e"
-            }
-        }).then(
-            function(response) {
-                console.log(response);
-            },
-            function(response) {
-                alert("error")
-            });
-    }*/
   });
