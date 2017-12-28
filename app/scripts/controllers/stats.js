@@ -15,7 +15,8 @@ angular.module('scribeApp')
       'AngularJS',
       'Karma'
     ];
-        $scope.collectionsList;
+        $scope.labels = ["Likes", "Dislikes"];
+      /*  $scope.data = [300, 500];*/
     
     $scope.getCollectionList = function() {
         $http({
