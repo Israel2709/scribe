@@ -20,7 +20,10 @@ angular.module('scribeApp')
       };
   })
 
-  .controller('SwipeCtrl', function ($document, $scope,$http) {
+ 
+
+
+  .controller('SwipeCtrl', function ($document, $scope,$http, Fact) {
     this.awesomeThings = [
       'HTML5 Boilerplate',
       'AngularJS',
@@ -29,6 +32,8 @@ angular.module('scribeApp')
 
     //varible para mostrar las diferentes capas dependiendo del contendino
     $scope.selection;
+
+
 
     //arreglo donde se guardan los like y dislikes de las imagenes
     $scope.ObjectLike = {
@@ -117,6 +122,7 @@ angular.module('scribeApp')
      
     }
 
+
     $scope.getCollectionNotebooks = function(selectedCollection) {
       $http({
           method: 'GET',
@@ -136,6 +142,7 @@ angular.module('scribeApp')
       }).then(
           function(response) {
               $scope.collectionNotebooks = response.data.data;
+              console.log( $scope.collectionNotebooks)
           },
           function(response) {
               alert("error")
@@ -148,11 +155,11 @@ angular.module('scribeApp')
   
     function fillObject(category, item) {
         if(category == "like"){
-          eval("$scope.ObjectLike." + category + ".push({\"coleccion\":item.data(\"coleccion\"),\"nombre\":item.data(\"nombre\"),\"imagen\":item.data(\"imagen\"),\"like\":item.data(\"like\")})");
+          eval("$scope.ObjectLike." + category + ".push({\"coleccion\":item.data(\"coleccion\"),\"nombre\":item.data(\"nombre\"),\"imagen\":item.data(\"imagen\"),\"likedToMale\":item.data(\"likedToMale\"),\"likedToFemale\":item.data(\"likedToFemale\"),\"like\":item.data(\"like\")})");
           $scope.getSelectedNotebook(item.data('id'), category);
         }
         else{
-          eval("$scope.ObjectLike." + category + ".push({\"coleccion\":item.data(\"coleccion\"),\"nombre\":item.data(\"nombre\"),\"imagen\":item.data(\"imagen\"),\"dislike\":item.data(\"dislike\")})");
+          eval("$scope.ObjectLike." + category + ".push({\"coleccion\":item.data(\"coleccion\"),\"nombre\":item.data(\"nombre\"),\"imagen\":item.data(\"imagen\"),\"likedToMale\":item.data(\"likedToMale\"),\"likedToFemale\":item.data(\"likedToFemale\"),\"dislike\":item.data(\"dislike\")})");
           $scope.getSelectedNotebook(item.data('id'), category);
         }
         
@@ -236,7 +243,7 @@ angular.module('scribeApp')
             params: {
                 pageSize: 20,
                 pageNumber: 1
-            }
+            },
         }).then(
             function(response) {
                 console.log(response.data.data)
@@ -257,8 +264,10 @@ angular.module('scribeApp')
         target.css("opacity", "0.5");
         target.parent().unbind().removeData();
         $("#collection-modal").modal("hide");
-        console.log(selectedCollection)
     }
+
+
+    
 
     $scope.getSelectedNotebook = function(idNote, statusLikes) {
         $http({
@@ -269,9 +278,14 @@ angular.module('scribeApp')
             }
         }).then(
             function(response) {
-                console.log(statusLikes)
+                $scope.selectionGender = Fact.userGender.gender
+                $scope.selectionAges = Fact.userAge.age
                 var likes = response.data.like;
                 var dislikes = response.data.dislike;
+                var likedFemale = response.data.likedToFemale;
+                var likedMale = response.data.likedToMale;
+                var ageA = response.data.userAgeA;
+                var ageB = response.data.userAgeB;
                 var female = 1;
                 var male = 1;
                 if(statusLikes == "like"){  
@@ -286,7 +300,30 @@ angular.module('scribeApp')
                   }
                   dislikes = parseInt(dislikes) + 1;
                 }
-                $scope.updateLikes(idNote, likes, dislikes);
+                if($scope.selectionGender == "H"){
+                  if (typeof(response.data.likedToMale) == "string") {
+                        likedMale = 0;
+                    }
+                    likedMale = parseInt(likedMale) + 1;
+                }
+                else{
+                  if (typeof(response.data.likedToFemale) == "string") {
+                        likedFemale = 0;
+                    }
+                    likedFemale = parseInt(likedFemale) + 1;
+                }
+                if($scope.selectionAges < 20){
+                  if (typeof(response.data.userAgeA) == "string") {
+                        ageA = 0;
+                    }
+                    ageA = parseInt(ageA) + 1;
+                }else{
+                    if (typeof(response.data.userAgeB) == "string") {
+                        ageB = 0;
+                    }
+                    ageB = parseInt(ageB) + 1;
+                }
+                $scope.updateLikes(idNote, likes, dislikes, likedFemale, likedMale, ageA, ageB);
             },
             function(response) {
                 alert("error")
@@ -294,13 +331,17 @@ angular.module('scribeApp')
         return true;
     }
 
-    $scope.updateLikes = function(id, count, count2) {
+    $scope.updateLikes = function(id, count, count2, female, male, ageA, ageB) {
         $http({
             method: 'PUT',
             url: 'https://api.backand.com:443/1/objects/notebook/' + id,
             data: {
                 like: count,
-                dislike: count2
+                dislike: count2,
+                likedToFemale: female,
+                likedToMale: male,
+                userAgeA: ageA,
+                userAgeB: ageB
             },
             headers: {
                 AnonymousToken: "a3cacd9a-831f-4aa8-8872-7d80470a000e"

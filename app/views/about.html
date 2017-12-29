@@ -15,8 +15,8 @@
         </div>
     </div>
     <div class="row">
-        <input type="text" class="center-block" placeholder="¿Cual es tu edad?" ng-model="edad">
-        <a href="#/swipe" ng-click="sendDataUser();"><div class="red-btn" >Continuar</div></a>
+        <input type="text" class="center-block age-input" placeholder="¿Cual es tu edad?" ng-keyup="readAge(edad)" ng-model="edad">
+        <a ng-click="sendDataUser(this);"><div class="red-btn" >Continuar</div></a>
     </div>
 </div>
 

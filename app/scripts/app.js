@@ -21,6 +21,8 @@ angular
     'backand',
     'chart.js'
     ])
+
+
   .config(function ($routeProvider,BackandProvider,$locationProvider) {
     $routeProvider
       .when('/', {
@@ -82,7 +84,15 @@ angular
       BackandProvider.setSignUpToken('1a6494b3-0874-4ca7-81e4-abebda17f6d1');
       BackandProvider.setAnonymousToken('a3cacd9a-831f-4aa8-8872-7d80470a000e');    
 
-      $locationProvider.hashPrefix('')
-
-    
-  });
+      $locationProvider.hashPrefix('');
+ 
+  }).factory('Fact',function(){
+       return {
+         userGender: {
+          gender: null
+         },
+         userAge: {
+          age: null
+         }
+       }
+    });

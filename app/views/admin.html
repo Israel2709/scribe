@@ -6,10 +6,10 @@
 			</div>
 			<div class="col-md-11 col-sm-10 borderB">
 				<div class="col-sm-4 searching">
-					<div class="form-group">
+					<!-- <div class="form-group">
 						<input type="text" class="form-control ico-search" placeholder="Buscar">
 						<span class="ico-search"></span>
-					</div>
+					</div> -->
 				</div>
 				<div class="col-sm-8">
 					<div id="navbar" class="navbar-collapse collapse">
@@ -74,16 +74,17 @@
 				<div class="row marginL50">
 					<p class="light-text">DAR DE ALTA UNA NUEVA COLECCIÓN</p>
 					<div class="col-sm-3 paddingLess">
-						<input type="text" placeholder="Nombre de la colección" class="general-input">
+						<input type="text" placeholder="Nombre de la colección" class="general-input" data-ng-model="collection.name">
 					</div>
 					<div class="col-sm-3">
 						<div class="fileUpload btn btn-gray" ng-click="openFileDialog('#file-btns')">
 							<span>+ Imagen de la collección</span>
 						</div>
-						<input type="file" id="file-btns" class="hidden">
+						<input type="file" id="file-btns" class="hidden" multiple onchange="angular.element(this).scope().readURL(this)">
+						<img id="img_prev3" src="#" alt="your image"  class="hidden"/>
 					</div>
 					<div class="col-sm-12 marginT20 paddingLess">
-						<button type="button" class="btn btn-allred">Cargar</button>
+						<button type="button" class="btn btn-allred" data-ng-click="uploadCollection()">Cargar</button>
 					</div>
 				</div>
 				<div class="row marginL50">

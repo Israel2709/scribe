@@ -6,10 +6,10 @@
 			</div>
 			<div class="col-md-11 col-sm-10 borderB">
 				<div class="col-sm-4 searching">
-					<div class="form-group">
+					<!-- <div class="form-group">
 						<input type="text" class="form-control ico-search" placeholder="Buscar">
 						<span class="ico-search"></span>
-					</div>
+					</div> -->
 				</div>
 				<div class="col-sm-8">
 					<div id="navbar" class="navbar-collapse collapse">
@@ -69,31 +69,31 @@
 				<div class="row marginL50">
 					<p class="light-text">DAR DE ALTA UNA NUEVA LIBRETA</p>
 					<div class="col-sm-3 paddingLess">
-						<select class="selectpicker general-input capitalize" ng-change="setCollection(selection)" ng-model="selection">
+						<select class="selectpicker general-input capitalize" ng-change="setCollection(selection); setCollectionId()" ng-model="selection">
 							<option class="selected">Colecciones</option>
 							<option data-ng-repeat="collection in collectionsList"  ng-value="{{collection.id}}">{{collection.name}}</option>
 						</select>
 					</div>
 					<div class="col-sm-3">
-						<input type="text" placeholder="Nombre" class="general-input">
+						<input type="text" placeholder="Nombre" id="nombre" class="general-input" data-ng-model="notebookObject.name">
 					</div>
 					<div class="col-sm-5">
-						<input type="text" placeholder="Descripción" class="general-input">
+						<input type="text" placeholder="Descripción" id="descripcion" class="general-input" data-ng-model="notebookObject.descripcion">
 					</div>
 					<div class="col-sm-3 marginT20 paddingLess">
 						<div class="fileUpload btn btn-gray" ng-click="openFileDialog('#file-btn2')">
 							<span>+ Imagen de portada</span>
 						</div>
-						<input type="file" id="file-btn2" class="hidden">
+						<input type="file" id="file-btn2" class="hidden" name="files[]" multiple onchange="angular.element(this).scope().readURL(this)">
 					</div>
 					<div class="col-sm-3 marginT20">
 						<div class="fileUpload btn btn-gray" ng-click="openFileDialog('#file-btn3')">
 							<span>+ Imagen del detalle</span>
 						</div>
-						<input type="file" id="file-btn3" class="hidden">
+						<input type="file" id="file-btn3" class="hidden" name="files[]" multiple onchange="angular.element(this).scope().readURL(this)">
 					</div>
 					<div class="col-sm-3 marginT20">
-						<button type="button" class="btn btn-allred">Cargar</button>
+						<button type="button" class="btn btn-allred" data-ng-click="uploadNotebook()">Cargar</button>
 					</div>
 				</div>
 				<div class="row marginL50">

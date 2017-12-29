@@ -6,10 +6,10 @@
 			</div>
 			<div class="col-md-11 col-sm-10 borderB">
 				<div class="col-sm-4 searching">
-					<div class="form-group">
+					<!-- <div class="form-group">
 						<input type="text" class="form-control ico-search" placeholder="Buscar">
 						<span class="ico-search"></span>
-					</div>
+					</div> -->
 				</div>
 				<div class="col-sm-8">
 					<div id="navbar" class="navbar-collapse collapse">
@@ -86,22 +86,22 @@
 										</div>
 										<div class="col-sm-3">
 											<span class="ico gender">Género</span>
-											<canvas id="doughnut" class="chart chart-doughnut" chart-colors="['#AAC1EC','#F8BD97']" chart-data="[60, 40]" chart-labels="['Hombres', 'Mujeres']"></canvas>
-											<p>{{notebooks.likedToMale}}%<span class="detail"> Hombres</span></p>
-											<p>{{notebooks.likedToFemale}}%<span class="detail"> Mujeres</span></p>
+											<canvas id="doughnut" class="chart chart-doughnut" chart-colors="['#AAC1EC', '#F8BD97']" chart-data="dataGender" chart-labels="['Hombres', 'Mujeres']"></canvas>
+											<p><span class="border-Male">{{(notebooks.likedToMale * 100 / (notebooks.likedToFemale + notebooks.likedToMale) | number:0)}}%</span><span class="detail"> Hombres</span></p>
+											<p><span class="border-Female">{{(notebooks.likedToFemale * 100 / (notebooks.likedToFemale + notebooks.likedToMale) | number:0)}}%</span><span class="detail"> Mujeres</span></p>
 										</div>
 										<div class="col-sm-3">
 											<span class="ico ages">Edades</span>
-											<canvas id="doughnut" class="chart chart-doughnut" chart-colors="['#E4D6F9','#DBF3C2']" chart-data="[60, 40]" chart-labels="['16-25', '26-40']"></canvas>
-											<p> 50%<span class="detail"> 16-25</span></p>
-											<p>40% <span class="detail"> 26-40</span></p>
+											<canvas id="doughnut" class="chart chart-doughnut" chart-colors="['#E4D6F9','#DBF3C2']" chart-data="dataAges" chart-labels="['16-25', '26-40']"></canvas>
+											<p><span class="border-ageA">{{(notebooks.userAgeA * 100 / (notebooks.userAgeA + notebooks.userAgeB) | number:0)}}%</span><span class="detail"> 16-25</span></p>
+											<p><span class="border-ageB">{{(notebooks.userAgeB * 100 / (notebooks.userAgeA + notebooks.userAgeB) | number:0)}}%</span><span class="detail"> 26-40</span></p>
 										</div>
 										<div class="col-sm-3">
 											<span class="ico likes-icon">Likes</span>
 											<!-- Checar conversión -->
-												<canvas id="doughnut" class="chart chart-doughnut" chart-colors="['#A7F0E0','#E77F8C']" chart-data="['{{(notebooks.like * 100 / (notebooks.like + notebooks.dislike) | number:0)}}', '{{(notebooks.dislike * 100 / (notebooks.like + notebooks.dislike) | number:0)}}']" chart-labels="labels"></canvas>
-											<p>{{(notebooks.like * 100 / (notebooks.like + notebooks.dislike) | number:0)}}%<span class="detail"> Likes</span></p>
-											<p>{{(notebooks.dislike * 100 / (notebooks.like + notebooks.dislike) | number:0)}}%<span class="detail"> Dislikes</span></p>
+												<canvas id="doughnut" class="chart chart-doughnut" chart-colors="['#A7F0E0','#E77F8C']" chart-data="dataLikes" chart-labels="labels"></canvas>
+											<p><span class="border-Like">{{(notebooks.like * 100 / (notebooks.like + notebooks.dislike) | number:0)}}%</span><span class="detail"> Likes</span></p>
+											<p><span class="border-Dislike">{{(notebooks.dislike * 100 / (notebooks.like + notebooks.dislike) | number:0)}}%</span><span class="detail"> Dislikes</span></p>
 										</div>
 									</div>
 								</div>

@@ -16,7 +16,6 @@ angular.module('scribeApp')
       'Karma'
     ];
         $scope.labels = ["Likes", "Dislikes"];
-      /*  $scope.data = [300, 500];*/
     
     $scope.getCollectionList = function() {
         $http({
@@ -57,6 +56,11 @@ angular.module('scribeApp')
         }).then(
             function(response) {
                 $scope.collectionNotebooks = response.data.data;
+                for(var i=0; i<$scope.collectionNotebooks.length; i++){
+                    $scope.dataLikes = [response.data.data[i].like, response.data.data[i].dislike]
+                    $scope.dataGender = [response.data.data[i].likedToMale, response.data.data[i].likedToFemale]
+                    $scope.dataAges = [response.data.data[i].userAgeA, response.data.data[i].userAgeB]
+                }
             },
             function(response) {
                 alert("error")
