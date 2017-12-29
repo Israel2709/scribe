@@ -121,6 +121,12 @@ h1 {
             max-width: 211px;
             @include auto-center();
         }
+        .prefers-title{
+            font-size: 30px;
+            font-family: 'latoregular';
+            color: #424242;
+            margin-left: 35%;
+        }
         .show-list {
             background: url("../images/list-ico.svg") no-repeat;
             background-size: 100%;

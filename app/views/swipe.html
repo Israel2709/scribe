@@ -22,10 +22,11 @@
 <div ng-switch="selection">
     <div class="header resized">
         <div class="row">
-            <div class="btn show-list" ng-click="changeView('preferences');toggleHeaderBtn('.btn-back');"></div>
+            <div class="btn show-list" ng-click="changeView('preferences');toggleHeaderBtn('.btn-back, .prefers-title, .img-logo');"></div>
             <div class="btn show-filter"  onclick=" $('#collection-modal').modal('show')"></div>
-            <div class="btn btn-back hidden" ng-click="changeView('content');toggleHeaderBtn('.show-list, .show-filter')"></div>
+            <div class="btn btn-back hidden" ng-click="changeView('content');toggleHeaderBtn('.show-list, .show-filter, .prefers-title, .img-logo')"></div>
             <div class="btn btn-back-white hidden" ng-click="changeView('content');toggleHeaderBtn('.show-list, .show-filter');changeContainer();"></div>
+        <span class="prefers-title hidden">Preferencias</span>
         <img src="images/scribe-logo.svg" class="img-logo" alt=""> </div>
     </div>
     <div class="content-wrapper section" ng-switch-when="content">

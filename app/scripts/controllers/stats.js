@@ -56,6 +56,7 @@ angular.module('scribeApp')
         }).then(
             function(response) {
                 $scope.collectionNotebooks = response.data.data;
+               /* console.log($("#doughnut").prop("chart-data"))*/
                 for(var i=0; i<$scope.collectionNotebooks.length; i++){
                     $scope.dataLikes = [response.data.data[i].like, response.data.data[i].dislike]
                     $scope.dataGender = [response.data.data[i].likedToMale, response.data.data[i].likedToFemale]
