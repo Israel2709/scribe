@@ -66,6 +66,12 @@ $grayText:#9B9B9B;
     font-weight: normal;
     font-style: normal;
 }
+@font-face {
+    font-family: 'latolight';
+    src: url('../fonts/lato/Lato-Light.woff2') format('woff2'), url('../fonts/lato/Lato-Light.woff') format('woff'), url('../fonts/lato/Lato-Light.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
 
 /*Mixins*/
 
@@ -125,7 +131,7 @@ h1 {
             font-size: 30px;
             font-family: 'latoregular';
             color: #424242;
-            margin-left: 35%;
+            margin-left: 40%;
         }
         .show-list {
             background: url("../images/list-ico.svg") no-repeat;
@@ -1036,7 +1042,7 @@ h1 {
         display: inline-block;
     }
     .light-text{
-        font-family: 'lato-light';
+        font-family: 'latolight';
         font-size: 18px;
         color: #233539;
         margin-bottom: 20px; 
