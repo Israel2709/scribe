@@ -133,6 +133,11 @@ angular.module('scribeApp')
       }
   }
 
+  $scope.export = function(e){
+        window.open('data:application/vnd.ms-excel,' + encodeURIComponent($('#dvData').html()));
+        e.preventDefault();
+    }
+
     
   })
 

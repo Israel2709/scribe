@@ -7,8 +7,8 @@
 			<div class="col-md-11 col-sm-10 borderB">
 				<div class="col-sm-4 searching">
 					<!-- <div class="form-group">
-						<input type="text" class="form-control ico-search" placeholder="Buscar">
-						<span class="ico-search"></span>
+							<input type="text" class="form-control ico-search" placeholder="Buscar">
+							<span class="ico-search"></span>
 					</div> -->
 				</div>
 				<div class="col-sm-8">
@@ -61,7 +61,7 @@
 						<p class="title-admin">Estadísticas</p>
 					</div>
 					<div class="col-sm-3">
-						<button type="button" class="btn btn-red">
+						<button type="button" class="btn btn-red" ng-click="export(e)">
 						<span class="fill"></span>
 						Exportar</button>
 					</div>
@@ -99,7 +99,7 @@
 										<div class="col-sm-3">
 											<span class="ico likes-icon">Likes</span>
 											<!-- Checar conversión -->
-												<canvas id="like-chart-{{notebooks.id}}" class="chart chart-doughnut" chart-colors="['#A7F0E0','#E77F8C']" chart-data="dataLikes" chart-labels="labels"></canvas>
+											<canvas id="like-chart-{{notebooks.id}}" class="chart chart-doughnut" chart-colors="['#A7F0E0','#E77F8C']" chart-data="dataLikes" chart-labels="labels"></canvas>
 											<p><span class="border-Like">{{(notebooks.like * 100 / (notebooks.like + notebooks.dislike) | number:0)}}%</span><span class="detail"> Likes</span></p>
 											<p><span class="border-Dislike">{{(notebooks.dislike * 100 / (notebooks.like + notebooks.dislike) | number:0)}}%</span><span class="detail"> Dislikes</span></p>
 										</div>
@@ -107,10 +107,42 @@
 								</div>
 							</div>
 						</div>
+						<div id="dvData" class="hidden">
+							<p>Colección <span class="title"></span></p>
+							<table>
+								<thead>
+									<tr>
+									<th colspan="2">Libreta</th>
+									<th colspan="2">Genero</th>
+									<th colspan="2">Edades</th>
+									<th colspan="2">Likes</th>
+								</tr>
+								</thead>
+								<tbody>
+									<tr>
+									<td colspan="2"></td>
+									<td>Hombre</td>
+									<td>Mujer</td>
+									<td>17-20</td>
+									<td>21-27</td>
+									<td>Likes</td>
+									<td>Dislikes</td>
+								</tr>
+								<tr data-ng-repeat="notebooks in collectionNotebooks">
+									<td colspan="2">{{notebooks.name}}</td>
+									<td>{{(notebooks.likedToMale * 100 / (notebooks.likedToFemale + notebooks.likedToMale) | number:0)}}%</td>
+									<td>{{(notebooks.likedToFemale * 100 / (notebooks.likedToFemale + notebooks.likedToMale) | number:0)}}%</td>
+									<td>{{(notebooks.userAgeA * 100 / (notebooks.userAgeA + notebooks.userAgeB) | number:0)}}%</td>
+									<td>{{(notebooks.userAgeB * 100 / (notebooks.userAgeA + notebooks.userAgeB) | number:0)}}%</td>
+									<td>{{(notebooks.like * 100 / (notebooks.like + notebooks.dislike) | number:0)}}%</td>
+									<td>{{(notebooks.dislike * 100 / (notebooks.like + notebooks.dislike) | number:0)}}%</td>
+								</tr>
+								</tbody>
+							</table>
+						</div>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
 </div>
-

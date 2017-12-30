@@ -61,7 +61,7 @@
 						<p class="title-admin">Libretas</p>
 					</div>
 					<div class="col-sm-3">
-						<button type="button" class="btn btn-red">
+						<button type="button" class="btn btn-red" ng-click="export(e)">
 						<span class="fill"></span>
 						Exportar</button>
 					</div>
@@ -116,6 +116,23 @@
 						</div>
 					</div>
 					<span class="more"></span>
+					<div id="dvData" class="hidden">
+							<p class="title"></p>
+							<table>
+								<thead>
+									<tr>
+									<th colspan="2">Libreta</th>
+									<th colspan="2">Descripción</th>
+								</tr>
+								</thead>
+								<tbody>
+								<tr data-ng-repeat="notebooks in collectionNotebooks">
+									<td colspan="2">{{notebooks.name}}</td>
+									<td colspan="2">{{notebooks.descripcion}}</td>
+								</tr>
+								</tbody>
+							</table>
+						</div>
 				</div>
 			</div>
 		</div>

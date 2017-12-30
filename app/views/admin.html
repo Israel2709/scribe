@@ -66,7 +66,7 @@
 						<p class="title-admin">Collecciones</p>
 					</div>
 					<div class="col-sm-3">
-						<button type="button" class="btn btn-red">
+						<button type="button" class="btn btn-red" ng-click="export(e)">
 						<span class="fill"></span>
 						Exportar</button>
 					</div>
@@ -107,6 +107,20 @@
 						</div>
 					</div>
 					<span class="more"></span>
+						<div id="dvData" class="hidden">
+							<table>
+								<thead>
+									<tr>
+									<th>Nombre de coleccion</th>
+								</tr>
+								</thead>
+								<tbody>
+								<tr data-ng-repeat="collection in collectionsList">
+									<td>{{collection.name}}</td>
+								</tr>
+								</tbody>
+							</table>
+						</div>
 				</div>
 			</div>
 		</div>
