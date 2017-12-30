@@ -56,12 +56,18 @@ angular.module('scribeApp')
         }).then(
             function(response) {
                 $scope.collectionNotebooks = response.data.data;
+                console.log($scope.collectionNotebooks)
                /* console.log($("#doughnut").prop("chart-data"))*/
                 for(var i=0; i<$scope.collectionNotebooks.length; i++){
-                    $scope.dataLikes = [response.data.data[i].like, response.data.data[i].dislike]
+                    $scope.dataLikes = [response.data.data[i].like, response.data.data[i].dislike];
+                    $scope.collectionNotebooks[i].dataLikes = $scope.dataLikes;
                     $scope.dataGender = [response.data.data[i].likedToMale, response.data.data[i].likedToFemale]
+                    $scope.collectionNotebooks[i].dataGender = $scope.dataGender;
                     $scope.dataAges = [response.data.data[i].userAgeA, response.data.data[i].userAgeB]
+                    $scope.collectionNotebooks[i].dataAges = $scope.dataAges;
+                      console.log($scope.collectionNotebooks[i].dataLikes)
                 }
+                console.log($scope.collectionNotebooks)
             },
             function(response) {
                 alert("error")
