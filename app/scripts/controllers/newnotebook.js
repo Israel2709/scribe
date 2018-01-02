@@ -68,11 +68,12 @@ angular.module('scribeApp')
 
     $scope.setCollection = function(selection) {
         if (selection == "Colecciones") {
-            return false;
+            $(".btn-red").addClass("disabled").off("click")
         } else {
             var selectedCollection = selection.toString();
             var prueba = $(".selectpicker option:selected").text()
             $(".note-selected, .title").text(" Colección " + prueba)
+            $(".btn-red").removeClass("disabled").on("click")
             $scope.getCollectionNotebooks(selectedCollection);
         }
     }
@@ -148,8 +149,14 @@ angular.module('scribeApp')
   }
 
   $scope.export = function(e){
-        window.open('data:application/vnd.ms-excel,' + encodeURIComponent($('#dvData').html()));
-        e.preventDefault();
+        var titles = $(".selectpicker option:selected").text()
+        if(titles == ""){
+            alert("Seleccione una colección");
+        }
+        else{
+             window.open('data:application/vnd.ms-excel,' + encodeURIComponent($('#dvData').html()));
+            e.preventDefault();
+        }
     }
 
 

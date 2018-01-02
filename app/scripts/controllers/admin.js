@@ -15,11 +15,16 @@ angular.module('scribeApp')
       'Karma'
     ];
 
+
     $scope.urlUpload = "https://luisvardez.000webhostapp.com/upload.php";
 
-     $scope.collection = {};
+   
+    $scope.collection = {};
     $scope.collectionsList;
     $scope.collectionsNames = []
+    $scope.notebookObject = {};
+
+    $scope.collectionSelected;
 
     //variable en la cual se guarda el resultado de la petición al guardar imagen en el servidor
     $scope.resUploadFile;
@@ -44,7 +49,7 @@ angular.module('scribeApp')
             });
     }
 
-    $scope.getCollectionNotebooks = function(selectedCollection) {
+   /* $scope.getCollectionNotebooks = function(selectedCollection) {
         $http({
             method: 'GET',
             url: 'https://api.backand.com:443/1/objects/notebook?pageSize=20&pageNumber=1',
@@ -57,7 +62,7 @@ angular.module('scribeApp')
                 "filter": [{
                     "fieldName": "collection",
                     "operator": "in",
-                    "value": selectedCollection /*aqui va el id de la colección a consultar*/
+                    "value": selectedCollection 
                 }],
             }
         }).then(
@@ -68,41 +73,32 @@ angular.module('scribeApp')
                 alert("error")
             }
         );
-    }
+    }*/
 
     $scope.getCollectionList();
-
-    $scope.setCollection = function(selection) {
-        if (selection == "Colecciones") {
-            return false;
-        } else {
-            var selectedCollection = selection.toString();
-            var prueba = $(".selectpicker option:selected").text()
-            $(".note-selected").text(" Colección " + prueba)
-            $scope.getCollectionNotebooks(selectedCollection);
-        }
-    }
 
     $scope.openFileDialog = function(idBtn) {
         $(idBtn).trigger("click")
     }
-
-    $scope.uploadCollection = function () {
+    
+    /*$scope.uploadCollection = function () {
 
       if ($.inArray($scope.collection.name, $scope.collectionsNames) > -1) {
         alert("la coleccion ya existe");
         return false
       } else {
 
-        $(".full-overlay").removeClass("hidden");
+      
 
         $scope.collectionSelected = $scope.collection.name;
+        console.log($scope.collectionSelected)
 
         upload.upload('picture', $scope.collectionSelected,'modal').then(function (response) {
           if (response.status == '200') {
             $scope.collection.coverUrl = response.data;
+            console.log($scope.collection)
 
-            $http.post('https://api.backand.com:443/1/objects/collection', $scope.collection, {
+            $http.post('https://api.backand.com:443/1/objects/collection/', $scope.collection, {
               headers: {
                 AnonymousToken: "a3cacd9a-831f-4aa8-8872-7d80470a000e"
               }
@@ -120,7 +116,7 @@ angular.module('scribeApp')
           }
         })
       }
-    }
+    }*/
 
     $scope.readURL = function(input) {
       if (input.files && input.files[0]) {
@@ -139,14 +135,14 @@ angular.module('scribeApp')
     }
 
     
-  })
+  });
 
-  .service('upload',[
+  /*.service('upload',[
     '$http',
     function($http){
       this.upload =  function(id,selected,prefix){
       
-      var inputFileImage = $("#" + id)[0].files[0];
+      var inputFileImage = $("#" + id)[0].file[0];
       var dataImage = new FormData();
 
       dataImage.append("file", inputFileImage);
@@ -163,4 +159,4 @@ angular.module('scribeApp')
         })
       }
     }
-  ]);
+  ]);*/
