@@ -80,6 +80,18 @@
 			});
 		},
 
+        undo: function() {
+            if (current_pane !== panes.length - 1) {
+                ++current_pane;
+                panes.eq(current_pane).animate({
+                    "transform": "translate(0px,0px) rotate(0deg)"
+                }, $that.settings.animationRevertSpeed);
+                panes.eq(current_pane).find($that.settings.likeSelector).css('opacity', 0);
+                panes.eq(current_pane).find($that.settings.dislikeSelector).css('opacity', 0);
+                panes.eq(current_pane).show();
+            }
+        },
+
 		handler: function (ev) {
 			ev.preventDefault();
 
@@ -151,11 +163,11 @@
 								$that.next();
 							});
 						}
-						panes.eq(current_pane).remove();
+						//panes.eq(current_pane).remove();
 
-						countRemaining();
+						//countRemaining();
 					} else {
-						clickPanel(event,panes.eq(current_pane));
+						//clickPanel(event,panes.eq(current_pane));
 						
 						lastPosX = 0;
 						lastPosY = 0;

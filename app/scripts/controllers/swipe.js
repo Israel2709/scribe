@@ -63,24 +63,26 @@ angular.module('scribeApp')
         onDislike: function(item) {
             $('#status').html('Dislike image ' + (item.index() + 1));
             fillObject("dislike", item);
+            $(item).addClass("disliked");
 
             //elimina del arreglo el elemento que ya fue evaluado, esto para que cuando cambiemos de pantalla y regresemos no se esten rpesentando los
             //todos aunque ya los hayamos evaluado
-            $scope.collectionNotebooks.forEach(function(index, value) {
+            /*$scope.collectionNotebooks.forEach(function(index, value) {
                 if ($scope.collectionNotebooks[value].id == item.data("id")) {
                     $scope.collectionNotebooks.splice(value, 1)
                 }
-            }, this);
+            }, this);*/
         },
         onLike: function(item) {
             $('#status').html('Like image ' + (item.index() + 1));
             fillObject("like", item);
+            $(item).addClass("liked")
 
-            $scope.collectionNotebooks.forEach(function(index, value) {
+            /*$scope.collectionNotebooks.forEach(function(index, value) {
                 if ($scope.collectionNotebooks[value].id == item.data("id")) {
                     $scope.collectionNotebooks.splice(value, 1)
                 }
-            }, this);
+            }, this);*/
         },
         animationRevertSpeed: 200,
         animationSpeed: 400,
@@ -267,9 +269,21 @@ angular.module('scribeApp')
     }
 
 
-    
+    var likes;
+    var dislikes;
+    var likedFemale;
+    var likedMale;
+    var ageA;
+    var ageB;
+    var female;
+    var male;
+    var currentNotebookId;
+
+    $scope.selectionGender = Fact.userGender.gender
+    $scope.selectionAges = Fact.userAge.age
 
     $scope.getSelectedNotebook = function(idNote, statusLikes) {
+        currentNotebookId = idNote
         $http({
             method: 'GET',
             url: 'https://api.backand.com:443/1/objects/notebook/' + idNote,
@@ -278,16 +292,14 @@ angular.module('scribeApp')
             }
         }).then(
             function(response) {
-                $scope.selectionGender = Fact.userGender.gender
-                $scope.selectionAges = Fact.userAge.age
-                var likes = response.data.like;
-                var dislikes = response.data.dislike;
-                var likedFemale = response.data.likedToFemale;
-                var likedMale = response.data.likedToMale;
-                var ageA = response.data.userAgeA;
-                var ageB = response.data.userAgeB;
-                var female = 1;
-                var male = 1;
+                likes = response.data.like;
+                dislikes = response.data.dislike;
+                likedFemale = response.data.likedToFemale;
+                likedMale = response.data.likedToMale;
+                ageA = response.data.userAgeA;
+                ageB = response.data.userAgeB;
+                female = 1;
+                male = 1;
                 if(statusLikes == "like"){  
                     if (typeof(response.data.like) == "string") {
                         likes = 0;
@@ -324,6 +336,7 @@ angular.module('scribeApp')
                     ageB = parseInt(ageB) + 1;
                 }
                 $scope.updateLikes(idNote, likes, dislikes, likedFemale, likedMale, ageA, ageB);
+                console.log(idNote + " " + likes + " " + dislikes + " " + likedFemale + " " + likedMale + " " + ageA + " " + ageB)
             },
             function(response) {
                 alert("error")
@@ -342,6 +355,39 @@ angular.module('scribeApp')
                 likedToMale: male,
                 userAgeA: ageA,
                 userAgeB: ageB
+            },
+            headers: {
+                AnonymousToken: "a3cacd9a-831f-4aa8-8872-7d80470a000e"
+            }
+        }).then(
+            function(response) {
+                console.log(response);
+            },
+            function(response) {
+                alert("error")
+            });
+    }
+
+    $scope.reduceLikes = function() {
+      var lastItem = $(".pane:hidden:eq(0)")
+      var lastId = $(".pane:hidden:eq(0)").data("id")
+      var lastLikes = $(".pane:hidden:eq(0)").data("like")
+      var lastDislikes = $(".pane:hidden:eq(0)").data("dislike")
+      var lastMales = $(".pane:hidden:eq(0)").data("likedtofemale")
+      var lastFemales = $(".pane:hidden:eq(0)").data("likedtomale")
+      var lastAgeA = $(".pane:hidden:eq(0)").data("useragea")
+      var lastAgeB = $(".pane:hidden:eq(0)").data("userageb")
+      console.log(lastLikes +" "+ lastDislikes +" "+ lastMales +" "+ lastFemales +" "+ lastAgeA +" "+ lastAgeB+" "+lastId)
+      $http({
+            method: 'PUT',
+            url: 'https://api.backand.com:443/1/objects/notebook/' + lastId,
+            data: {
+                like: lastLikes,
+                dislike: lastDislikes,
+                likedToFemale: lastMales,
+                likedToMale: lastFemales,
+                userAgeA: lastAgeA,
+                userAgeB: lastAgeB
             },
             headers: {
                 AnonymousToken: "a3cacd9a-831f-4aa8-8872-7d80470a000e"
@@ -380,6 +426,20 @@ angular.module('scribeApp')
         }, 500);
       });
 
+    }
+
+    $scope.undoSelection = function(){
+      $scope.cardsEvaluated = $(".pane:hidden").length
+      if($scope.cardsEvaluated == 0){
+        console.log("no disponible")
+        return false
+      } else {
+         $scope.reduceLikes()
+        $('#swipe-wrapper').jTinder('undo');
+        //console.log("id "+currentNotebookId+" likes "+likes+" dislikes "+dislikes+ " liked Female "+likedFemale+" likedMale "+likedMale+" ageA "+ageA+" ageB "+ageB)
+        //$scope.reduceLikes(currentNotebookId, likes, dislikes, likedFemale, likedMale, ageA, ageB)
+       
+      }
     }
 
   });
