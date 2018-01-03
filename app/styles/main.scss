@@ -1352,5 +1352,49 @@ h1 {
     }
 }
 
+@media (max-width: 420px){
+    .main-container{
+        .header{
+            margin-top:50px;
+            img{
+                max-width:150px;
+            }
+        }
+        .content-wrapper{
+            .login{
+                .main-cover{
+                    margin-top: 30px;
+                    img{
+                        width:90%;
+                    }
+                }
+                h1{
+                    margin:30px auto;
+                }
+            }
+        }
+        .red-btn{
+            width:100%;
+        }
+        .profile{
+            input{
+                width:100%;
+                margin:20px auto;
+            }
+            .genero{
+                h1{
+                    margin:30px auto
+                }
+            }
+        }
+    }
+    #collection-modal{
+        .modal-content{
+            top:110px;
+        }
+    }
+}
+
+
 
 
