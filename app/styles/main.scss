@@ -42,43 +42,7 @@ body {
   background-image: linear-gradient(-180deg, #FFFFFF 0%, #F3F4F8 91%);
 }
 
-@media screen and (max-width: 768px) {
-    body {
-        overflow: hidden;
-        .icon-box{
-            img{
-                margin-left: -5px!important;
-            }
-        }
-        .collections-wrapper, .notebooks-wrapper, .stats-wrapper{
-            margin-left: -40px;
-            .btn-allred{
-                width: 180px;
-            }
-            #descripcion{
-                margin-left: -15px;
-                margin-top: 20px;
-            }
-            .collection-list{
-                margin-right: 25px;
-            }
-        }
-    }
-}
 
-@media screen and (max-width: 767px) {
-    #collection-modal{
-        .modal-content{
-            max-height: 480px!important;
-        }
-        .collection-wrapper{
-            min-height: 130px!important;
-            h1{
-                bottom: 0px!important;
-            }
-        }
-    }
-}
 
 /*Colors*/
 
@@ -632,9 +596,9 @@ h1 {
 .bgWhite{
     background-color: #FFFFFF; 
     &.description{
-        height: 40%;
+        height: 45%;
         position: absolute;
-        bottom: 0px
+        bottom: -20px;
     }
 }
 
@@ -1333,7 +1297,7 @@ h1 {
     margin-bottom: 0px!important;
 }
 .stats-wrapper{
-    position: absolute;
+   /*  position: absolute; */
     width: 96%;
     margin-left: auto;
     margin-right: auto;
@@ -1352,16 +1316,61 @@ h1 {
     }
 }
 
+@media screen and (max-width: 768px) {
+    .icon-box{
+        img{
+            margin-left: -5px!important;
+        }
+    }
+    .collections-wrapper, .notebooks-wrapper, .stats-wrapper{
+        margin-left: -40px;
+        .btn-allred{
+            width: 180px;
+        }
+        #descripcion{
+            margin-left: -15px;
+            margin-top: 20px;
+        }
+        .collection-list{
+            margin-right: 25px;
+        }
+    }
+}
+
 @media (max-width: 420px){
+    #collection-modal{
+        .modal-header{
+            h4{
+                font-size: 16px;
+            }
+        }
+        .modal-content{
+            max-height: 480px!important;
+        }
+        .collection-wrapper{
+            min-height: 130px!important;
+            h1{
+                font-size: 20px!important;
+            }
+        }
+    }
     .main-container{
         .header{
             margin-top:50px;
             img{
                 max-width:150px;
             }
+            .show-list, .show-filter, .btn-back{
+                width: 35px;
+                height: 35px;
+                background-size: contain;
+            }
+            .prefers-title{
+                margin-left: 28%;
+            }
         }
         .content-wrapper{
-            .login{
+            .login, .finish{
                 .main-cover{
                     margin-top: 30px;
                     img{
@@ -1370,31 +1379,145 @@ h1 {
                 }
                 h1{
                     margin:30px auto;
+                    width: 90%;
+                    font-size: 25px;
                 }
             }
         }
         .red-btn{
-            width:100%;
+            width: 75%;
+            height: 60px;
+            font-size: 20px;
         }
         .profile{
             input{
-                width:100%;
-                margin:20px auto;
+                width: 70%;
+                margin: 20px auto;
+                height: 50px;
+                font-size: 18px;
             }
             .genero{
                 h1{
-                    margin:30px auto
+                    margin:30px auto;
+                    font-size: 20px;
+                }
+            }
+        }
+        #swipe-wrapper{
+            .like, .dislike{
+                top: 65px;
+                width: 250.6px;
+            }
+            .slide-name{
+                left: 20px;
+                font-size: 25px;
+                bottom: 0px;
+            }
+            .like-count{
+                .counter{
+                    font-size: 17px;
+                    right: 50px;
+                    bottom: 15px;
+                }
+                .like-btn{
+                    right: 15px;
+                    bottom: 15px;
+                    width: 25px;
+                    height: 25px;
+                }
+            }
+            li{
+                &.pane1{
+                    width: 89.5%;
+                    margin-left: 6%;
+                }
+            }
+        }
+        .actions{
+            margin: -18px auto;
+            .reload-btn{
+                width: 50px;
+                height: 50px;
+                background-size: contain;
+            }
+        }
+        .preferences-wrapper{
+            .preferences-control{
+                height: 40px;
+                font-size: 16px;
+                width: 70%;
+                .btn{
+                    height: 40px;
+                    padding-top: 10px;
+                }
+            }
+            .list-card{
+                min-height: 190px;
+                .card-name{
+                    font-size: 20px;
+                }
+                .counter{
+                    font-size: 25px;
+                }
+                .like-btn{
+                    width: 25px;
+                    height: 25px;
+                    top: 10px;
+                }
+            }
+        }
+        .detail-wrapper{
+            .bgBlack{
+                position: fixed;
+                width: auto;
+                .btn-back-white{
+                    width: 30px;
+                    height: 30px;
+                    background-size: contain;
+                    margin-left: 20px;
+                    margin-top: 10px;
+                }
+                .btn-share-white{
+                    width: 26px;
+                    height: 26px;
+                    background-size: contain;
+                    right: 41px;
+                    margin-top: 27px;
+                }
+            }
+            .bgWhite{
+                &.description{
+                    height: 60%;
+                    bottom: -30px;
+                }
+                .title-note{
+                    font-size: 25px;
+                }
+                .like-btn{
+                    width: 25px;
+                    height: 25px;
+                }
+                .counterLikes{
+                    font-size: 16px;
+                }
+                .descriptionNote{
+                    font-size: 14px!important;
+                }
+                .detail-button{
+                    a{
+                        width: 80px;
+                        height: 80px;
+                    }
                 }
             }
         }
     }
     #collection-modal{
         .modal-content{
-            top:110px;
+            top: 90px;
         }
     }
 }
-
 
 
 
