@@ -15,8 +15,17 @@ angular.module('scribeApp')
       'Karma'
     ];
 
+  $scope.urlUpload = "https://luisvardez.000webhostapp.com/upload.php";
+
+    $scope.collection = {};
     $scope.collectionsList;
-     $scope.resUploadFile;
+    $scope.collectionsNames = []
+    $scope.notebookObject = {};
+
+    $scope.collectionSelected;
+
+    //variable en la cual se guarda el resultado de la petición al guardar imagen en el servidor
+    $scope.resUploadFile;
 
     $scope.getCollectionList = function() {
         $http({
@@ -32,13 +41,14 @@ angular.module('scribeApp')
         }).then(
             function(response) {
                 $scope.collectionsList = response.data.data;
+                 $scope.listCollectionNames()
             },
             function(response) {
                 alert("error")
             });
     }
 
-    $scope.getCollectionNotebooks = function(selectedCollection) {
+    $scope.getNotebooks = function(selectedCollection) {
         $http({
             method: 'GET',
             url: 'https://api.backand.com:443/1/objects/notebook?pageSize=20&pageNumber=1',
@@ -64,47 +74,92 @@ angular.module('scribeApp')
         );
     }
 
+  $scope.getCollectionNotebooks = function () {
+      $http({
+        method: 'GET',
+        url: 'https://api.backand.com:443/1/objects/notebook?pageSize=20&pageNumber=1',
+        headers: {
+          AnonymousToken: "a3cacd9a-831f-4aa8-8872-7d80470a000e"
+        },
+        params: {
+          pageSize: 20,
+          pageNumber: 1,
+          "filter": [{
+            "fieldName": "collection",
+            "operator": "in",
+            "value": "50" /*aqui va el id de la colección a consultar*/
+          }],
+        }
+      }).then(
+        function (response) {
+          console.log(response.data.data)
+        },
+        function (response) {
+          alert("error")
+        });
+    }
+
     $scope.getCollectionList();
+
+    var idSelection;
 
     $scope.setCollection = function(selection) {
         if (selection == "Colecciones") {
             $(".btn-red").addClass("disabled").off("click")
         } else {
-            var selectedCollection = selection.toString();
-            var prueba = $(".selectpicker option:selected").text()
-            $(".note-selected, .title").text(" Colección " + prueba)
+            idSelection = selection.toString();
+            var title = $(".selectpicker option:selected").text()
+            $(".note-selected, .title").text(" Colección " + title)
             $(".btn-red").removeClass("disabled").on("click")
-            $scope.getCollectionNotebooks(selectedCollection);
+            $scope.getNotebooks(idSelection);
+
+            $scope.notebookObject.collection = $scope.selectedCollection;
+
+            console.log($scope.collectionsList)
+            $scope.collectionsList.forEach(function (value, key) {
+              if (value.id == $scope.selectedCollection) {
+                $scope.collectionSelected = value.name;
+              }
+            }, this);
+              }
+    }
+
+    $scope.listCollectionNames = function () {
+      var i;
+      for (i = 0; i < $scope.collectionsList.length; i++) {
+        $scope.collectionsNames.push($scope.collectionsList[i].name)
+      }
+      console.log($scope.collectionsNames)
+    }
+
+     $scope.getSingleCollection = function () {
+      $http({
+        method: 'GET',
+        url: 'https://api.backand.com:443/1/objects/collection/50',
+        /*el último número debe ser el id de la colección a consultar*/
+        headers: {
+          AnonymousToken: "a3cacd9a-831f-4aa8-8872-7d80470a000e"
+        },
+        params: {
+          pageSize: 20,
+          pageNumber: 1
         }
+      }).then(
+        function (response) {
+          console.log(response.data)
+          $scope.getCollectionNotebooks();
+        },
+        function (response) {
+          alert("error")
+        });
     }
 
     $scope.openFileDialog = function(idBtn) {
         $(idBtn).trigger("click")
     }
 
-    $scope.collectionsLists;
-    $scope.collectionsNames = []
-    $scope.notebookObject = {};
-    $scope.selectedCollections;
-
-    $scope.collectionSelected;
-
-    $scope.setCollectionId = function () {
-
-      $scope.notebookObject.collection = $scope.selectedCollections;
-
-      console.log($scope.collectionsList)
-      $scope.collectionsList.forEach(function (value, key) {
-        if (value.id == $scope.selectedCollections) {
-          $scope.collectionSelected = value.name;
-        }
-      }, this);
-
-    }
-
     //carga de libretas
     $scope.uploadNotebook = function () {
-       $(".full-overlay").removeClass("hidden");
       //se manda llamar el servicio creado para la carga de las imagenes,
       //Parametros:  Id de input tipo file,nombre de la coleccion que se envía y el nombre del tipo de imagen
       //:notebook y detail
@@ -124,7 +179,6 @@ angular.module('scribeApp')
                   alert("cargada con éxito")
                   $scope.notebookObject = {};
                   $scope.selectedCollections = {};
-                  $(".full-overlay").addClass("hidden");
                   $("#fileupload,#fileuload2").attr({ value: '' });
                   $(".img-prev").attr("src","").addClass("hidden");
                 },
@@ -137,12 +191,12 @@ angular.module('scribeApp')
       })//termina then de servicio
     }
 
-    $scope.readURL = function(input) {
+    $scope.readURL = function(input, idImage) {
       if (input.files && input.files[0]) {
           var reader = new FileReader();
           reader.onload = function (e) {
-              $(input).parent().next().attr('src', e.target.result);
-              $(input).parent().next().removeClass("hidden");
+              $(idImage).attr('src', e.target.result);
+              $(idImage).removeClass("hidden");
           };
           reader.readAsDataURL(input.files[0]);   
       }

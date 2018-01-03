@@ -1,14 +1,14 @@
 <nav class="navbar navbar-default navbar-fixed-top menu">
 	<div class="container-fluid">
 		<div class="row">
-			<div class=" col-md-1 col-sm-2 icon-box">
+			<div class="col-sm-1 icon-box">
 				<img src="images/scribe-logo.svg" class="img-logo" alt="">
 			</div>
-			<div class="col-md-11 col-sm-10 borderB">
+			<div class="col-sm-11 borderB">
 				<div class="col-sm-4 searching">
 					<!-- <div class="form-group">
-							<input type="text" class="form-control ico-search" placeholder="Buscar">
-							<span class="ico-search"></span>
+								<input type="text" class="form-control ico-search" placeholder="Buscar">
+								<span class="ico-search"></span>
 					</div> -->
 				</div>
 				<div class="col-sm-8">
@@ -25,39 +25,41 @@
 </nav>
 <div class="wrapper">
 	<div class="row">
-		<div class="col-md-1 col-sm-2 menu-box">
-			<ul class="nav flex-column">
-				<li class="nav-item">
-					<a class="nav-link" href="">
-						<span class="ico dashboard"></span>
-					</a>
-				</li>
-				<li class="nav-item">
-					<a class="nav-link" href="#/admin">
-						<span class="ico collect"></span>
-					</a>
-				</li>
-				<li class="nav-item">
-					<a class="nav-link" href="#/newnotebook">
-						<span class="ico notes"></span>
-					</a>
-				</li>
-				<li class="nav-item">
-					<a class="nav-link active" href="#/stats">
-						<span class="ico stat"></span>
-					</a>
-				</li>
-				<li class="nav-item">
-					<a class="nav-link" href="">
-						<span class="ico settings"></span>
-					</a>
-				</li>
-			</ul>
+		<div class="col-sm-1">
+			<div class="menu-box">
+				<ul class="nav flex-column">
+					<li class="nav-item">
+						<a class="nav-link" href="">
+							<span class="ico dashboard"></span>
+						</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="#/admin">
+							<span class="ico collect"></span>
+						</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="#/newnotebook">
+							<span class="ico notes"></span>
+						</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link active" href="#/stats">
+							<span class="ico stat"></span>
+						</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="">
+							<span class="ico settings"></span>
+						</a>
+					</li>
+				</ul>
+			</div>
 		</div>
-		<div class="col-md-11 col-sm-10 container-box">
+		<div class="col-sm-11">
 			<div class="stats-wrapper section">
 				<div class="row marginL50">
-					<div class="col-sm-3 paddingLess">
+					<div class="col-md-3 col-sm-5 paddingLess">
 						<p class="title-admin">Estadísticas</p>
 					</div>
 					<div class="col-sm-3">
@@ -70,14 +72,14 @@
 					<p class="light-text no-marginB">ADMINISTRACIÓN DE ESTADÍSTICAS</p>
 				</div>
 				<div class="row marginL50">
-					<div class="col-sm-3 paddingLess marginT20">
+					<div class="col-md-3 col-sm-6 paddingLess marginT20">
 						<select class="selectpicker general-input capitalize" ng-change="setCollection(selections)" ng-model="selections">
 							<option class="selected">Colecciones</option>
 							<option data-ng-repeat="collection in collectionsList"  ng-value="{{collection.id}}">{{collection.name}}</option>
 						</select>
 					</div>
 					<div class="col-sm-12">
-						<div class="list-stats col-sm-8" >
+						<div class="list-stats col-md-8 col-sm-11" >
 							<div class="panel panel-default" data-ng-repeat="notebooks in collectionNotebooks" data-coleccion="{{notebooks.collection}}" data-id="{{notebooks.id}}" data-nombre="{{notebooks.name}}">
 								<div class="panel-body" >
 									<div class="row">
@@ -98,7 +100,7 @@
 										</div>
 										<div class="col-sm-3">
 											<span class="ico likes-icon">Likes</span>
-												<canvas id="like-chart-{{notebooks.id}}" class="chart chart-doughnut" chart-colors="['#A7F0E0','#E77F8C']" chart-data="notebooks.dataLikes" chart-labels="labels"></canvas>
+											<canvas id="like-chart-{{notebooks.id}}" class="chart chart-doughnut" chart-colors="['#A7F0E0','#E77F8C']" chart-data="notebooks.dataLikes" chart-labels="labels"></canvas>
 											<p><span class="border-Like">{{(notebooks.like * 100 / (notebooks.like + notebooks.dislike) | number:0)}}%</span><span class="detail"> Likes</span></p>
 											<p><span class="border-Dislike">{{(notebooks.dislike * 100 / (notebooks.like + notebooks.dislike) | number:0)}}%</span><span class="detail"> Dislikes</span></p>
 										</div>
@@ -111,31 +113,31 @@
 							<table>
 								<thead>
 									<tr>
-									<th colspan="2">Libreta</th>
-									<th colspan="2">Genero</th>
-									<th colspan="2">Edades</th>
-									<th colspan="2">Likes</th>
-								</tr>
+										<th colspan="2">Libreta</th>
+										<th colspan="2">Genero</th>
+										<th colspan="2">Edades</th>
+										<th colspan="2">Likes</th>
+									</tr>
 								</thead>
 								<tbody>
 									<tr>
-									<td colspan="2"></td>
-									<td>Hombre</td>
-									<td>Mujer</td>
-									<td>17-20</td>
-									<td>21-27</td>
-									<td>Likes</td>
-									<td>Dislikes</td>
-								</tr>
-								<tr data-ng-repeat="notebooks in collectionNotebooks">
-									<td colspan="2">{{notebooks.name}}</td>
-									<td>{{(notebooks.likedToMale * 100 / (notebooks.likedToFemale + notebooks.likedToMale) | number:0)}}%</td>
-									<td>{{(notebooks.likedToFemale * 100 / (notebooks.likedToFemale + notebooks.likedToMale) | number:0)}}%</td>
-									<td>{{(notebooks.userAgeA * 100 / (notebooks.userAgeA + notebooks.userAgeB) | number:0)}}%</td>
-									<td>{{(notebooks.userAgeB * 100 / (notebooks.userAgeA + notebooks.userAgeB) | number:0)}}%</td>
-									<td>{{(notebooks.like * 100 / (notebooks.like + notebooks.dislike) | number:0)}}%</td>
-									<td>{{(notebooks.dislike * 100 / (notebooks.like + notebooks.dislike) | number:0)}}%</td>
-								</tr>
+										<td colspan="2"></td>
+										<td>Hombre</td>
+										<td>Mujer</td>
+										<td>17-20</td>
+										<td>21-27</td>
+										<td>Likes</td>
+										<td>Dislikes</td>
+									</tr>
+									<tr data-ng-repeat="notebooks in collectionNotebooks">
+										<td colspan="2">{{notebooks.name}}</td>
+										<td>{{(notebooks.likedToMale * 100 / (notebooks.likedToFemale + notebooks.likedToMale) | number:0)}}%</td>
+										<td>{{(notebooks.likedToFemale * 100 / (notebooks.likedToFemale + notebooks.likedToMale) | number:0)}}%</td>
+										<td>{{(notebooks.userAgeA * 100 / (notebooks.userAgeA + notebooks.userAgeB) | number:0)}}%</td>
+										<td>{{(notebooks.userAgeB * 100 / (notebooks.userAgeA + notebooks.userAgeB) | number:0)}}%</td>
+										<td>{{(notebooks.like * 100 / (notebooks.like + notebooks.dislike) | number:0)}}%</td>
+										<td>{{(notebooks.dislike * 100 / (notebooks.like + notebooks.dislike) | number:0)}}%</td>
+									</tr>
 								</tbody>
 							</table>
 						</div>

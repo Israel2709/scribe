@@ -43,57 +43,37 @@ angular.module('scribeApp')
         }).then(
             function(response) {
                 $scope.collectionsList = response.data.data;
+                $scope.listCollectionNames()
             },
             function(response) {
                 alert("error")
             });
     }
 
-   /* $scope.getCollectionNotebooks = function(selectedCollection) {
-        $http({
-            method: 'GET',
-            url: 'https://api.backand.com:443/1/objects/notebook?pageSize=20&pageNumber=1',
-            headers: {
-                AnonymousToken: "a3cacd9a-831f-4aa8-8872-7d80470a000e"
-            },
-            params: {
-                pageSize: 20,
-                pageNumber: 1,
-                "filter": [{
-                    "fieldName": "collection",
-                    "operator": "in",
-                    "value": selectedCollection 
-                }],
-            }
-        }).then(
-            function(response) {
-                $scope.collectionNotebooks = response.data.data;
-            },
-            function(response) {
-                alert("error")
-            }
-        );
-    }*/
+    $scope.listCollectionNames = function () {
+      var i;
+      for (i = 0; i < $scope.collectionsList.length; i++) {
+        $scope.collectionsNames.push($scope.collectionsList[i].name)
+      }
+      console.log($scope.collectionsNames)
+    }
 
     $scope.getCollectionList();
 
     $scope.openFileDialog = function(idBtn) {
         $(idBtn).trigger("click")
     }
-    
-    /*$scope.uploadCollection = function () {
 
+    $scope.uploadCollection = function () {
       if ($.inArray($scope.collection.name, $scope.collectionsNames) > -1) {
         alert("la coleccion ya existe");
         return false
       } else {
-
-      
-
         $scope.collectionSelected = $scope.collection.name;
-        console.log($scope.collectionSelected)
+        console.log( $scope.collectionSelected)
 
         upload.upload('picture', $scope.collectionSelected,'modal').then(function (response) {
+          console.log(response.status)
           if (response.status == '200') {
             $scope.collection.coverUrl = response.data;
             console.log($scope.collection)
@@ -116,16 +96,17 @@ angular.module('scribeApp')
           }
         })
       }
-    }*/
+    }
 
     $scope.readURL = function(input) {
       if (input.files && input.files[0]) {
+
           var reader = new FileReader();
           reader.onload = function (e) {
               $(input).parent().next().attr('src', e.target.result);
               $(input).parent().next().removeClass("hidden");
           };
-          reader.readAsDataURL(input.files[0]);   
+          reader.readAsDataURL(input.files[0]);  
       }
   }
 
@@ -135,14 +116,14 @@ angular.module('scribeApp')
     }
 
     
-  });
+  })
 
-  /*.service('upload',[
+  .service('upload',[
     '$http',
     function($http){
       this.upload =  function(id,selected,prefix){
       
-      var inputFileImage = $("#" + id)[0].file[0];
+      var inputFileImage = $("#" + id)[0].files[0];
       var dataImage = new FormData();
 
       dataImage.append("file", inputFileImage);
@@ -159,4 +140,4 @@ angular.module('scribeApp')
         })
       }
     }
-  ]);*/
+  ]);

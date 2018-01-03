@@ -1,10 +1,10 @@
 <nav class="navbar navbar-default navbar-fixed-top menu">
 	<div class="container-fluid">
 		<div class="row">
-			<div class=" col-md-1 col-sm-2 icon-box">
+			<div class="col-sm-1 icon-box">
 				<img src="images/scribe-logo.svg" class="img-logo" alt="">
 			</div>
-			<div class="col-md-11 col-sm-10 borderB">
+			<div class="col-sm-11 borderB">
 				<div class="col-sm-4 searching">
 					<!-- <div class="form-group">
 						<input type="text" class="form-control ico-search" placeholder="Buscar">
@@ -25,8 +25,9 @@
 </nav>
 <div class="wrapper">
 	<div class="row">
-		<div class="col-md-1 col-sm-2 menu-box">
-			<ul class="nav flex-column">
+		<div class="col-sm-1">
+			<div class="menu-box">
+				<ul class="nav flex-column">
 				<li class="nav-item">
 					<a class="nav-link" href="">
 						<span class="ico dashboard"></span>
@@ -53,11 +54,13 @@
 					</a>
 				</li>
 			</ul>
+			</div>
+			
 		</div>
-		<div class="col-md-11 col-sm-10 container-box">
+		<div class="col-sm-11">
 			<div class="notebooks-wrapper section">
 				<div class="row marginL50">
-					<div class="col-sm-3 paddingLess">
+					<div class="col-md-3 col-sm-5 paddingLess">
 						<p class="title-admin">Libretas</p>
 					</div>
 					<div class="col-sm-3">
@@ -68,32 +71,42 @@
 				</div>
 				<div class="row marginL50">
 					<p class="light-text">DAR DE ALTA UNA NUEVA LIBRETA</p>
-					<div class="col-sm-3 paddingLess">
-						<select class="selectpicker general-input capitalize" ng-change="setCollection(selection); setCollectionId()" ng-model="selection">
+					<div class="col-md-3 col-sm-6 paddingLess">
+						<select class="selectpicker general-input capitalize" data-ng-model="selectedCollection" data-ng-change="setCollection(selectedCollection)">
 							<option class="selected">Colecciones</option>
 							<option data-ng-repeat="collection in collectionsList"  ng-value="{{collection.id}}">{{collection.name}}</option>
 						</select>
 					</div>
-					<div class="col-sm-3">
+					<div class="col-md-3 col-sm-5">
 						<input type="text" placeholder="Nombre" id="nombre" class="general-input" data-ng-model="notebookObject.name">
 					</div>
-					<div class="col-sm-5">
+					<div class="col-md-5 col-sm-12">
 						<input type="text" placeholder="Descripción" id="descripcion" class="general-input" data-ng-model="notebookObject.descripcion">
 					</div>
-					<div class="col-sm-3 marginT20 paddingLess">
-						<div class="fileUpload btn btn-gray" ng-click="openFileDialog('#file-btn2')">
+					<div class="col-md-3 col-sm-4 marginT20 paddingLess">
+						<div class="fileUpload btn btn-gray" ng-click="openFileDialog('#fileupload')">
 							<span>+ Imagen de portada</span>
 						</div>
-						<input type="file" id="file-btn2" class="hidden" name="files[]" multiple onchange="angular.element(this).scope().readURL(this)">
+						<div>
+							<input id="fileupload" type="file" name="files[]" class="hidden"  multiple onchange="angular.element(this).scope().readURL(this, '#img_prev')">
+						</div>
+						<!-- <img id="img_prev" src="#" alt="your image"  class="hidden img-prev"/> -->
 					</div>
-					<div class="col-sm-3 marginT20">
-						<div class="fileUpload btn btn-gray" ng-click="openFileDialog('#file-btn3')">
+					<div class="col-md-3 col-sm-4 marginT20">
+						<div class="fileUpload btn btn-gray" ng-click="openFileDialog('#fileupload2')">
 							<span>+ Imagen del detalle</span>
 						</div>
-						<input type="file" id="file-btn3" class="hidden" name="files[]" multiple onchange="angular.element(this).scope().readURL(this)">
+						<div>
+							<input id="fileupload2" type="file" name="files[]" class="hidden" multiple onchange="angular.element(this).scope().readURL(this, '#img_prev2')">
+						</div>
+						
 					</div>
-					<div class="col-sm-3 marginT20">
-						<button type="button" class="btn btn-allred" data-ng-click="uploadNotebook()">Cargar</button>
+					<div class="col-sm-2 marginT20">
+						<button type="submit"  class="btn btn-allred" data-ng-click="uploadNotebook()">Cargar</button>
+					</div>
+					<div class="col-sm-4">
+						<img id="img_prev" src="#" alt="your image"  class="hidden view-image margins"/>
+						<img id="img_prev2" src="#" alt="your image"  class="hidden view-image margins"/>
 					</div>
 				</div>
 				<div class="row marginL50">
@@ -102,7 +115,7 @@
 						<span class="select"></span>
 						<div class="options">
 							<div class="views">
-								<img src="images/Fill_1.svg" alt="">
+								<img src="images/view1.jpg" alt="">
 							</div>
 							<div class="views">
 								<img src="images/Fill_38.svg"  alt="">
@@ -110,7 +123,7 @@
 						</div>
 					</div>
 					<div class="collection-list">
-						<div class="col-sm-2 list-box" data-coleccion="{{notebooks.collection}}" data-id="{{notebooks.id}}" data-nombre="{{notebooks.name}}" data-ng-repeat="notebooks in collectionNotebooks">
+						<div class="col-md-2 col-sm-4 list-box" data-coleccion="{{notebooks.collection}}" data-id="{{notebooks.id}}" data-nombre="{{notebooks.name}}" data-ng-repeat="notebooks in collectionNotebooks">
 							<img data-ng-src="https://luisvardez.000webhostapp.com/{{notebooks.coverSource}}" alt="">
 							<h1 class="title-note">{{notebooks.name}}</h1>
 						</div>
