@@ -308,40 +308,42 @@ angular.module('scribeApp')
                 ageB = response.data.userAgeB;
                 female = 1;
                 male = 1;
-                if(statusLikes == "like"){  
+                switch(statusLikes){
+                  case 'like':
                     if (typeof(response.data.like) == "string") {
                         likes = 0;
                     }
                     likes = parseInt(likes) + 1;
-                }
-                else{
-                  if(typeof(response.data.dislike) == "string"){
-                    dislikes = 0;
-                  }
-                  dislikes = parseInt(dislikes) + 1;
-                }
-                if($scope.selectionGender == "H"){
-                  if (typeof(response.data.likedToMale) == "string") {
-                        likedMale = 0;
+                    if($scope.selectionGender == "H"){
+                      if (typeof(response.data.likedToMale) == "string") {
+                            likedMale = 0;
+                        }
+                        likedMale = parseInt(likedMale) + 1;
                     }
-                    likedMale = parseInt(likedMale) + 1;
-                }
-                else{
-                  if (typeof(response.data.likedToFemale) == "string") {
-                        likedFemale = 0;
+                    else{
+                      if (typeof(response.data.likedToFemale) == "string") {
+                            likedFemale = 0;
+                        }
+                        likedFemale = parseInt(likedFemale) + 1;
                     }
-                    likedFemale = parseInt(likedFemale) + 1;
-                }
-                if($scope.selectionAges < 20){
-                  if (typeof(response.data.userAgeA) == "string") {
-                        ageA = 0;
+                    if($scope.selectionAges < 20){
+                      if (typeof(response.data.userAgeA) == "string") {
+                            ageA = 0;
+                        }
+                        ageA = parseInt(ageA) + 1;
+                    }else{
+                        if (typeof(response.data.userAgeB) == "string") {
+                            ageB = 0;
+                        }
+                        ageB = parseInt(ageB) + 1;
                     }
-                    ageA = parseInt(ageA) + 1;
-                }else{
-                    if (typeof(response.data.userAgeB) == "string") {
-                        ageB = 0;
+                    break;
+                  case 'dislike':
+                    if(typeof(response.data.dislike) == "string"){
+                      dislikes = 0;
                     }
-                    ageB = parseInt(ageB) + 1;
+                    dislikes = parseInt(dislikes) + 1;
+                    break;
                 }
                 $scope.updateLikes(idNote, likes, dislikes, likedFemale, likedMale, ageA, ageB);
                 console.log(idNote + " " + likes + " " + dislikes + " " + likedFemale + " " + likedMale + " " + ageA + " " + ageB)
