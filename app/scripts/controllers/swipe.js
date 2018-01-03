@@ -159,7 +159,7 @@ angular.module('scribeApp')
           $scope.getSelectedNotebook(item.data('id'), category);
         }
         else{
-          eval("$scope.ObjectLike." + category + ".push({\"coleccion\":item.data(\"coleccion\"),\"nombre\":item.data(\"nombre\"),\"imagen\":item.data(\"imagen\"),\"likedToMale\":item.data(\"likedToMale\"),\"likedToFemale\":item.data(\"likedToFemale\"),\"dislike\":item.data(\"dislike\")})");
+          eval("$scope.ObjectLike." + category + ".push({\"coleccion\":item.data(\"coleccion\"),\"nombre\":item.data(\"nombre\"),\"imagen\":item.data(\"imagen\"),\"likedToMale\":item.data(\"likedToMale\"),\"likedToFemale\":item.data(\"likedToFemale\"),\"dislike\":item.data(\"dislike\"),\"like\":item.data(\"like\")})");
           $scope.getSelectedNotebook(item.data('id'), category);
         }
         
@@ -210,7 +210,7 @@ angular.module('scribeApp')
             if (contador == 0) {
                 selectedCard += "<div class='row'>";
             }
-            selectedCard += "<div class='col-xs-12 col-sm-4'>" +
+            selectedCard += "<div class='col-xs-6 col-sm-4'>" +
                 "<div class='list-card'>" +
                 "<div class='content-image' style='background:"+rand+";'>"+
                 "<img src='https://luisvardez.000webhostapp.com/" + selectedList[i].imagen + "' alt=''></div>" +
@@ -223,9 +223,17 @@ angular.module('scribeApp')
                 "</div>";
 
             contador++;
-            if (contador === 3) {
+            if($(window).width() < 420){
+              if(contador == 2){
                 selectedCard += "</div>";
                 contador = 0;
+              }
+            }
+            else{
+              if(contador === 3) {
+                selectedCard += "</div>";
+                contador = 0;
+              }
             }
         }
         $(".list-wrapper").append(selectedCard);
