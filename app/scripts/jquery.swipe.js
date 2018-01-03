@@ -165,7 +165,7 @@
 						}
 						//panes.eq(current_pane).remove();
 
-						//countRemaining();
+						countRemaining();
 					} else {
 						//clickPanel(event,panes.eq(current_pane));
 						
@@ -195,8 +195,9 @@
 	};
 
 	 function countRemaining(){
-      var remaining = $("#swipe-wrapper ul li").length;
-      if(remaining == 0){
+      var remaining = $("#swipe-wrapper ul li:visible").length;
+      console.log("remaining "+remaining)
+      if(remaining == 1){
       	$("#swipe-wrapper").hide();
          window.location = "#/finish";
 
