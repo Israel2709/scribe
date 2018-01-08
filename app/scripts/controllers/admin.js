@@ -103,8 +103,8 @@ angular.module('scribeApp')
 
           var reader = new FileReader();
           reader.onload = function (e) {
-              $(input).parent().next().attr('src', e.target.result);
-              $(input).parent().next().removeClass("hidden");
+              $(".view-image").attr('src', e.target.result);
+              $(".view-image").removeClass("hidden");
           };
           reader.readAsDataURL(input.files[0]);  
       }

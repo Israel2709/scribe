@@ -79,7 +79,9 @@
 						</div>
 						<input type="file" name="files" id="picture" class="hidden" multiple onchange="angular.element(this).scope().readURL(this)">
 					</div>
-					<img id="img_prev3" src="#" alt="your image"  class="hidden view-image"/>
+					<div class="col-md-3 col-sm-10">
+						<img id="img_prev3" src="#" alt="your image"  class="hidden view-image"/>
+					</div>
 					<div class="col-sm-12 marginT20 paddingLess">
 						<button type="submit" class="btn btn-allred" data-ng-click="uploadCollection()">Cargar</button>
 					</div>
