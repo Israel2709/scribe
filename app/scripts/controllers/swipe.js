@@ -110,7 +110,7 @@ angular.module('scribeApp')
            if($scope.collectionNotebooks.length == 0){
               $("#collection-modal").modal("show")
             }
-      } else {
+      }/* else {
         $scope.detailElement = image;
         setTimeout(function() {
             $("#img-detail").attr("src", "https://luisvardez.000webhostapp.com/" + image.notebooks.coverSource);
@@ -118,7 +118,7 @@ angular.module('scribeApp')
             $(".counterLikes").text(image.notebooks.like);
             $(".descriptionNote").text(image.notebooks.descripcion)
         }, 200);
-      }
+      }*/
 
 
      

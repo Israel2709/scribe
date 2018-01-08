@@ -918,17 +918,18 @@ h1 {
         border-right: 1px solid #E7E9EA;
     }
     .img-logo{
-        width: 45.4px;
-        height: 29px;
-        margin: 30px;
+        width: 100%;
+        padding: 0px !important;
+        margin: 0px !important;
+        margin-top: 35px !important;
     }
     .user{
         background-image: url('../images/Oval_2.png');
-        width: 60px;
-        height: 60px;
+        width: 40px;
+        height: 40px;
         background-size: contain;
         float: right;
-        margin: 20px 20px;
+        margin: 30px 20px;
     }
     .searching{
         margin: 20px 0px;
@@ -1309,6 +1310,8 @@ h1 {
     box-shadow: 5px 10px #d6d0d0;
     margin-top: -55px;
     position: absolute;
+    box-shadow: 5px 5px 10px 0px;
+    right: 20%;
     &.margins{
         margin-left: 20px;
         margin-top: 20px;
@@ -1522,6 +1525,17 @@ h1 {
         }
     }
 }
+
+/*@media (min-width:992px){
+    body{
+        background:#F3f3f3;
+        .container{
+            width:420px !important;
+            height: 100%;
+            background:white;
+        }
+    }
+}*/
 
 
 
