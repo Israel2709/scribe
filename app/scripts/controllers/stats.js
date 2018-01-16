@@ -109,8 +109,13 @@ angular.module('scribeApp')
             alert("Seleccione una colección");
         }
         else{
-             window.open('data:application/vnd.ms-excel,' + encodeURIComponent($('#dvData').html()));
-            e.preventDefault();
+            $("#dvData").table2excel({  
+                name: "Table2Excel",  
+                filename: "Estadisticas",  
+                fileext: ".xls"  
+            });  
+            /* window.open('application/vnd.ms-excel;charset=utf-8,' + escape($('#dvData').html()));
+            e.preventDefault();*/
         }
     }
 

@@ -208,8 +208,13 @@ angular.module('scribeApp')
             alert("Seleccione una colección");
         }
         else{
-             window.open('data:application/vnd.ms-excel,' + encodeURIComponent($('#dvData').html()));
-            e.preventDefault();
+          $("#dvData").table2excel({  
+                name: "Table2Excel",  
+                filename: "Libretas",  
+                fileext: ".xls"  
+            }); 
+            /* window.open('data:application/vnd.ms-excel,' + encodeURIComponent($('#dvData').html()));
+            e.preventDefault();*/
         }
     }
 

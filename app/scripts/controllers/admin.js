@@ -111,8 +111,13 @@ angular.module('scribeApp')
   }
 
   $scope.export = function(e){
-        window.open('data:application/vnd.ms-excel,' + encodeURIComponent($('#dvData').html()));
-        e.preventDefault();
+    $("#dvData").table2excel({  
+                name: "Table2Excel",  
+                filename: "Colecciones",  
+                fileext: ".xls"  
+            }); 
+      /*  window.open('data:application/vnd.ms-excel,' + encodeURIComponent($('#dvData').html()));
+        e.preventDefault();*/
     }
 
     
