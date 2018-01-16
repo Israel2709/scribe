@@ -136,7 +136,7 @@ angular.module('scribeApp')
 
         }
 
-        $("#change-profile").prop("disabled", true).off("click")
+        $("#change-profile").prop("disabled", true)
         
     }
 
