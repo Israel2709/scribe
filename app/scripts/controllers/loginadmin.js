@@ -8,7 +8,7 @@
  * Controller of the scribeApp
  */
 angular.module('scribeApp')
-  .controller('LoginadminCtrl', function ($scope, $http, Fact) {
+  .controller('LoginadminCtrl', function ($scope, $http, Fact, $filter) {
     this.awesomeThings = [
       'HTML5 Boilerplate',
       'AngularJS',
@@ -68,25 +68,27 @@ angular.module('scribeApp')
 
     $scope.getCollectionList();
 
+
+
     $scope.pruebas = function(){
       var i;
-      for (i = 0; i < $scope.userMails.length; i++) {
-        if($scope.userMails[i].email == $scope.email){
-          //
-          if($scope.userMails[i].password == $scope.password){
-            $(".bgLogin").remove()
-            $(".header img").removeClass("marginTAdmin")
-            $(".red-btn").removeClass("disabled")
-            window.location = "#/admin";
-            $scope.userEnter = Fact.userAdmin.id = $scope.userMails[i].id;
-          }
-          else{
-            alert("datos no coinciden")
-          }
+
+      $scope.readEmail = $filter('filter')($scope.userMails, {email: $scope.email})[0];
+      if($scope.readEmail){
+        if($scope.password == $scope.readEmail.password){
+          $(".bgLogin").remove()
+          $(".header img").removeClass("marginTAdmin")
+          $(".red-btn").removeClass("disabled")
+          window.location = "#/admin";
+          $scope.userEnter = Fact.userAdmin.id = $scope.readEmail.id;
+          console.log( $scope.userEnter)
         }
         else{
-          alert("datos no validos")
+          alert("La contraseña es incorrecta")
         }
+      }
+      else{
+        alert("El correo no existe")
       }
     }
 
