@@ -103,6 +103,7 @@ angular.module('scribeApp')
             function(response) {
                 alert("Sus datos han cambiado")
                 console.log(response);
+                
             },
             function(response) {
                 alert("error")
@@ -135,7 +136,7 @@ angular.module('scribeApp')
             }
           })
 
-         $("#change-profile").prop("disabled", false).off("click")
+         $("#change-profile").prop("disabled", true).off("click")
     }
 
 
