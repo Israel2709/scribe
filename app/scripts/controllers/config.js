@@ -79,9 +79,7 @@ angular.module('scribeApp')
     $scope.getDataUser()
 
     $scope.removeDisabled = function(){
-      $("#change-profile").prop("disabled", false).on("click", function(){
-        $scope.changeProfile()
-      })
+      $("#change-profile").prop("disabled", false)
     }
 
     $scope.changeProfile = function() {
