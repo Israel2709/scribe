@@ -109,34 +109,37 @@ angular.module('scribeApp')
                 alert("error")
             });
 
+        if($("#profile-photo").hasClass("changeOn")){
+          
+          /*Upload profilePhoto*/
+           upload.upload('picture', 'photosUser','profile').then(function(response){
+            console.log(response.status)
+            if(response.status == '200'){
+              $scope.imageUrl = response.data
+               /*    $scope.notebookObject.listCoverSource = response.data;*/
+              $http({
+                  method: 'PUT',
+                  url: 'https://api.backand.com:443/1/objects/userAdmin/' + $scope.selectionUser,
+                  data: {
+                      imageUser: $scope.imageUrl,
+                  },
+                  headers: {
+                      AnonymousToken: "a3cacd9a-831f-4aa8-8872-7d80470a000e"
+                  }
+              }).then(
+                  function(response) {
+                      console.log(response)
+                  },
+                  function(response) {
+                      alert("error")
+                  });
+              }
+            }) 
 
-        /*Upload profilePhoto*/
+        }
 
-         upload.upload('picture', 'photosUser','profile').then(function(response){
-          console.log(response.status)
-          if(response.status == '200'){
-            $scope.imageUrl = response.data
-             /*    $scope.notebookObject.listCoverSource = response.data;*/
-            $http({
-                method: 'PUT',
-                url: 'https://api.backand.com:443/1/objects/userAdmin/' + $scope.selectionUser,
-                data: {
-                    imageUser: $scope.imageUrl,
-                },
-                headers: {
-                    AnonymousToken: "a3cacd9a-831f-4aa8-8872-7d80470a000e"
-                }
-            }).then(
-                function(response) {
-                    console.log(response)
-                },
-                function(response) {
-                    alert("error")
-                });
-            }
-          })
-
-         $("#change-profile").prop("disabled", true).off("click")
+        $("#change-profile").prop("disabled", true).off("click")
+        
     }
 
 
@@ -194,7 +197,7 @@ angular.module('scribeApp')
       if (input.files && input.files[0]) {
           var reader = new FileReader();
           reader.onload = function (e) {
-              $("#profile-photo").attr('src', e.target.result);
+              $("#profile-photo").attr('src', e.target.result).addClass("changeOn")
           };
           reader.readAsDataURL(input.files[0]);  
       }
