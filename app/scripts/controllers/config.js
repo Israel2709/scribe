@@ -51,29 +51,29 @@ angular.module('scribeApp')
 
     $scope.getDataUser = function() {
        $http({
-        method: 'GET',
-        url: 'https://api.backand.com:443/1/objects/userAdmin/' + $scope.selectionUser,
-        /*el último número debe ser el id de la colección a consultar*/
-        headers: {
-          AnonymousToken: "a3cacd9a-831f-4aa8-8872-7d80470a000e"
-        },
-        params: {
-          pageSize: 20,
-          pageNumber: 1
-        }
-      }).then(
-        function (response) {
-          console.log($scope.collectionsList)
-          $("#name").val(response.data.name)
-          $scope.changeName = response.data.name;
-          $("#alias").val(response.data.alias)
-           $scope.changeAlias = response.data.alias;
-           $scope.password = response.data.password;
-           $("#profile-photo").attr("src", "https://luisvardez.000webhostapp.com/"+response.data.imageUser)
-        },
-        function (response) {
-          alert("error")
-        });
+          method: 'GET',
+          url: 'https://api.backand.com:443/1/objects/userAdmin/' + $scope.selectionUser,
+          /*el último número debe ser el id de la colección a consultar*/
+          headers: {
+            AnonymousToken: "a3cacd9a-831f-4aa8-8872-7d80470a000e"
+          },
+          params: {
+            pageSize: 20,
+            pageNumber: 1
+          }
+        }).then(
+          function (response) {
+            console.log($scope.collectionsList)
+            $("#name").val(response.data.name)
+            $scope.changeName = response.data.name;
+            $("#alias").val(response.data.alias)
+             $scope.changeAlias = response.data.alias;
+             $scope.password = response.data.password;
+             $("#profile-photo").attr("src", "https://luisvardez.000webhostapp.com/"+response.data.imageUser)
+          },
+          function (response) {
+            alert("error")
+          });
     }
 
     $scope.getDataUser()
@@ -171,32 +171,32 @@ angular.module('scribeApp')
             if(newPass == confirmNew){
                 console.log($scope.selectionUser)
                 $http({
-                  method: 'PUT',
-                  url: 'https://api.backand.com:443/1/objects/userAdmin/' + $scope.selectionUser,
-                  data: {
-                      password: confirmNew
-                  },
-                  headers: {
-                      AnonymousToken: "a3cacd9a-831f-4aa8-8872-7d80470a000e"
-                  }
-              }).then(
-                  function(response) {
-                      console.log(response);
-                       alert("Su contraseña ha cambiado")
-                       $("#new-pass, #confirm-pass, #old-pass").val("")
-                  },
-                  function(response) {
-                      alert("error")
+                      method: 'PUT',
+                      url: 'https://api.backand.com:443/1/objects/userAdmin/' + $scope.selectionUser,
+                      data: {
+                          password: confirmNew
+                      },
+                      headers: {
+                          AnonymousToken: "a3cacd9a-831f-4aa8-8872-7d80470a000e"
+                      }
+                  }).then(
+                      function(response) {
+                          console.log(response);
+                           alert("Su contraseña ha cambiado")
+                           $("#new-pass, #confirm-pass, #old-pass").val("")
+                      },
+                      function(response) {
+                          alert("error")
                   });
-
               }
-              alert("Contraseña nueva no coincide")
-
+              else{
+                alert("Contraseña nueva no coincide")
+              }
             }
             else{
               alert("Contraseña actual incorrecta")
             }
-          }
+        }
           
         }
       
