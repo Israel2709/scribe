@@ -28,11 +28,11 @@
 		<div class="col-sm-1">
 			<div class="menu-box">
 				<ul class="nav flex-column">
-				<!--li class="nav-item">
+				<li class="nav-item">
 					<a class="nav-link" href="">
 						<span class="ico dashboard"></span>
 					</a>
-				</li-->
+				</li>
 				<li class="nav-item">
 					<a class="nav-link" href="#/admin">
 						<span class="ico collect"></span>
@@ -48,11 +48,11 @@
 						<span class="ico stat"></span>
 					</a>
 				</li>
-				<!--li class="nav-item">
-					<a class="nav-link" href="">
+				<li class="nav-item">
+					<a class="nav-link" href="#/config">
 						<span class="ico settings"></span>
 					</a>
-				</li-->
+				</li>
 			</ul>
 			</div>
 			
@@ -88,7 +88,7 @@
 							<span>+ Imagen de portada</span>
 						</div>
 						<div>
-							<input id="fileupload" type="file" name="files[]" class="hidden"  multiple onchange="angular.element(this).scope().readURL(this, '#img_prev')">
+							<input id="fileupload" type="file" name="files[]" class="hidden" accept="image/*" multiple onchange="angular.element(this).scope().readURL(this, '#img_prev')">
 						</div>
 						<!-- <img id="img_prev" src="#" alt="your image"  class="hidden img-prev"/> -->
 					</div>
@@ -97,7 +97,7 @@
 							<span>+ Imagen del detalle</span>
 						</div>
 						<div>
-							<input id="fileupload2" type="file" name="files[]" class="hidden" multiple onchange="angular.element(this).scope().readURL(this, '#img_prev2')">
+							<input id="fileupload2" type="file" name="files[]" class="hidden" accept="image/*" multiple onchange="angular.element(this).scope().readURL(this, '#img_prev2')">
 						</div>
 						
 					</div>
