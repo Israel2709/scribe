@@ -148,26 +148,16 @@ angular.module('scribeApp')
         $(idBtn).trigger("click")
     }
 
-    $scope.readURL = function(input) {
-      if (input.files && input.files[0]) {
-          var reader = new FileReader();
-          reader.onload = function (e) {
-              $("#profile-photo").attr('src', e.target.result);
-          };
-          reader.readAsDataURL(input.files[0]);  
-      }
-  }
-
 
     $scope.changePassword = function(){
-      var newPass = $("#new-pass").val()
-      var confirmNew = $("#confirm-pass").val()
-      var oldPass = $("#old-pass").val()
-        if(newPass.length == 0 || confirmNew.length == 0 || oldPass.length == 0){
-          alert("Llene todos los campos")
-        }
-        else{
-          if(oldPass == $scope.password){
+      var newPass = $("#new-pass").val();
+      var confirmNew = $("#confirm-pass").val();
+      var oldPass = $("#old-pass").val();
+      if(newPass.length == 0 || confirmNew.length == 0 || oldPass.length == 0){
+        alert("Llene todos los campos")
+      }
+      else{
+        if(oldPass == $scope.password){
             if(newPass == confirmNew){
                 console.log($scope.selectionUser)
                 $http({
@@ -188,23 +178,32 @@ angular.module('scribeApp')
                       function(response) {
                           alert("error")
                   });
-              }
-              else{
-                alert("Contraseña nueva no coincide")
-              }
             }
             else{
-              alert("Contraseña actual incorrecta")
+              alert("Contraseña nueva no coincide");
             }
         }
-          
+        else{
+          alert("Contraseña actual incorrecta");
         }
+      }
+    }
+
+    $scope.readURL = function(input) {
       
+      if (input.files && input.files[0]) {
+          var reader = new FileReader();
+          reader.onload = function (e) {
+              $("#profile-photo").attr('src', e.target.result);
+          };
+          reader.readAsDataURL(input.files[0]);  
+      }
+    }
+
+
 
   })
 
- //servicio para la ejecución de peticion y guardado de imagenes
-  //Prefix: modal,notebook,detail
   .service('upload',[
     '$http',
     function($http){
