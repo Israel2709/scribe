@@ -8,7 +8,7 @@
  * Controller of the scribeApp
  */
 angular.module('scribeApp')
-  .controller('ConfigCtrl', function ($scope, Fact, $http, upload) {
+  .controller('ConfigCtrl', function ($scope, Fact, $http, upload,  $timeout) {
     this.awesomeThings = [
       'HTML5 Boilerplate',
       'AngularJS',
@@ -190,7 +190,7 @@ angular.module('scribeApp')
     }
 
     $scope.readURL = function(input) {
-      
+
       if (input.files && input.files[0]) {
           var reader = new FileReader();
           reader.onload = function (e) {
