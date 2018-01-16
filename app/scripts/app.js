@@ -76,6 +76,16 @@ angular
         controller: 'StatsCtrl',
         controllerAs: 'stats'
       })
+      .when('/loginAdmin', {
+        templateUrl: 'views/loginadmin.html',
+        controller: 'LoginadminCtrl',
+        controllerAs: 'loginAdmin'
+      })
+      .when('/config', {
+        templateUrl: 'views/config.html',
+        controller: 'ConfigCtrl',
+        controllerAs: 'config'
+      })
       .otherwise({
         redirectTo: '/'
       });
@@ -93,6 +103,9 @@ angular
          },
          userAge: {
           age: null
+         },
+         userAdmin: {
+          id: null
          }
        }
     });
