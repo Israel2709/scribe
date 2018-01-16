@@ -35,6 +35,7 @@ module.exports = function(config) {
       'bower_components/backand-angular1-sdk/dist/backand.provider.js',
       'bower_components/chart.js/dist/Chart.js',
       'bower_components/angular-chart.js/dist/angular-chart.js',
+      'bower_components/jquery-table2excel/src/jquery.table2excel.js',
       'bower_components/angular-mocks/angular-mocks.js',
       // endbower
       'app/scripts/**/*.js',

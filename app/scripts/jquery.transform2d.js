@@ -1,3 +1,4 @@
+'use strict';
 /*
  * transform: A jQuery cssHooks adding cross-browser 2d transform capabilities to $.fn.css() and $.fn.animate()
  *

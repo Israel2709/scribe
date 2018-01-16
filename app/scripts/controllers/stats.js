@@ -16,6 +16,12 @@ angular.module('scribeApp')
       'Karma'
     ];
         $scope.labels = ["Likes", "Dislikes"];
+        $scope.black = [
+            "panel1",
+            "panel2",
+            "panel3",
+            "panel4",
+          ]
     
     $scope.getCollectionList = function() {
         $http({
@@ -77,12 +83,18 @@ angular.module('scribeApp')
 
     $scope.setCollection = function(selection) {
         if (selection == "Colecciones") {
-            $(".btn-red").addClass("disabled").off("click")
+            $(".btn-red").addClass("hidden")
+            $(".list-black").removeClass("hidden")
+            $(".list-stats").addClass("hidden")
+            $(".text-stat").text("Selecciona tu colección para poder ver los valores de cada libreta.")
         } else {
+            $(".list-black").addClass("hidden")
+             $(".list-stats").removeClass("hidden")
             var selectedCollection = selection.toString();
             var titles = $(".selectpicker option:selected").text()
+            $(".text-stat").text("Graficas de la Colección "+ titles)
             $(".title").text(titles)
-            $(".btn-red").removeClass("disabled").on("click")
+            $(".btn-red").removeClass("hidden")
             $scope.getCollectionNotebooks(selectedCollection);
         }
     }
@@ -97,8 +109,13 @@ angular.module('scribeApp')
             alert("Seleccione una colección");
         }
         else{
-             window.open('data:application/vnd.ms-excel,' + encodeURIComponent($('#dvData').html()));
-            e.preventDefault();
+            $("#dvData").table2excel({  
+                name: "Table2Excel",  
+                filename: "Estadisticas",  
+                fileext: ".xls"  
+            });  
+            /* window.open('application/vnd.ms-excel;charset=utf-8,' + escape($('#dvData').html()));
+            e.preventDefault();*/
         }
     }
 

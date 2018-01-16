@@ -1,0 +1,146 @@
+<nav class="navbar navbar-default navbar-fixed-top menu">
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-sm-1 icon-box">
+				<img src="images/scribe-logo.svg" class="img-logo" alt="">
+			</div>
+			<div class="col-sm-11 borderB">
+				<div class="col-sm-4 searching">
+					<!-- <div class="form-group">
+											<input type="text" class="form-control ico-search" placeholder="Buscar">
+											<span class="ico-search"></span>
+					</div> -->
+				</div>
+				<div class="col-sm-8">
+					<div id="navbar" class="navbar-collapse collapse">
+						<ul class="nav navbar-nav navbar-right">
+							<li><span class="user"></span></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+	</div>
+</nav>
+<div class="wrapper">
+	<div class="row">
+		<div class="col-sm-1">
+			<div class="menu-box">
+				<ul class="nav flex-column">
+					<li class="nav-item">
+						<a class="nav-link" href="">
+							<span class="ico dashboard"></span>
+						</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="#/admin">
+							<span class="ico collect"></span>
+						</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="#/newnotebook">
+							<span class="ico notes"></span>
+						</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="#/stats">
+							<span class="ico stat"></span>
+						</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link active" href="#/config">
+							<span class="ico settings"></span>
+						</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+		<div class="col-sm-11">
+			<div class="config-wrapper">
+				<div class="row marginL0">
+					<div class="col-md-3 col-sm-5">
+						<p class="title-admin">Configuración</p>
+						<p class="light-text">MIS DATOS</p>
+					</div>
+				</div>
+				<div class="row ">
+					<div class="col-md-3 col-sm-4">
+						<ul class="nav flex-column">
+							<li class="nav-item">
+								<a class="nav-link menu2 active" href="" ng-click="changeView('edit-profile', $event)">Editar perfil</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link menu2" href="" ng-click="changeView('change-pass', $event)">Cambiar contraseña</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link menu2" href="">Correo electrónico</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link menu2" href="" ng-click="changeView('info-user', $event)">Información de cuenta</a>
+							</li>
+						</ul>
+					</div>
+					<div class="col-md-4 col-sm-7" ng-switch="selection">
+						<div class="edit" ng-switch-when="edit-profile">
+							<div class="row"><!--  src="images/Oval_2.png" -->
+								<img id="profile-photo">
+								<div class="change-user">
+									<p class="name">Yortz</p>
+									<a  href="" class="edit-photo" ng-click="openFileDialog('#picture')">Editar Foto de perfil</a>
+									<input type="file" name="files" id="picture" accept="image/*" class="hidden" onchange="angular.element(this).scope().readURL(this); angular.element(this).scope().removeDisabled()">
+								</div>
+							</div>
+							<div class="row">
+								<div class="edit-box">
+									<div class="col-sm-3">
+										<p>Nombre</p>
+										<p>Usuario</p>
+									</div>
+									<div class="col-sm-9">
+										<input type="text" id="name" ng-keyup="removeDisabled()" class="general-input">
+										<input type="text" id="alias" ng-keyup="removeDisabled()" class="general-input">
+										<button type="submit"  id="change-profile" disabled="true" ng-click="changeProfile()" class="btn btn-allred">Realizar cambios</button>
+									</div>
+								</div>
+								
+							</div>
+						</div>
+						<div class="password"  ng-switch-when="change-pass">
+							<div class="col-sm-3">
+								<p class="text-right">Contraseña anterior</p>
+								<p class="text-right">Contraseña nueva</p>
+								<p class="text-right">Confirmar contraseña nueva</p>
+							</div>
+							<div class="col-sm-9">
+								<input type="text" data-ng-model="pass" id="old-pass" class="general-input">
+								<input type="text" id="new-pass"  class="general-input">
+								<input type="text" id="confirm-pass" class="general-input">
+								<button type="submit" ng-click="changePassword()" id="password-button" class="btn btn-allred">Cambiar contraseña</button>
+							</div>
+						</div>
+						<div class="info" ng-switch-when="info-user">
+							<div class="col-sm-2">
+								<div class="form-check squaredFour">
+									<label class="form-check-label">
+										<input type="checkbox" ng-click="checking('#squaredFour1')" class="form-check-input" value="None" id="squaredFour1" name="check" >
+									</label>
+									
+								</div>
+								<div class="form-check squaredFour">
+									<label class="form-check-label">
+										<input type="checkbox" ng-click="checking('#squaredFour2')"  class="form-check-input" value="None" id="squaredFour2" name="check" >
+									</label>
+								</div>
+							</div>
+							<div class="col-sm-10">
+								<p class="text-info">Correos electrónicos de noticias<br/>Conoce antes que nadie los nuevos productos</p>
+								<p class="text-info">Mensajes de Texto (SMS)<br/>Recibe notificaciones de recordatorios por mensaje de texto</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
