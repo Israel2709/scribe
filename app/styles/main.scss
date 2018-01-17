@@ -1199,8 +1199,8 @@ h1 {
                 bottom: 3px;
             }
             .title-note{
-                bottom: 1px;
-                font-size: 18px;
+                bottom: 0px;
+                font-size: 15px;
             }
         }
     }
@@ -1410,12 +1410,13 @@ h1 {
 .termins{
     bottom: 0px;
     position: absolute;
+    margin-top: -15px;
     @include auto-center();
     min-width: 1170px;
     text-align: center;
     a{
         color: #5A6A75;
-        font-size: 15px;
+        font-size: 12px;
     }
 }
 

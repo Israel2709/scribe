@@ -49,6 +49,7 @@ angular.module('scribeApp')
     }
 
     $scope.removeDisabled = function(){
+      console.log($scope.notebookObject.name)
        var title = $(".selectpicker option:selected").text()
       if(title == "" || title == "Colecciones" || $scope.notebookObject.name == "" || $scope.notebookObject.description == ""){
         $("#submit-notes").prop("disabled", true)
