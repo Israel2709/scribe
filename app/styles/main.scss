@@ -961,7 +961,6 @@ h1 {
 }
 
 .wrapper{
-    margin-top: 100px;
     position: absolute;
     right: 0;
     left: 0;
@@ -984,7 +983,7 @@ h1 {
     .config-wrapper{
         .flex-column{
             margin-top: 0px;
-            padding-bottom: 40px;
+            padding-bottom: 130px;
             border-right: 1px solid #E11D24;
             .nav-link{
                 color: #474F58;
@@ -1110,9 +1109,18 @@ h1 {
         background-color: #FFFFFF;
         position: fixed;
         bottom: 0px;
-        top: 100px;
-        width: 8.333333%;
+        top: 0px;
+        width: 100px;
         margin-left: -15px;
+        .icon-box{
+            height: 100px;
+            border-right: 1px solid #E7E9EA;
+        }
+        .img-logo{
+            width: 70%;
+            padding: 0px !important;
+            margin: 40px 16px !important;
+        }
     }
     .container-box{
         position: absolute;
@@ -1418,6 +1426,18 @@ h1 {
     }
 }
 
+.termins{
+    bottom: 0px;
+    position: fixed;
+    @include auto-center();
+    min-width: 1170px;
+    text-align: center;
+    a{
+        color: #878787;
+        font-size: 15px;
+    }
+}
+
 @media screen and (max-width: 768px) {
     .icon-box{
         img{
@@ -1425,7 +1445,7 @@ h1 {
         }
     }
     .collections-wrapper, .notebooks-wrapper, .stats-wrapper{
-        margin-left: -40px;
+        margin-left: 0px;
         .btn-allred{
             width: 180px;
         }
@@ -1448,6 +1468,9 @@ h1 {
                 margin-left: 0px!important;
             }
         }
+    }
+    .termins{
+        min-width: 760px;
     }
 }
 
@@ -1703,12 +1726,6 @@ h1 {
             vertical-align: middle;
             margin-left: 14%;
         }
-    }
-    .termins{
-        @include auto-center();
-        color: #878787;
-        font-size: 15px;
-        text-align: center;
     }
     .progress-indicator-wrapper{
         display: flex;

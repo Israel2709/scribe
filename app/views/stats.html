@@ -1,4 +1,4 @@
-<nav class="navbar navbar-default navbar-fixed-top menu">
+<!-- <nav class="navbar navbar-default navbar-fixed-top menu">
 	<div class="container-fluid">
 		<div class="row">
 			<div class="col-sm-1 icon-box">
@@ -6,10 +6,10 @@
 			</div>
 			<div class="col-sm-11 borderB">
 				<div class="col-sm-4 searching">
-					<!-- <div class="form-group">
+					<div class="form-group">
 								<input type="text" class="form-control ico-search" placeholder="Buscar">
 								<span class="ico-search"></span>
-					</div> -->
+					</div>
 				</div>
 				<div class="col-sm-8">
 					<div id="navbar" class="navbar-collapse collapse">
@@ -22,17 +22,20 @@
 		</div>
 		
 	</div>
-</nav>
+</nav> -->
 <div class="wrapper">
 	<div class="row">
-		<div class="col-sm-1">
+		<div class="col-md-1 col-sm-2">
 			<div class="menu-box">
+				<div class="icon-box">
+					<img src="images/scribe-logo.svg" class="img-logo" alt="">
+				</div>
 				<ul class="nav flex-column">
-					<li class="nav-item">
+					<!-- <li class="nav-item">
 						<a class="nav-link" href="">
 							<span class="ico dashboard"></span>
 						</a>
-					</li>
+					</li> -->
 					<li class="nav-item">
 						<a class="nav-link" href="#/admin">
 							<span class="ico collect"></span>
@@ -56,9 +59,9 @@
 				</ul>
 			</div>
 		</div>
-		<div class="col-sm-11">
+		<div class="col-md-11 col-sm-10">
 			<div class="stats-wrapper section">
-				<div class="row marginL50">
+				<div class="row marginL0">
 					<div class="col-md-3 col-sm-5 paddingLess">
 						<p class="title-admin">Estadísticas</p>
 					</div>
@@ -68,10 +71,10 @@
 						Exportar</button>
 					</div>
 				</div>
-				<div class="row marginL50">
+				<div class="row marginL0">
 					<p class="light-text no-marginB">ADMINISTRACIÓN DE ESTADÍSTICAS</p>
 				</div>
-				<div class="row marginL50">
+				<div class="row marginL0">
 					<div class="col-md-3 col-sm-6 paddingLess marginT20">
 						<select class="selectpicker general-input capitalize"  ng-change="setCollection(selections)" ng-model="selections">
 							<option class="selected">Colecciones</option>
