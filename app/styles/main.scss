@@ -910,56 +910,6 @@ h1 {
 
 
 /* CSS Admin */
-.menu{
-    height: 100px;
-    background-color: #FFFFFF;
-    border-bottom: none;
-    .icon-box{
-        height: 100px;
-        border-right: 1px solid #E7E9EA;
-    }
-    .img-logo{
-        width: 100%;
-        padding: 0px !important;
-        margin: 0px !important;
-        margin-top: 35px !important;
-    }
-    .user{
-        background-image: url('../images/Oval_2.png');
-        width: 40px;
-        height: 40px;
-        background-size: contain;
-        float: right;
-        margin: 30px 20px;
-    }
-    .searching{
-        margin: 20px 0px;
-        input{
-            background-image: url('../images/search_icon.svg');
-            background-repeat: no-repeat;
-            background-position: left;
-            border: none;
-            box-shadow: none;
-            margin-top: 10px;
-        }
-        input::placeholder {
-            padding-left: 20px;
-            color: #989898;
-            opacity: .5;
-            font-size: 16px;
-        }
-    }
-    .navbar-right{
-        height: 100px;
-        position: absolute;
-        right: 15px;
-    }
-    .borderB{
-        border-bottom: 1px solid #E7E9EA;
-        height: 100px;
-    }
-}
-
 .wrapper{
     position: absolute;
     right: 0;
@@ -983,7 +933,7 @@ h1 {
     .config-wrapper{
         .flex-column{
             margin-top: 0px;
-            padding-bottom: 130px;
+             padding-bottom: 100%;
             border-right: 1px solid #E11D24;
             .nav-link{
                 color: #474F58;
@@ -1020,7 +970,7 @@ h1 {
             }
         }
         .edit-box{
-            margin-left: 10%;
+            margin-right: 30px;
             p{
                 font-size: 16px;
                 color: #000000;
@@ -1121,6 +1071,24 @@ h1 {
             padding: 0px !important;
             margin: 40px 16px !important;
         }
+        .exit-box{
+            width: 25%;
+            display: block;
+            text-align: center;
+            margin-left: auto;
+            margin-right: auto;
+            .exit{
+                background-image: url(../images/05.svg);
+                width: 22px;
+                height: 22px;
+                background-size: contain;
+                background-position: center;
+                display: block;  
+                position: absolute;
+                bottom: 50px; 
+            }
+        }
+        
     }
     .container-box{
         position: absolute;
@@ -1130,6 +1098,12 @@ h1 {
         font-size: 38px;
         color: #233539;
         margin-top: 49px;
+    }
+    .export{
+        float: right;
+        &.black{
+            filter:  grayscale(1);
+        }
     }
     .fill{
         background-image: url('../images/Fill_1.png');
@@ -1433,6 +1407,7 @@ h1 {
     min-width: 1170px;
     text-align: center;
     a{
+        color: #5A6A75;
         font-size: 15px;
     }
 }
@@ -1719,8 +1694,8 @@ h1 {
             background-image: url('../images/Arrow_right.svg');
             background-repeat: no-repeat;
             background-size: contain;
-            width: 41px;
-            height: 41px;
+            width: 20px;
+            height: 20px;
             display: inline-block;
             vertical-align: middle;
             margin-left: 14%;
