@@ -48,6 +48,16 @@ angular.module('scribeApp')
             });
     }
 
+    $scope.removeDisabled = function(){
+       var title = $(".selectpicker option:selected").text()
+      if(title == "" || title == "Colecciones" || $scope.notebookObject.name == "" || $scope.notebookObject.description == ""){
+        $("#submit-notes").prop("disabled", true)
+      }
+      else{
+         $("#submit-notes").prop("disabled", false)
+      }
+    }
+
     $scope.getNotebooks = function(selectedCollection) {
         $http({
             method: 'GET',

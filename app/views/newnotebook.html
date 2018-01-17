@@ -27,7 +27,11 @@
 						</a>
 					</li>
 				</ul>
-				<div class="exit-box"><span class="exit"></span></div>
+				<div class="exit-box">
+					<a class="nav-link" href="#/loginAdmin">
+						<span class="exit"></span>
+					</a>
+				</div>
 			</div>
 			
 		</div>
@@ -41,16 +45,16 @@
 				<div class="row marginL0">
 					<p class="light-text">DAR DE ALTA UNA NUEVA LIBRETA</p>
 					<div class="col-md-3 col-sm-6 paddingLess">
-						<select class="selectpicker general-input capitalize" data-ng-model="selectedCollection" data-ng-change="setCollection(selectedCollection)">
+						<select class="selectpicker general-input capitalize" data-ng-model="selectedCollection" data-ng-change="setCollection(selectedCollection); removeDisabled()">
 							<option class="selected">Colecciones</option>
 							<option data-ng-repeat="collection in collectionsList"  ng-value="{{collection.id}}">{{collection.name}}</option>
 						</select>
 					</div>
 					<div class="col-md-3 col-sm-5">
-						<input type="text" placeholder="Nombre" id="nombre" class="general-input" data-ng-model="notebookObject.name">
+						<input type="text" placeholder="Nombre" id="nombre"  ng-keyup="removeDisabled()" class="general-input" data-ng-model="notebookObject.name">
 					</div>
 					<div class="col-md-5 col-sm-12">
-						<input type="text" placeholder="Descripción" id="descripcion" class="general-input" data-ng-model="notebookObject.descripcion">
+						<input type="text" placeholder="Descripción" ng-keyup="removeDisabled()" id="descripcion" class="general-input" data-ng-model="notebookObject.descripcion">
 					</div>
 					<div class="col-md-3 col-sm-4 marginT20 paddingLess">
 						<div class="fileUpload btn btn-gray" ng-click="openFileDialog('#fileupload')">
@@ -71,7 +75,7 @@
 						
 					</div>
 					<div class="col-sm-2 marginT20">
-						<button type="submit"  class="btn btn-allred" data-ng-click="uploadNotebook()">Cargar</button>
+						<button type="submit"  class="btn btn-allred" disabled="true" id="submit-notes" data-ng-click="uploadNotebook()">Cargar</button>
 					</div>
 					<div class="col-md-4 col-sm-10">
 						<img id="img_prev" src="#" alt="your image"  class="hidden view-image margins"/>

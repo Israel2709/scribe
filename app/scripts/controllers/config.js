@@ -87,7 +87,7 @@ angular.module('scribeApp')
       var newPass = $("#new-pass").val();
       var confirmNew = $("#confirm-pass").val();
       var oldPass = $("#old-pass").val();
-       if(newPass.length == 0 || confirmNew.length == 0 || oldPass.length == 0){
+       if(newPass.length == 0 && confirmNew.length == 0 && oldPass.length == 0){
                 $http({
                   method: 'PUT',
                   url: 'https://api.backand.com:443/1/objects/userAdmin/' + $scope.selectionUser,
@@ -100,6 +100,7 @@ angular.module('scribeApp')
               }).then(
                   function(response) {
                       alert("Sus datos han cambiado")
+                      $("#change-profile").prop("disabled", true)
                       console.log(response);
                       
                   },
@@ -108,7 +109,10 @@ angular.module('scribeApp')
                   });
         }
           else{
-                if(oldPass == $scope.password){
+                if(newPass.length == 0 || confirmNew.length == 0 || oldPass.length == 0){
+                  alert("Llene todos los campos")
+                }else{
+                   if(oldPass == $scope.password){
                     if(newPass == confirmNew){
                         console.log($scope.selectionUser)
                         $http({
@@ -125,6 +129,7 @@ angular.module('scribeApp')
                               function(response) {
                                   console.log(response);
                                    alert("Sus datos han cambiado")
+                                   $("#change-profile").prop("disabled", true)
                                    $("#new-pass, #confirm-pass, #old-pass").val("")
                               },
                               function(response) {
@@ -138,9 +143,9 @@ angular.module('scribeApp')
                 else{
                   alert("Contraseña actual incorrecta");
                 }
+                }
+               
               }
-        $("#change-profile").prop("disabled", true)
-        
     }
 
 

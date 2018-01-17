@@ -50,6 +50,15 @@ angular.module('scribeApp')
             });
     }
 
+    $scope.removeDisabled = function(){
+      if($scope.collection.name == ""){
+        $("#submit-button").prop("disabled", true)
+      }
+      else{
+         $("#submit-button").prop("disabled", false)
+      }
+    }
+
     $scope.listCollectionNames = function () {
       var i;
       for (i = 0; i < $scope.collectionsList.length; i++) {
