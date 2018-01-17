@@ -1428,12 +1428,11 @@ h1 {
 
 .termins{
     bottom: 0px;
-    position: fixed;
+    position: absolute;
     @include auto-center();
     min-width: 1170px;
     text-align: center;
     a{
-        color: #878787;
         font-size: 15px;
     }
 }
