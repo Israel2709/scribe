@@ -18,9 +18,7 @@ angular.module('scribeApp')
         $scope.labels = ["Likes", "Dislikes"];
         $scope.black = [
             "panel1",
-            "panel2",
-            "panel3",
-            "panel4",
+            "panel2"
           ]
     
     $scope.getCollectionList = function() {
@@ -82,8 +80,8 @@ angular.module('scribeApp')
     $scope.getCollectionList();
 
     $scope.setCollection = function(selection) {
-        if (selection == "Colecciones") {
-            $(".btn-red").addClass("hidden")
+        if (selection == "Elige la colección para ver las estadisticas") {
+            $(".btn-red").addClass("black").attr("disabled", true)
             $(".list-black").removeClass("hidden")
             $(".list-stats").addClass("hidden")
             $(".text-stat").text("Selecciona tu colección para poder ver los valores de cada libreta.")
@@ -94,7 +92,7 @@ angular.module('scribeApp')
             var titles = $(".selectpicker option:selected").text()
             $(".text-stat").text("Graficas de la Colección "+ titles)
             $(".title").text(titles)
-            $(".btn-red").removeClass("hidden")
+            $(".btn-red").removeClass("black").attr("disabled", false)
             $scope.getCollectionNotebooks(selectedCollection);
         }
     }
@@ -105,7 +103,7 @@ angular.module('scribeApp')
 
     $scope.export = function(e){
         var titles = $(".selectpicker option:selected").text()
-        if(titles == ""){
+        if(titles == "" || titles == "Elige la colección para ver las estadisticas"){
             alert("Seleccione una colección");
         }
         else{
