@@ -79,7 +79,7 @@
 										<input type="text" id="new-pass" placeholder="Nueva contraseña"  ng-keyup="removeDisabled()"  class="general-input">
 									</div>
 									<div class="col-md-4">
-										<input type="text" id="confirm-pass" placeholder="Confirmar nueva contraseña" class="general-input">
+										<input type="text" id="confirm-pass" ng-keyup="removeDisabled()" placeholder="Confirmar nueva contraseña" class="general-input">
 									</div>
 									<div class="col-md-4">
 										<button type="submit" ng-click="changeProfile()" id="change-profile" disabled="true" class="btn btn-allred">Realizar cambios</button>

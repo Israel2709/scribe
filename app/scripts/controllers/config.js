@@ -83,13 +83,18 @@ angular.module('scribeApp')
       var newPass = $("#new-pass").val();
       var confirmNew = $("#confirm-pass").val();
       var oldPass = $("#old-pass").val();
-      if(newPass.length == 0 || confirmNew.length == 0 || oldPass.length == 0 || name == $scope.changeName){
+      if(newPass == "" || confirmNew == "" || oldPass == ""){
+        $("#change-profile").prop("disabled", true)
+        if(name == $scope.changeName){
           $("#change-profile").prop("disabled", true)
+        }
+        else{
+          $("#change-profile").prop("disabled", false)
+        }
       }
       else{
         $("#change-profile").prop("disabled", false)
       }
-      
     }
 
     $scope.changeProfile = function() {
