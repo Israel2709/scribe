@@ -8,7 +8,7 @@
  * Controller of the scribeApp
  */
 angular.module('scribeApp')
-  .controller('StatsCtrl', function ($scope, $http) {
+  .controller('StatsCtrl', function ($scope, $http, $timeout) {
 
     this.awesomeThings = [
       'HTML5 Boilerplate',
@@ -35,6 +35,9 @@ angular.module('scribeApp')
         }).then(
             function(response) {
                 $scope.collectionsList = response.data.data;
+                 $timeout(function() {
+                    angular.element(".selectpicker option:eq(1)").prop("selected", true).trigger("change");
+                }, 10);
             },
             function(response) {
                 alert("error")

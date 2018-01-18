@@ -106,6 +106,9 @@ angular
          },
          userAdmin: {
           id: null
+         },
+         collectionDetail: {
+          id: null
          }
        }
     });

@@ -31,6 +31,9 @@
 					<a class="nav-link" href="#/loginAdmin">
 						<span class="exit"></span>
 					</a>
+					<div class="termins">
+						<a target="_blank" href="http://www.scribe.com.mx/aviso-de-privacidad/" >© Terminos y condiciones</a>
+					</div>
 				</div>
 			</div>
 			
@@ -47,25 +50,24 @@
 					<div class="col-md-3 col-sm-6 paddingLess">
 						<select class="selectpicker general-input capitalize" data-ng-model="selectedCollection" data-ng-change="setCollection(selectedCollection); removeDisabled()">
 							<option class="selected">Colecciones</option>
-							<option data-ng-repeat="collection in collectionsList"  ng-value="{{collection.id}}">{{collection.name}}</option>
+							<option ng-repeat="collection in collectionsList" id="{{collection.id}}"  ng-value="{{collection.id}}">{{collection.name}}</option>
 						</select>
 					</div>
 					<div class="col-md-3 col-sm-5">
 						<input type="text" placeholder="Nombre" id="nombre"  ng-keyup="removeDisabled()" class="general-input" data-ng-model="notebookObject.name">
 					</div>
-					<div class="col-md-5 col-sm-12">
+<!-- 					<div class="col-md-5 col-sm-12">
 						<input type="text" placeholder="Descripción" ng-keyup="removeDisabled()" id="descripcion" class="general-input" data-ng-model="notebookObject.descripcion">
-					</div>
-					<div class="col-md-3 col-sm-4 marginT20 paddingLess">
+					</div> -->
+					<div class="col-md-3 col-sm-6 submit-notebook paddingLess">
 						<div class="fileUpload btn btn-gray" ng-click="openFileDialog('#fileupload')">
 							<span>+ Imagen de portada</span>
 						</div>
 						<div>
-							<input id="fileupload" type="file" name="files[]" class="hidden" accept="image/*" multiple onchange="angular.element(this).scope().readURL(this, '#img_prev')">
+							<input id="fileupload" type="file" name="files" class="hidden" accept="image/*" onchange="angular.element(this).scope().readURL(this)">
 						</div>
-						<!-- <img id="img_prev" src="#" alt="your image"  class="hidden img-prev"/> -->
 					</div>
-					<div class="col-md-3 col-sm-4 marginT20">
+<!-- 					<div class="col-md-3 col-sm-4 marginT20">
 						<div class="fileUpload btn btn-gray" ng-click="openFileDialog('#fileupload2')">
 							<span>+ Imagen del detalle</span>
 						</div>
@@ -73,13 +75,13 @@
 							<input id="fileupload2" type="file" name="files[]" class="hidden" accept="image/*" multiple onchange="angular.element(this).scope().readURL(this, '#img_prev2')">
 						</div>
 						
-					</div>
-					<div class="col-sm-2 marginT20">
+					</div> -->
+					<div class="col-sm-12 marginT20 paddingLess">
 						<button type="submit"  class="btn btn-allred" disabled="true" id="submit-notes" data-ng-click="uploadNotebook()">Cargar</button>
 					</div>
 					<div class="col-md-4 col-sm-10">
 						<img id="img_prev" src="#" alt="your image"  class="hidden view-image margins"/>
-						<img id="img_prev2" src="#" alt="your image"  class="hidden view-image margins"/>
+						<!-- <img id="img_prev2" src="#" alt="your image"  class="hidden view-image margins"/> -->
 					</div>
 				</div>
 				<div class="row marginL0">
@@ -114,9 +116,6 @@
 						</table>
 					</div>
 				</div>
-			</div>
-			<div class="termins">
-				<a target="_blank" href="http://www.scribe.com.mx/aviso-de-privacidad/" >© Terminos y condiciones</a>
 			</div>
 		</div>
 	</div>

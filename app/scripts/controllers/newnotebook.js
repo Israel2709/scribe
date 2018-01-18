@@ -8,7 +8,7 @@
  * Controller of the scribeApp
  */
 angular.module('scribeApp')
-  .controller('NewnotebookCtrl', function ($scope, $http, $timeout,upload) {
+  .controller('NewnotebookCtrl', function ($scope, $http, $timeout,upload, Fact) {
     this.awesomeThings = [
       'HTML5 Boilerplate',
       'AngularJS',
@@ -23,6 +23,8 @@ angular.module('scribeApp')
     $scope.notebookObject = {};
 
     $scope.collectionSelected;
+
+    $scope.viewNotes = Fact.collectionDetail.id;
 
     //variable en la cual se guarda el resultado de la petición al guardar imagen en el servidor
     $scope.resUploadFile;
@@ -49,9 +51,9 @@ angular.module('scribeApp')
     }
 
     $scope.removeDisabled = function(){
-      console.log($scope.notebookObject.name)
-       var title = $(".selectpicker option:selected").text()
-      if(title == "" || title == "Colecciones" || $scope.notebookObject.name == "" || $scope.notebookObject.description == ""){
+      var images = $(".view-image").attr("src")
+      var title = $(".selectpicker option:selected").text()
+      if(title == "" || title == "Colecciones" || $scope.notebookObject.name == "" || $scope.notebookObject.name == undefined || images == "#"){
         $("#submit-notes").prop("disabled", true)
       }
       else{
@@ -118,6 +120,7 @@ angular.module('scribeApp')
         if (selection == "Colecciones") {
             $(".btn-red").addClass("disabled").off("click")
         } else {
+          console.log(selection)
             idSelection = selection.toString();
             var title = $(".selectpicker option:selected").text()
             $(".note-selected, .title").text(" Colección " + title)
@@ -178,8 +181,8 @@ angular.module('scribeApp')
         if(response.status == '200'){
            $scope.notebookObject.coverSource = response.data;
 
-           upload.upload('fileupload2',$scope.collectionSelected,'detail').then(function(response){
-               $scope.notebookObject.listCoverSource = response.data;
+      /*     upload.upload('fileupload2',$scope.collectionSelected,'detail').then(function(response){*/
+           /*    $scope.notebookObject.listCoverSource = response.data;*/
               $http.post('https://api.backand.com:443/1/objects/notebook', $scope.notebookObject, {
                 headers: {
                   AnonymousToken: "a3cacd9a-831f-4aa8-8872-7d80470a000e"
@@ -190,24 +193,27 @@ angular.module('scribeApp')
                   alert("cargada con éxito")
                   $scope.notebookObject = {};
                   $scope.selectedCollections = {};
-                  $("#fileupload,#fileuload2").attr({ value: '' });
-                  $(".img-prev").attr("src","").addClass("hidden");
+                  $("#fileupload").val("");
+                  $(".view-image").attr("src", "#").addClass("hidden")
+                  $("#submit-notes").prop("disabled", true)
+                  $scope.getNotebooks($scope.selectedCollection);
                 },
                 function (response) {
                   alert("error")
                 }
               );
-           })
+           /*})*/
         }
       })//termina then de servicio
     }
 
-    $scope.readURL = function(input, idImage) {
+    $scope.readURL = function(input) {
       if (input.files && input.files[0]) {
           var reader = new FileReader();
           reader.onload = function (e) {
-              $(idImage).attr('src', e.target.result);
-              $(idImage).removeClass("hidden");
+              $("#img_prev").attr('src', e.target.result);
+              $("#img_prev").removeClass("hidden");
+              $scope.removeDisabled()
           };
           reader.readAsDataURL(input.files[0]);   
       }
@@ -228,6 +234,23 @@ angular.module('scribeApp')
             e.preventDefault();*/
         }
     }
+
+     $scope.views = function(id){
+      console.log($scope.viewNotes)
+      if($scope.viewNotes == null){
+        $(".selected").trigger("change")
+        /*$scope.setCollection("Colecciones");*/
+      }
+      else{
+        angular.element(".selectpicker option#"+id).prop("selected", true).trigger("change")
+      }
+    }
+
+
+     $timeout(function() {
+        $scope.views($scope.viewNotes);
+    }, 300);
+
 
 
   })

@@ -8,7 +8,7 @@
  * Controller of the scribeApp
  */
 angular.module('scribeApp')
-  .controller('AdminCtrl', function ($scope, $http, $timeout, upload) {
+  .controller('AdminCtrl', function ($scope, $http, $timeout, upload, Fact) {
     this.awesomeThings = [
       'HTML5 Boilerplate',
       'AngularJS',
@@ -25,6 +25,8 @@ angular.module('scribeApp')
     $scope.notebookObject = {};
 
     $scope.collectionSelected;
+
+    $scope.selectedCollection = Fact.collectionDetail.id = null;
 
     //variable en la cual se guarda el resultado de la petición al guardar imagen en el servidor
     $scope.resUploadFile;
@@ -51,7 +53,10 @@ angular.module('scribeApp')
     }
 
     $scope.removeDisabled = function(){
-      if($scope.collection.name == ""){
+   /*   console.log($(".view-image").attr("src"))*/
+      var submitImage = $(".view-image").attr("src")
+      console.log($scope.collection.name)
+      if($scope.collection.name == "" || submitImage == "#" || $scope.collection.name == undefined){
         $("#submit-button").prop("disabled", true)
       }
       else{
@@ -96,7 +101,9 @@ angular.module('scribeApp')
                 alert("cargada con éxito")
                 $scope.collection.name = "";
                 $scope.getCollectionList()
-                 $(".full-overlay").addClass("hidden");
+                $("#picture").val("")
+                $(".view-image").attr("src", "#").addClass("hidden")
+                $("#submit-button").prop("disabled", true)
               },
               function (response) {
                 alert("error")
@@ -109,11 +116,11 @@ angular.module('scribeApp')
 
     $scope.readURL = function(input) {
       if (input.files && input.files[0]) {
-
           var reader = new FileReader();
           reader.onload = function (e) {
               $(".view-image").attr('src', e.target.result);
               $(".view-image").removeClass("hidden");
+              $scope.removeDisabled()
           };
           reader.readAsDataURL(input.files[0]);  
       }
@@ -127,6 +134,12 @@ angular.module('scribeApp')
             }); 
       /*  window.open('data:application/vnd.ms-excel,' + encodeURIComponent($('#dvData').html()));
         e.preventDefault();*/
+    }
+
+    $scope.pruebasClick = function(element){
+      var eventSelect = $(element).find("img").attr("value")
+      $scope.selectedCollection = Fact.collectionDetail.id = eventSelect;
+      window.location = "#/newnotebook";
     }
 
     

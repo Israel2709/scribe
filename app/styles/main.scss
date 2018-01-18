@@ -1171,11 +1171,15 @@ h1 {
         }
     }
     .collection-list{
-        margin-top: 31px;
+        position: absolute;
+        width: 95%;
+        margin-top: 25px;
+        margin-bottom: 25px;
         .list-box{
             position: relative;
             margin-bottom:20px;
             overflow: hidden;
+            bottom: 10px;
             &:after{
                 content:"";
                 display: block;
@@ -1214,13 +1218,19 @@ h1 {
         font-size: 15px;
         color: #424242;
         padding: 0px;
-        margin-top: 20px;
+        margin-top: 40px;
         margin-left: -15px;
+        position: absolute;
+        width: 100%;
+        margin-bottom: 25px;
         .panel-default{
             width: 48%;
             display: inline-block;
             border-radius: 7px;
             box-shadow: 0 3px 5px 0 #E6E6E6;
+            overflow: hidden;
+            bottom: 20px;
+            position: relative;
             &:nth-child(2n){
                 margin-left: 4%;
             }
@@ -1408,15 +1418,21 @@ h1 {
 }
 
 .termins{
-    bottom: 0px;
+    bottom: 10px;
     position: absolute;
-    margin-top: -15px;
-    @include auto-center();
+    display: block;
+    margin: 0px 50px;
     min-width: 1170px;
-    text-align: center;
+    text-align: left;
+    padding-left: 50px;
     a{
         color: #5A6A75;
         font-size: 12px;
+    }
+    &.center{
+        text-align: center;
+        margin: 10px auto;
+        padding-left: 0px;
     }
 }
 
@@ -1441,6 +1457,9 @@ h1 {
         .view-image{
             position: relative;
             margin-top: 10px;
+        }
+        .submit-notebook{
+            margin-top: 15px;
         }
     }
     .list-stats, .list-black{
@@ -1664,6 +1683,15 @@ h1 {
         width: 70%;
         margin: 20px auto 30px auto;
         text-align: center;
+        &.text-danger{
+            font-size: 15px;
+        }
+        &.send-mail{
+            width: 35%;
+        }
+        &.marginT70{
+            margin-top: 70px;
+        }
     }
     .email-input{
         background-image: url('../images/Mail_2.svg');
