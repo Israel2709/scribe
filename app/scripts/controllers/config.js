@@ -114,10 +114,11 @@ angular.module('scribeApp')
                   }
               }).then(
                   function(response) {
-                      alert("Sus datos han cambiado")
-                      $("#change-profile").prop("disabled", true)
-                      console.log(response);
-                      
+                    $("#submitCorrect").modal("show") 
+                    $("#change-profile").prop("disabled", true)  
+                    $timeout(function() {
+                      $("#submitCorrect").modal("hide")
+                    }, 2000);            
                   },
                   function(response) {
                       alert("error")
@@ -125,7 +126,7 @@ angular.module('scribeApp')
         }
           else{
                 if(newPass.length == 0 || confirmNew.length == 0 || oldPass.length == 0){
-                  alert("Llene todos los campos")
+                  $(".enter").removeClass("hidden").text("Llenar todos los campos.")
                 }else{
                    if(oldPass == $scope.password){
                     if(newPass == confirmNew){
@@ -142,21 +143,24 @@ angular.module('scribeApp')
                               }
                           }).then(
                               function(response) {
-                                  console.log(response);
-                                   alert("Sus datos han cambiado")
+                                  $("#submitCorrect").modal("show") 
                                    $("#change-profile").prop("disabled", true)
                                    $("#new-pass, #confirm-pass, #old-pass").val("")
+                                   $(".enter").addClass("hidden").text("")
+                                   $timeout(function() {
+                                      $("#submitCorrect").modal("hide")
+                                    }, 2000);
                               },
                               function(response) {
                                   alert("error")
                           });
                     }
                     else{
-                      alert("Contraseña nueva no coincide");
+                      $(".enter").removeClass("hidden").text("Contraseña nueva no coincide.")
                     }
                 }
                 else{
-                  alert("Contraseña actual incorrecta");
+                  $(".enter").removeClass("hidden").text("Contraseña actual incorrecta.")
                 }
                 }
                

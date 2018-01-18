@@ -98,12 +98,15 @@ angular.module('scribeApp')
               }
             }).then(
               function (response) {
-                alert("cargada con éxito")
+                $("#submitCorrect").modal("show")                
                 $scope.collection.name = "";
                 $scope.getCollectionList()
                 $("#picture").val("")
                 $(".view-image").attr("src", "#").addClass("hidden")
                 $("#submit-button").prop("disabled", true)
+                $timeout(function() {
+                  $("#submitCorrect").modal("hide")
+                }, 2000);
               },
               function (response) {
                 alert("error")

@@ -947,6 +947,10 @@ h1 {
                 }
             }
         }
+        .enter{
+            margin-left: 25px;
+            margin-top: 10px;
+        }
         #profile-photo{
             width: 45px;
             height: 45px;
@@ -1809,4 +1813,18 @@ h1 {
     display: block;
     position: fixed;
     opacity: 0.1;
+}
+
+#submitCorrect{
+    .modal-dialog{
+        width: 420px;
+        font-family: 'latoregular';
+    }
+    .modal-header{
+        font-weight: bold;
+    }
+    .modal-body{
+        text-align: center;
+    }
+
 }

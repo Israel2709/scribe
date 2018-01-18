@@ -190,13 +190,16 @@ angular.module('scribeApp')
               })
               .then(
                 function (response) {
-                  alert("cargada con éxito")
+                  $("#submitCorrect").modal("show")
                   $scope.notebookObject = {};
                   $scope.selectedCollections = {};
                   $("#fileupload").val("");
                   $(".view-image").attr("src", "#").addClass("hidden")
                   $("#submit-notes").prop("disabled", true)
                   $scope.getNotebooks($scope.selectedCollection);
+                  $timeout(function() {
+                    $("#submitCorrect").modal("hide")
+                  }, 2000);
                 },
                 function (response) {
                   alert("error")

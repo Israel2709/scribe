@@ -85,6 +85,7 @@
 										<input type="text" id="confirm-pass" ng-keyup="removeDisabled()" placeholder="Confirmar nueva contraseña" class="general-input">
 									</div>
 									<div class="col-md-4">
+										<span class="text-danger enter hidden"></span>
 										<button type="submit" ng-click="changeProfile()" id="change-profile" disabled="true" class="btn btn-allred">Realizar cambios</button>
 									</div>
 								</div>
@@ -128,4 +129,16 @@
 			</div>
 		</div>
 	</div>
+</div>
+<div class="modal fade" id="submitCorrect" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">EDITAR PERFIL</h5>
+      </div>
+      <div class="modal-body">
+        <p>Su información ha sido modificada.</p>
+      </div>
+    </div>
+  </div>
 </div>
