@@ -205,11 +205,11 @@ angular.module('scribeApp')
           reader.readAsDataURL(input.files[0]);   
       }
   }
-  })
+  });
 
   //servicio para la ejecución de peticion y guardado de imagenes
   //Prefix: modal,notebook,detail
-  .service('upload',[
+/*  .service('upload',[
     '$http',
     function($http){
       this.upload =  function(id,selected,prefix){
@@ -231,4 +231,4 @@ angular.module('scribeApp')
         })
       }
     }
-  ]);
+  ]);*/

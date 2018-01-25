@@ -1089,7 +1089,7 @@ h1 {
                 background-position: center;
                 display: block;  
                 position: absolute;
-                bottom: 50px; 
+                bottom: 100px; 
             }
         }
         
@@ -1099,9 +1099,18 @@ h1 {
         right: 0px;
     }
     .title-admin{
-        font-size: 38px;
-        color: #233539;
+        font-size: 38px!important;
+        color: #233539!important;
         margin-top: 49px;
+        .return{
+            background-image: url(../images/Icono_regresar.svg) !important;
+            width: 35px;
+            height: 35px;
+            background-size: contain;
+            display: inline-block;
+            margin-right: 15px;
+            cursor: pointer;
+        }
     }
     .export{
         float: right;
@@ -1143,6 +1152,14 @@ h1 {
             .text-bold{
                 font-family: 'latobold';
             }
+            &.title-admins{
+                font-size: 38px !important;
+                color: #233539 !important;
+            }
+        }
+        .btn-allred{
+            margin-top: 15px;
+            float: right;
         }
         .select{
             background-image: url('../images/Rectangle-path.svg');
@@ -1174,16 +1191,31 @@ h1 {
             }
         }
     }
+    .bottom{
+        bottom: 20px;
+        position: fixed;
+    }
     .collection-list{
         position: absolute;
         width: 95%;
         margin-top: 25px;
         margin-bottom: 25px;
+        top: 120px;
+        &#news-notes{
+            top: 50px;
+        }
+        &.no-top{
+            top: auto;
+        }
         .list-box{
             position: relative;
             margin-bottom:20px;
             overflow: hidden;
             bottom: 10px;
+            &.addNotes{
+                 padding-bottom: 25px;
+                 margin-bottom: 0px;
+            }
             &:after{
                 content:"";
                 display: block;
@@ -1193,7 +1225,12 @@ h1 {
                 width: calc(100% - 30px);
                 position:absolute;
                 top:0px;
+                cursor: pointer;
                 left:15px;
+                &.addNotes{
+                    padding-bottom: 28px;
+                    height: 100%;
+                }
             }
             h1{
                 position: absolute;
@@ -1206,11 +1243,28 @@ h1 {
                 margin: 0px;
                 bottom: 3px;
             }
+            .general-input{
+                position: absolute;
+                bottom: 25px;
+                width: 85%;
+                margin: 0px auto;
+            }
             .title-note{
                 bottom: 0px;
                 font-size: 15px;
             }
         }
+    }
+    .notes-exist{
+        display: block;
+        position: absolute;
+        top: 90%;
+        font-size: 14px;
+        font-weight: bold;
+    }
+    .notes-images{
+        position: relative;
+        margin-left: 5%;
     }
     .list-black{
         .panel-default{
@@ -1422,13 +1476,11 @@ h1 {
 }
 
 .termins{
-    bottom: 10px;
+    bottom: 30px;
     position: absolute;
     display: block;
-    margin: 0px 50px;
-    min-width: 1170px;
-    text-align: left;
-    padding-left: 50px;
+    text-align: center;
+    margin-left: -40px;
     a{
         color: #5A6A75;
         font-size: 12px;
@@ -1815,7 +1867,7 @@ h1 {
     opacity: 0.1;
 }
 
-#submitCorrect{
+#submitCorrect, #delete{
     .modal-dialog{
         width: 420px;
         font-family: 'latoregular';
@@ -1826,5 +1878,22 @@ h1 {
     .modal-body{
         text-align: center;
     }
+}
 
+#options{
+    font-family: 'latolight';
+    .modal-title{
+        display: inline-block;
+    }
+    .modal-body{
+        p{
+            font-size: 20px;
+            text-align: center;
+            font-weight: bold;
+
+        }
+        .submit-step, .no{
+            float: right;
+        }
+    }
 }

@@ -174,12 +174,15 @@ angular.module('scribeApp')
 
     //carga de libretas
     $scope.uploadNotebook = function () {
+
       //se manda llamar el servicio creado para la carga de las imagenes,
       //Parametros:  Id de input tipo file,nombre de la coleccion que se envía y el nombre del tipo de imagen
       //:notebook y detail
       upload.upload('fileupload',$scope.collectionSelected,'notebook').then(function(response){
         if(response.status == '200'){
            $scope.notebookObject.coverSource = response.data;
+           $scope.notebookObject.collection = $scope.selectedCollection;
+           console.log($scope.notebookObject)
 
       /*     upload.upload('fileupload2',$scope.collectionSelected,'detail').then(function(response){*/
            /*    $scope.notebookObject.listCoverSource = response.data;*/
@@ -241,7 +244,7 @@ angular.module('scribeApp')
      $scope.views = function(id){
       console.log($scope.viewNotes)
       if($scope.viewNotes == null){
-        $(".selected").trigger("change")
+        angular.element(".selectpicker option:eq(2)").prop("selected", true).trigger("change")
         /*$scope.setCollection("Colecciones");*/
       }
       else{
@@ -249,10 +252,45 @@ angular.module('scribeApp')
       }
     }
 
+    $scope.valueId = null;
+
+    $scope.optionNotes = function(element){
+      $scope.valueId = null;
+      $scope.valueId = $(element).attr("value");
+      $("#options").modal("show")
+    }
+
+     $scope.deleteNotebooks = function() {
+       $http({
+          method: 'DELETE',
+          url: 'https://api.backand.com:443/1/objects/notebook/' + $scope.valueId,
+          /*el último número debe ser el id de la colección a consultar*/
+          headers: {
+            AnonymousToken: "a3cacd9a-831f-4aa8-8872-7d80470a000e"
+          },
+          params: {
+            pageSize: 20,
+            pageNumber: 1
+          }
+        }).then(
+          function (response) {
+            $("#options").modal("hide")
+            $("#delete").modal("show")
+            $timeout(function() {
+              $scope.valueId = null;
+              $("#delete").modal("hide")
+              $scope.getNotebooks($scope.selectedCollection);
+            }, 700);
+          },
+          function (response) {
+            alert("error")
+          });
+    }
+
 
      $timeout(function() {
         $scope.views($scope.viewNotes);
-    }, 300);
+    }, 500);
 
 
 

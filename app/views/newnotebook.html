@@ -89,9 +89,9 @@
 						<p>Cargar Libreta /<span class="text-bold note-selected capitalize"></span></p>
 						<span class="select"></span>
 					</div>
-					<div class="collection-list">
+					<div class="collection-list no-top">
 						<div class="col-md-2 col-sm-4 list-box" data-coleccion="{{notebooks.collection}}" data-id="{{notebooks.id}}" data-nombre="{{notebooks.name}}" data-ng-repeat="notebooks in collectionNotebooks">
-							<img data-ng-src="https://luisvardez.000webhostapp.com/{{notebooks.coverSource}}" alt="">
+							<img data-ng-src="https://luisvardez.000webhostapp.com/{{notebooks.coverSource}}" value="{{notebooks.id}}" onclick="angular.element(this).scope().optionNotes(this)" alt="">
 							<h1 class="title-note">{{notebooks.name}}</h1>
 						</div>
 					</div>
@@ -120,6 +120,7 @@
 		</div>
 	</div>
 </div>
+<!-- MODAL NUEVA LIBRETA -->
 <div class="modal fade" id="submitCorrect" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
@@ -128,6 +129,42 @@
       </div>
       <div class="modal-body">
         <p>Cargada exitósamente.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL OPCIONES DELETE -->
+<div class="modal fade" id="options" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">ELIMINAR LIBRETA</h5>
+      </div>
+      <div class="modal-body">
+        <p>¿Desea eliminar la libreta?</p>
+        <div class="row">
+        	<div class="col-sm-6">
+	        	 <button type="submit" class="btn btn-allred yes" ng-click="deleteNotebooks()">Sí</button>
+	        </div>
+	        <div class="col-sm-6">
+	        	<button type="submit" class="btn btn-allred no" data-dismiss="modal" aria-label="Close">No</button>
+	        </div> 
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL ELIMINAR LIBRETA -->
+<div class="modal fade" id="delete" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">ELIMINAR LIBRETA</h5>
+      </div>
+      <div class="modal-body">
+        <p>La libreta ha sido eliminada exitósamente.</p>
       </div>
     </div>
   </div>

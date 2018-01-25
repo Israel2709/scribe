@@ -36,8 +36,8 @@ angular.module('scribeApp')
             function(response) {
                 $scope.collectionsList = response.data.data;
                  $timeout(function() {
-                    angular.element(".selectpicker option:eq(1)").prop("selected", true).trigger("change");
-                }, 10);
+                    angular.element(".selectpicker option:eq(2)").prop("selected", true).trigger("change");
+                }, 1);
             },
             function(response) {
                 alert("error")
