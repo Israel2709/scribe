@@ -178,6 +178,7 @@ angular.module('scribeApp')
       //se manda llamar el servicio creado para la carga de las imagenes,
       //Parametros:  Id de input tipo file,nombre de la coleccion que se envía y el nombre del tipo de imagen
       //:notebook y detail
+      $(".full-overlay").removeClass("hidden")
       upload.upload('fileupload',$scope.collectionSelected,'notebook').then(function(response){
         if(response.status == '200'){
            $scope.notebookObject.coverSource = response.data;
@@ -193,6 +194,7 @@ angular.module('scribeApp')
               })
               .then(
                 function (response) {
+                  $(".full-overlay").addClass("hidden")
                   $("#submitCorrect").modal("show")
                   $scope.notebookObject = {};
                   $scope.selectedCollections = {};
@@ -205,6 +207,7 @@ angular.module('scribeApp')
                   }, 2000);
                 },
                 function (response) {
+                  $(".full-overlay").addClass("hidden")
                   alert("error")
                 }
               );

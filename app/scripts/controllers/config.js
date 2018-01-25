@@ -103,6 +103,7 @@ angular.module('scribeApp')
       var confirmNew = $("#confirm-pass").val();
       var oldPass = $("#old-pass").val();
        if(newPass.length == 0 && confirmNew.length == 0 && oldPass.length == 0){
+                $(".full-overlay").removeClass("hidden")
                 $http({
                   method: 'PUT',
                   url: 'https://api.backand.com:443/1/objects/userAdmin/' + $scope.selectionUser,
@@ -114,6 +115,7 @@ angular.module('scribeApp')
                   }
               }).then(
                   function(response) {
+                    $(".full-overlay").addClass("hidden")
                     $("#submitCorrect").modal("show") 
                     $("#change-profile").prop("disabled", true)  
                     $timeout(function() {
@@ -131,6 +133,7 @@ angular.module('scribeApp')
                    if(oldPass == $scope.password){
                     if(newPass == confirmNew){
                         console.log($scope.selectionUser)
+                        $(".full-overlay").removeClass("hidden")
                         $http({
                               method: 'PUT',
                               url: 'https://api.backand.com:443/1/objects/userAdmin/' + $scope.selectionUser,
@@ -143,6 +146,7 @@ angular.module('scribeApp')
                               }
                           }).then(
                               function(response) {
+                                  $(".full-overlay").addClass("hidden")
                                   $("#submitCorrect").modal("show") 
                                    $("#change-profile").prop("disabled", true)
                                    $("#new-pass, #confirm-pass, #old-pass").val("")
@@ -152,6 +156,7 @@ angular.module('scribeApp')
                                     }, 2000);
                               },
                               function(response) {
+                                  $(".full-overlay").addClass("hidden")
                                   alert("error")
                           });
                     }

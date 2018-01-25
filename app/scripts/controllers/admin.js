@@ -38,7 +38,7 @@ angular.module('scribeApp')
         $scope.selections = "see-collections";
       }
       else{
-        $scope.selections = 'new-collections'
+        $scope.selections = 'new-collections';
       }
     }
 
@@ -99,6 +99,7 @@ angular.module('scribeApp')
         alert("la coleccion ya existe");
         return false
       } else {
+        $(".full-overlay").removeClass("hidden")
         $scope.collectionSelected = $scope.collection.name;
         console.log( $scope.collectionSelected)
 
@@ -147,10 +148,15 @@ angular.module('scribeApp')
           }
         }).then(
                 function (response) {
-                  $("#submitCorrect").modal("show")
-                  $scope.notebookObject = {};
+                  $(".full-overlay").addClass("hidden");
+                  $("#submitCorrect").modal("show");
+                  $scope.pruebasAdd = [];
+                  $scope.nameOriginal = [];
+                  $scope.namesNotes = [];
+                  $scope.arrayImages = [];
                   $timeout(function() {
-                    $("#submitCorrect").modal("hide")
+                    $("#submitCorrect").modal("hide");
+                    $(".return").trigger("click");
                   }, 2000);
                 },
                 function (response) {
@@ -184,9 +190,7 @@ angular.module('scribeApp')
     $scope.longMultiple = input.files.length 
       if (input.files && input.files[0]) {
           for(i=0; i < input.files.length; i++){
-/*              $scope.arrayPrueba.push(input.files[i].size)*/
               reader = new FileReader();
-          /* if($scope.arrayPrueba[i] ==  input.files[i].size){*/
                 reader.onload = function (e) {
                   var images = "<div class=' col-md-2 col-sm-4 list-box addNotes' ><img name='"+e.total+"' class='addNotes' src='"+e.target.result+"' />"+
                   "<input type='text' class='general-input' onfocusout='angular.element(this).scope().addNotebookPrueba(this); angular.element(this).scope().removeDisabled()'  placeholder='Nombre de libreta'>"+
@@ -194,21 +198,8 @@ angular.module('scribeApp')
                   $("#news-notes").append(images);
                   $scope.removeDisabled();
               };
-              /*$scope.arrayPrueba.shift();*/
-           /* }*/
-        
             reader.readAsDataURL(input.files[i]);
-          }            
-             
-           
-
-          
-     /*     $timeout(function() {
-            for(var j=0 ; j < $scope.nameOriginal.length; j++){
-              $(".lol:eq("+[j]+")").attr("name", $scope.nameOriginal[j])
-            }
-           }, 2000);
-          */
+          }           
 
       }
   }
@@ -343,7 +334,7 @@ angular.module('scribeApp')
           if(newNum == -1){
              $timeout(function() {
                 $scope.uploadAllNotes()
-            }, 1000);
+            }, 2000);
            }
            else{
             $timeout(function() {
