@@ -1490,6 +1490,9 @@ h1 {
         margin: 10px auto;
         padding-left: 0px;
     }
+    &.login{
+        width: 80%;
+    }
 }
 
 @media screen and (max-width: 768px) {
@@ -1528,6 +1531,9 @@ h1 {
     }
     .termins{
         min-width: 760px;
+        &.admin-link{
+            min-width: 20%;
+        }
     }
 }
 
@@ -1564,7 +1570,7 @@ h1 {
             }
         }
         .content-wrapper{
-            .login, .finish{
+            .login, .finish, .login-admin{
                 .main-cover{
                     margin-top: 30px;
                     img{
@@ -1575,6 +1581,9 @@ h1 {
                     margin:30px auto;
                     width: 90%;
                     font-size: 25px;
+                }
+                .red-btn{
+                    width: 100%;
                 }
             }
         }
@@ -1735,6 +1744,14 @@ h1 {
 /* CSS Login admin */
 
 .login-admin{
+    .main-cover {
+        width: 100%;
+        margin-top: 70px;
+        img {
+            max-width: 589px;
+            @include auto-center();
+        }
+    }
     h1 {
         width: 70%;
         margin: 20px auto 30px auto;
@@ -1792,23 +1809,6 @@ h1 {
             vertical-align: middle;
             margin-left: 14%;
         }
-    }
-    .progress-indicator-wrapper{
-        display: flex;
-        justify-content: flex-end;
-        margin-top: 9px;
-        padding-right: 0;
-        .indicator{
-            width: 8px;
-            height: 8px;
-            margin-left: 5px;
-            margin-right: 5px;
-            border-radius: 5px;
-            background: #b5e7fe;
-            &.done{
-                background: #03b4e6;
-            }
-        }       
     }
 }
 
@@ -1896,4 +1896,8 @@ h1 {
             float: right;
         }
     }
+}
+
+.titles-modal{
+    text-transform: uppercase;
 }
